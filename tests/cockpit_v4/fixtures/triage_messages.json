@@ -1,0 +1,277 @@
+[
+  {
+    "event_type": "tool.failed",
+    "message": "cursor must be the offset returned by a previous page.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "inspect_catalog.relation_ids must be an array of strings. A single string is not an array; send [\"...\"] if you meant one item.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "finalize_response.disposition is required and was not supplied.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "finalize_response.clarification_options must be an array of strings. A single string is not an array; send [\"...\"] if you meant one item.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "the provider request failed: IncompleteRead(1 bytes read)",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "execute_analysis.scope must be an object or null, not str.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "steps must be an array.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "all 5 execution submissions for this run were used.",
+    "expected": "exec_limit"
+  },
+  {
+    "event_type": "run.expired",
+    "message": "The standard deadline passed while CreditProbe was writing.",
+    "expected": "timeout"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "The result could not be stored: run run-582ffd02080445a798b330855ded7248 already settled as PARTIAL",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The query did not bind and was not run.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step step6_stress_check did not bind: Binder Error: Table \"b\" does not have a column named \"dpd_days\" Nothing was executed and nothing was repaired.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "inspect_catalog.field_ids must be an array of strings. A single string is not an array; send [\"...\"] if you meant one item.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step step6_stress_check did not bind: Binder Error: Referenced table \"f\" not found! Nothing was executed and nothing was repaired.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "execute_analysis.subquestions must be an array of strings. A single string is not an array; send [\"...\"] if you meant one item.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "The result could not be stored: run run-fab25e9b2f324a2b8aee1654afccaefc already settled as PARTIAL",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step 1 did not bind: Binder Error: Referenced column \"rating_current\" not found in FROM clause! Nothing was executed and nothing was repaired.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The submission was refused before anything ran.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step sector_comparison: 'sector_totals' is not readable from this analysis. The readable relations of the Corporate Credit book are: corp_borrower_quarter, corp_collateral_quarter, corp_covenant_quarter, corp_facility_quarter.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step stage2_by_rating_q2 did not bind: Binder Error: Referenced column \"rating_current\" not found in FROM clause! Nothing was executed and nothing was repaired.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "ECL and Stage 2 facility counts by sector for Q1 and Q2 with deltas did not bind and was not run.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "the provider request failed: oMLX request failed The first analytical failure in this run was: submission 1 was refused — step sector_comparison: 'sector_totals' is not readable from this analysis. The readable relations of the Corporate Credit book are: corp_borrower_quarter, corp_collateral_quarter, corp_covenant_quarter, corp_facility_quarter.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step 002 did not bind: Binder Error: column \"stage\" must appear in the GROUP BY clause or must be part of an aggregate function. Nothing was executed and nothing was repaired.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "read_artifact.artifact_kind is required and was not supplied.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "the 180-second standard deadline passed. The first analytical failure in this run was: submission 1 did not bind — step 002 did not bind: Binder Error: column \"stage\" must appear in the GROUP BY clause or must be part of an aggregate function. Nothing was executed and nothing was repaired.",
+    "expected": "timeout"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "execute_analysis.objective is required and was not supplied.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step stage2_movers: The SQL could not be parsed: Parser Error: syntax error at or near \".\"\n\nLINE 5:     q.stage,\n             ^",
+    "expected": "other"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "all 5 execution submissions for this run were used. The first analytical failure in this run was: submission 1 was refused — step stage2_movers: The SQL could not be parsed: Parser Error: syntax error at or near \".\"\n\nLINE 5:     q.stage,\n             ^",
+    "expected": "exec_limit"
+  },
+  {
+    "event_type": "answer.validated",
+    "message": "The response did not pass its evidence check.",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. this data analysis response carries no numeric claim and no table, so nothing in it is bound to the executed evidence. Either bind the figures, or send a partial answer that states what could not be established. Correct the response itself; no new analysis is availabl",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "unknown tool(s) ['clarify']; the available tools are ['inspect_catalog', 'inspect_product_knowledge', 'execute_analysis', 'read_artifact', 'finalize_response'].",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. chart 1 ('ECL by Stage — August 2026') claims a ranking and charts 'ecl_by_stage_sar_mn', but artifact 'art-0171ff2840ea461f' is not ordered by it. Order the query by the measure you are ranking, draw it as a sequence rather than a ranking, or drop the ranking languag",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "This run is in answer-correction mode: only finalize_response is available and no new analysis can be started.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "finalize_response.narrative is required and was not supplied.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "numeric_claims[0].evidence.row_key is required and was not supplied.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "The result could not be stored: run run-453b3def8f0b4c1d82ce647ff117bc50 already settled as PARTIAL",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step 1 did not bind: the SQL uses 2 positional placeholder(s), so the step's parameters must be numbered (\"1\", \"2\", …) in the order they appear. Got ['2026Q1', '2026Q2']. Nothing was executed and nothing was repaired.",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "step 3: 'step_1_result' is not readable from this analysis. The readable relations of the Corporate Credit book are: corp_borrower_quarter, corp_collateral_quarter, corp_covenant_quarter, corp_facility_quarter.",
+    "expected": "other"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "all 5 execution submissions for this run were used. The first analytical failure in this run was: submission 1 did not bind — step 1 did not bind: the SQL uses 2 positional placeholder(s), so the step's parameters must be numbered (\"1\", \"2\", …) in the order they appear. Got ['2026Q1', '2026Q2']. Nothing was executed and nothing was repaired.",
+    "expected": "exec_limit"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "the provider request failed: oMLX truncated a required tool response.",
+    "expected": "other"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "the provider request failed: oMLX request failed",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "plan.measures must name 1 to 3 measures. Nothing was executed.",
+    "expected": "plan_refused"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "stage is not recorded on corp_borrower_quarter, which holds borrower_count. Relations holding stage: corp_facility_quarter. Nothing was executed.",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "plan.compare compares the latest period with an earlier one, so period.kind must be 'latest' when compare is used. Nothing was executed.",
+    "expected": "plan_refused"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. the narrative references {{claim.stage2_share_pct.power_and_utilities}} but no numeric_claim with that id was supplied. the narrative references {{claim.stage2_share_pct_change.construction}} but no numeric_claim with that id was supplied. the narrative references {{c",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "plan.measures must name 1 to 4 measures. Nothing was executed.",
+    "expected": "plan_refused"
+  },
+  {
+    "event_type": "run.failed",
+    "message": "The result could not be stored: run run-4f0caaa4578e40dba9c1d0781a45f012 already settled as PARTIAL",
+    "expected": "other"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "A clarification must carry the question you want answered.",
+    "expected": "shape"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "'Oman' is not a value of region. Its values are: Asir, Eastern Province, Hail, Madinah, Makkah, Najran, Northern Borders, Qassim, Riyadh, Tabuk. Nothing was executed.",
+    "expected": "unknown_value"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. the narrative references {{claim.ecl_sar_mn.riyadh.construction_and_real_estate_share}} but no numeric_claim with that id was supplied. the narrative references {{claim.ecl_sar_mn_change.total}} but no numeric_claim with that id was supplied. the narrative references ",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. claim 'current_ecl_sar_mn' names column 'ecl_sar_mn', which is not in artifact 'art-814725160c2d4c15'. Its columns are ['ead_sar_mn', 'avg_pd_lifetime', 'avg_lgd_pct']. claim 'ecl_increase_pct' operand 2 names column 'ecl_sar_mn', which is not in artifact 'art-8147251",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "'facility_id' is not a governed field. Fields: breach_flag, collateral_type, covenant_type, cure_flag, default_flag, facility_class, past_due_flag, product_type, rating_at_origination, rating_current, rating_driver, rating_migration, rating_outlook, region, relationship_tier, restructured_flag, sect",
+    "expected": "wrong_relation"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. the narrative references {{claim.current_ecl_sar_mn}} but no numeric_claim with that id was supplied. the narrative references {{claim.ecl_increase_pct}} but no numeric_claim with that id was supplied. the narrative references {{claim.ecl_increase_usd_mn}} but no nume",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "The response was not published. this data analysis response carries no numeric claim and no table, so nothing in it is bound to the executed evidence. Either bind the figures, or send a partial answer that states what could not be established. chart 2 ('Stage 2 EAD change by sector — 2026Q2 vs 2026Q",
+    "expected": "evidence_check"
+  },
+  {
+    "event_type": "tool.failed",
+    "message": "'customer_id' is not a governed field. Fields: collateral_type, cure_flag, customer_segment, default_flag, delinquency_bucket, delinquency_bucket_fine, employment_type, origination_channel, overlimit_flag, product, region, score_band, score_migration, secured_flag, sicr_flag, stage, sub_product. Not",
+    "expected": "wrong_relation"
+  }
+]

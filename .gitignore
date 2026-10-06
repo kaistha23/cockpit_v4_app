@@ -1,0 +1,37 @@
+# secrets
+.env
+.claude/settings.local.json
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# node / frontend build
+node_modules/
+.next/
+frontend/out/
+
+# data and runtime (generated; lake is a symlink to ~/creditprobe_data/lake)
+data/
+.cockpit_v4_runtime/
+logs/
+var/
+uploads/
+backups/
+*.duckdb
+*.duckdb.wal
+artifacts_eval/*
+!artifacts_eval/gates.json
+sqlite:/
+scripts/sql_console/saved_queries.sql
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store

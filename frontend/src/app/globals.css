@@ -1,0 +1,428 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   CreditProbe DESIGN TOKENS
+   =============================================================================
+
+   Every colour in the interface is referenced by the JOB IT DOES, never by what
+   it looks like. Components say `bg-surface` and `text-negative`; they never say
+   "navy" or "#e5484d".
+
+   That single discipline is what makes eight themes possible. A theme is one set
+   of values for these role names — nothing else changes. Layout, typography,
+   spacing, radii and motion are deliberately theme-invariant, so switching theme
+   changes how CreditProbe looks and never how it works.
+
+   RULE: a literal colour value inside a component is a bug. Add a token instead.
+
+   Themes are applied with `data-theme` on <html>. `executive-light` is the
+   default and is defined on :root so the page is never unstyled.
+   ============================================================================= */
+
+/* Tailwind's `dark:` variant, bound to the theme the reader actually chose.
+   -----------------------------------------------------------------------------
+   Tailwind v4 defaults `dark:` to `@media (prefers-color-scheme: dark)`, which
+   reads the OPERATING SYSTEM. This product selects a theme by attribute, so the
+   two were entirely decoupled: a reader on a light OS who picked Midnight
+   Boardroom got light-mode `dark:` values on a near-black canvas, and a reader
+   on a dark OS got dark-mode values inside Executive Ivory. `color-scheme: dark`
+   further down sets scrollbar and form rendering; it does not feed
+   `prefers-color-scheme`, so it could not have rescued this.
+
+   Tokens remain the rule and `dark:` is not a way around them. This exists so
+   that the handful of call sites already using it follow the chosen theme
+   rather than an unrelated signal. */
+@custom-variant dark (&:where([data-theme="midnight"]) *);
+
+@theme inline {
+  /* Surfaces, in increasing prominence. */
+  --color-canvas: var(--ipm-canvas);
+  --color-surface: var(--ipm-surface);
+  --color-surface-raised: var(--ipm-surface-raised);
+  --color-surface-sunken: var(--ipm-surface-sunken);
+  --color-surface-hover: var(--ipm-surface-hover);
+
+  /* Lines. */
+  --color-border: var(--ipm-border);
+  --color-border-strong: var(--ipm-border-strong);
+
+  /* Text, in decreasing prominence. */
+  --color-text-primary: var(--ipm-text-primary);
+  --color-text-secondary: var(--ipm-text-secondary);
+  --color-text-muted: var(--ipm-text-muted);
+  --color-text-inverse: var(--ipm-text-inverse);
+
+  /* The single accent. Used sparingly — an accent everywhere is an accent nowhere. */
+  --color-accent: var(--ipm-accent);
+  --color-accent-hover: var(--ipm-accent-hover);
+  --color-accent-muted: var(--ipm-accent-muted);
+  --color-accent-contrast: var(--ipm-accent-contrast);
+
+  /* Semantic status. In credit risk these carry meaning, so they are never
+     decorative and never used for anything else. */
+  --color-positive: var(--ipm-positive);
+  --color-positive-muted: var(--ipm-positive-muted);
+  --color-warning: var(--ipm-warning);
+  --color-warning-muted: var(--ipm-warning-muted);
+  --color-negative: var(--ipm-negative);
+  --color-negative-muted: var(--ipm-negative-muted);
+  --color-info: var(--ipm-info);
+  --color-info-muted: var(--ipm-info-muted);
+
+  /* Categorical chart palette.
+     Assigned in FIXED ORDER and never cycled: a series keeps its colour when a
+     filter changes how many series are on screen.
+     These exact values are validated — lightness band, chroma floor,
+     colour-vision separation between adjacent slots, and contrast against each
+     theme's own surface. The dark themes get their own selected steps rather
+     than a lightened flip of the light ones. Do not adjust by eye. */
+  --color-chart-1: var(--ipm-chart-1);
+  --color-chart-2: var(--ipm-chart-2);
+  --color-chart-3: var(--ipm-chart-3);
+  --color-chart-4: var(--ipm-chart-4);
+  --color-chart-5: var(--ipm-chart-5);
+  --color-chart-6: var(--ipm-chart-6);
+  --color-chart-7: var(--ipm-chart-7);
+  --color-chart-8: var(--ipm-chart-8);
+
+  /* Trace graph. Governed nodes (carrying numbers the bank must defend) must be
+     visually distinct from interpretive nodes (produced by the language model).
+     A reader has to see that boundary without being told about it. */
+  --color-trace-governed: var(--ipm-trace-governed);
+  --color-trace-interpretive: var(--ipm-trace-interpretive);
+  --color-trace-edge: var(--ipm-trace-edge);
+
+  /* Typography — four families, each with one job. See app/layout.tsx.
+
+     A reader should be able to tell CreditProbe's prose from their own question
+     from the machine's record without reading any of them. That distinction is
+     load-bearing in a product whose central claim is about where a number came
+     from, so it is carried by the typeface rather than by a label. */
+  --font-sans: var(--font-prose-raw), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-prose: var(--font-prose-raw), ui-sans-serif, system-ui, sans-serif;
+  --font-user: var(--font-user-raw), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-raw), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: var(--font-display-raw), ui-sans-serif, system-ui, sans-serif;
+
+  /* The aliases the plain-CSS role classes use. These resolve through the
+     real :root declarations further down, NOT through this block — see the
+     note there. */
+  --font-prose-stack: var(--stack-prose);
+  --font-user-stack: var(--stack-user);
+  --font-display-stack: var(--stack-display);
+
+  /* ---------------------------------------------------------------------
+     SEMANTIC SURFACES
+
+     Five roles the interface actually has, DERIVED from the palette above
+     rather than hand-picked per theme. Eight themes times five new colours is
+     forty values nobody can keep coherent, and every one of them would need
+     its own contrast check. Mixing from tokens that are already validated
+     means a ninth theme inherits all five for free and none of them can drift
+     away from the theme they belong to.
+     --------------------------------------------------------------------- */
+
+  /* A surface lifted off the canvas. Menus, popovers, the node inspector. */
+  --color-surface-elevated: var(--ipm-surface-raised);
+
+  /* A surface you can act on: rows, cards and controls that respond. Barely
+     tinted toward the accent — enough that the eye reads it as live. */
+  --color-surface-interactive: color-mix(in oklab, var(--ipm-surface) 96%, var(--ipm-accent));
+
+  /* The one that is currently chosen. */
+  --color-surface-selected: var(--ipm-accent-muted);
+
+  /* Something needs attention, or something is wrong. Never decorative. */
+  --color-surface-warning: var(--ipm-warning-muted);
+  --color-surface-critical: var(--ipm-negative-muted);
+
+  /* ---------------------------------------------------------------------
+     AI ACCENT
+
+     CreditProbe's own visual identity, used ONLY where the machine is doing
+     or has done something: interpretation, active reasoning, model routing.
+     It is deliberately close to the theme accent rather than a separate
+     brand colour — an AI that announces itself in a different hue on every
+     surface reads as a widget bolted onto a product rather than the product.
+     --------------------------------------------------------------------- */
+  --color-ai: var(--ipm-trace-interpretive);
+  --color-ai-muted: color-mix(in oklab, var(--ipm-surface) 92%, var(--ipm-trace-interpretive));
+  --color-ai-edge: color-mix(in oklab, var(--ipm-surface) 70%, var(--ipm-trace-interpretive));
+
+  /* ---------------------------------------------------------------------
+     ELEVATION
+
+     Three steps, and no more. Depth in this product is a hint that something
+     floats above the page, not a decoration — a shadow on a table row is a
+     table row pretending to be a button.
+     --------------------------------------------------------------------- */
+  --shadow-raised: 0 1px 2px color-mix(in oklab, var(--ipm-canvas) 70%, black);
+  --shadow-overlay: 0 8px 24px -6px color-mix(in oklab, var(--ipm-canvas) 60%, black);
+  --shadow-focus: 0 0 0 3px color-mix(in oklab, transparent 78%, var(--ipm-accent));
+
+  /* ---------------------------------------------------------------------
+     TYPE SCALE
+
+     Named by the job, sized once. The product previously set sizes inline in
+     every component, which is how ordinary page titles ended up at 40px while
+     the analysis they described was at 15.
+     --------------------------------------------------------------------- */
+  --text-eyebrow: 0.6875rem;   /* 11px — technical label above a title      */
+  --text-meta: 0.75rem;        /* 12px — metadata, table cells, captions    */
+  --text-body: 0.8125rem;      /* 13px — interface body, dense tables       */
+  --text-prose: 0.9375rem;     /* 15px — CreditProbe's prose. Read, not scanned */
+  --text-analysis: 1.0625rem;  /* 17px — an analysis title                  */
+  --text-page: 1.375rem;       /* 22px — a page title                       */
+  --text-greeting: 1.875rem;   /* 30px — the Cockpit greeting, and only that */
+
+  /* ---------------------------------------------------------------------
+     MOTION
+
+     Used while the machine is working and at almost no other time. Every
+     duration here is short enough to feel like response rather than
+     animation.
+     --------------------------------------------------------------------- */
+  --ease-out-quiet: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-instant: 90ms;
+  --duration-quick: 160ms;
+  --duration-settled: 280ms;
+
+  /* Spacing and radii are theme-invariant. */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+/* -----------------------------------------------------------------------------
+   THE FONT STACKS, AS REAL CUSTOM PROPERTIES
+
+   `@theme inline` does not emit its entries as custom properties at all — it
+   substitutes their values directly into the utilities it generates. That is
+   fine for `font-prose` the utility, and useless for `font-family:
+   var(--font-prose)` written by hand in a stylesheet, which is what every role
+   class below did. They resolved to nothing, so `.prose-ai` has never set a
+   font and the product has been rendering CreditProbe's prose, the user's
+   questions and its own display type in the browser's default sans since the
+   day the roles were introduced.
+
+   Declared here at :root, where the families are now defined, so both routes
+   work.
+   -------------------------------------------------------------------------- */
+:root {
+  --stack-prose: var(--font-prose-raw), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --stack-user: var(--font-user-raw), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --stack-display: var(--font-display-raw), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --stack-mono: var(--font-mono-raw), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* -----------------------------------------------------------------------------
+   THEME 1 — EXECUTIVE IVORY  (default)
+   Paper-like and high contrast. Reads as a printed board pack rather than a
+   screen. This is the theme a document is written in.
+   -------------------------------------------------------------------------- */
+:root,
+[data-theme="executive-light"] {
+  --ipm-canvas: #f7f6f3;
+  --ipm-surface: #ffffff;
+  --ipm-surface-raised: #ffffff;
+  --ipm-surface-sunken: #f0f2f5;
+  --ipm-surface-hover: #f4f6f8;
+
+  --ipm-border: #dce1e7;
+  --ipm-border-strong: #c2cad3;
+
+  --ipm-text-primary: #12181f;
+  --ipm-text-secondary: #414c59;
+  --ipm-text-muted: #6b7684;
+  --ipm-text-inverse: #ffffff;
+
+  --ipm-accent: #10527a;
+  --ipm-accent-hover: #0c405f;
+  --ipm-accent-muted: #e6eef4;
+  --ipm-accent-contrast: #ffffff;
+
+  --ipm-positive: #12704b;
+  --ipm-positive-muted: #e4f2ec;
+  --ipm-warning: #9a6208;
+  --ipm-warning-muted: #fbf0dd;
+  --ipm-negative: #a92a25;
+  --ipm-negative-muted: #fbe9e8;
+  --ipm-info: #10527a;
+  --ipm-info-muted: #e6eef4;
+
+  --ipm-chart-1: #2563A8;
+  --ipm-chart-2: #C2410C;
+  --ipm-chart-3: #0E8A6A;
+  --ipm-chart-4: #7C3AED;
+  --ipm-chart-5: #A16207;
+  --ipm-chart-6: #0891B2;
+  --ipm-chart-7: #BE185D;
+  --ipm-chart-8: #3F6212;
+
+  --ipm-trace-governed: #10527a;
+  --ipm-trace-interpretive: #7d5a80;
+  --ipm-trace-edge: #cbd2da;
+
+  color-scheme: light;
+}
+
+/* -----------------------------------------------------------------------------
+   BASE
+   -------------------------------------------------------------------------- */
+* {
+  border-color: var(--ipm-border);
+}
+
+html {
+  /* Prevents the layout shifting horizontally when a page grows tall enough to
+     need a scrollbar — visible jitter reads as unpolished. */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--ipm-canvas);
+  color: var(--ipm-text-primary);
+  /* `--font-prose`, not `--font-sans`. `@theme inline` resolves nested custom
+     properties at BUILD time, and the font families are only declared at
+     runtime by next/font on this element — so the inlined `--font-sans` had
+     already collapsed to its system fallback before the page ever loaded, and
+     the product's default text has never actually been Geist. */
+  font-family: var(--stack-prose);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Only colours transition on a theme switch. Animating layout would make the
+     change feel unstable rather than deliberate. */
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+/* ---------------------------------------------------------------- type roles
+
+   Four utilities rather than four families scattered through components. A
+   screen picks the ROLE the text plays, and the family follows from that — so
+   changing what CreditProbe's prose is set in is one line here, not a sweep. */
+
+/* CreditProbe's own prose: interpretation, findings, narrative. Set a little
+   looser than the interface, because it is read in sentences rather than
+   scanned. */
+.prose-ai {
+  font-family: var(--stack-prose);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+}
+
+/* What the person typed. Distinguished by weight and family, not by a bubble:
+   a chat bubble in an analytical tool reads as a toy. */
+.prose-user {
+  font-family: var(--stack-user);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* The machine's record — identifiers, versions, periods, field names. Small,
+   tracked, upper-case where it is a label rather than a value. Anything a
+   person might copy exactly belongs here. */
+.meta {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* Same family, but a value rather than a label: an identifier, a hash, a period
+   code. Not upper-cased, because the case is part of the value. */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Things you act on, and figures you read at a glance. */
+.display {
+  font-family: var(--stack-display);
+  letter-spacing: -0.02em;
+}
+
+button,
+.display-num {
+  font-family: var(--stack-display);
+}
+
+.display-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.02em;
+}
+
+/* Every figure uses tabular (fixed-width) digits so columns of numbers align and
+   a value changing from 1.1 to 8.8 never shifts anything. In a credit-risk tool
+   this matters more than it sounds. */
+.tabular,
+table td,
+table th {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Visible keyboard focus, in the accent colour, on every theme. */
+:focus-visible {
+  outline: 2px solid var(--ipm-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background-color: var(--ipm-accent-muted);
+  color: var(--ipm-text-primary);
+}
+
+/* Respect a user's reduced-motion setting. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* -----------------------------------------------------------------------------
+   AI ACTIVITY
+
+   Three animations, used only while CreditProbe is working. See
+   components/system/ai-activity.tsx for the rule they exist under: motion in
+   this product means the machine is doing something, and its value comes from
+   never being spent on decoration.
+
+   All three are inert under prefers-reduced-motion; the components they belong
+   to stay legible without them.
+   -------------------------------------------------------------------------- */
+
+@keyframes ai-sweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(400%); opacity: 0; }
+}
+
+@keyframes ai-pulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  70%  { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes ai-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-ai-edge); }
+  50%      { box-shadow: 0 0 0 3px color-mix(in oklab, transparent 70%, var(--color-ai-edge)); }
+}
+
+/* -----------------------------------------------------------------------------
+   THE OFFICER PULSE
+
+   §6 asks for a professional credit-monitoring pulse and forbids the obvious
+   alternatives: a cartoon heart, an emoji, a gaming spinner, a loading screen,
+   a fake percentage bar, a permanently animated decoration.
+

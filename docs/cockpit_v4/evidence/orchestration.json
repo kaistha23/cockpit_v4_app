@@ -1,0 +1,128 @@
+{
+  "model": "STUB ANALYST. No paid provider call was made. Call latencies below are therefore not live figures; call counts, payload sizes and field counts are.",
+  "release_id": "v4-saudi-20q-v1",
+  "simple_analysis": {
+    "question": "total EAD by sector, latest quarter",
+    "state": "COMPLETED",
+    "generations": 2,
+    "catalog_calls": 0,
+    "execution_submissions": 1,
+    "calls": [
+      {
+        "seq": 1,
+        "purpose": "ANALYSIS_ACTION",
+        "phase": "action",
+        "outcome": "ok",
+        "counted_input_tokens": 24693,
+        "output_allowance_granted": 4096,
+        "tools_offered": 4,
+        "context_bytes": {
+          "system": 30836,
+          "tools": 23287,
+          "messages": 221,
+          "total": 54344
+        }
+      },
+      {
+        "seq": 2,
+        "purpose": "FINAL_ANSWER",
+        "phase": "answer",
+        "outcome": "ok",
+        "counted_input_tokens": 16961,
+        "output_allowance_granted": 4096,
+        "tools_offered": 2,
+        "context_bytes": {
+          "system": 14813,
+          "tools": 14006,
+          "messages": 8506,
+          "total": 37325
+        }
+      }
+    ],
+    "answer_turn_saving": {
+      "system_bytes": [
+        30836,
+        14813
+      ],
+      "tools_bytes": [
+        23287,
+        14006
+      ],
+      "tools_offered": [
+        4,
+        2
+      ],
+      "counted_input_tokens": [
+        24693,
+        16961
+      ]
+    },
+    "wall_clock_ms": {
+      "total": 438,
+      "provider": 0,
+      "creditprobe": 438
+    }
+  },
+  "seeded_covenant_thread": {
+    "state": "COMPLETED",
+    "generations": 2,
+    "catalog_calls": 0,
+    "execution_submissions": 1,
+    "calls": [
+      {
+        "seq": 1,
+        "purpose": "ANALYSIS_ACTION",
+        "phase": "action",
+        "outcome": "ok",
+        "counted_input_tokens": 28082,
+        "output_allowance_granted": 4096,
+        "tools_offered": 4,
+        "context_bytes": {
+          "system": 30836,
+          "tools": 23287,
+          "messages": 7678,
+          "total": 61801
+        }
+      },
+      {
+        "seq": 2,
+        "purpose": "FINAL_ANSWER",
+        "phase": "answer",
+        "outcome": "ok",
+        "counted_input_tokens": 22031,
+        "output_allowance_granted": 4096,
+        "tools_offered": 2,
+        "context_bytes": {
+          "system": 14813,
+          "tools": 14006,
+          "messages": 19660,
+          "total": 48479
+        }
+      }
+    ]
+  },
+  "seeded_case_file": {
+    "bound": 16,
+    "field_definitions_by_indicator": {
+      "concentration_share": 0,
+      "covenant_breach_share": 14,
+      "ecl_amount": 0,
+      "ecl_coverage": 0,
+      "past_due_share": 0,
+      "rating_rank": 4,
+      "stage2_share": 0,
+      "stage3_share": 0,
+      "uncovered_share": 0,
+      "weighted_pd": 0
+    },
+    "covenant_relation_columns": 59,
+    "note": "Before the case file a covenant question had no narrower way to ask than naming the relation, and the catalogue answered with all of it.",
+    "what_it_replaces": {
+      "relation_dump_bytes": 31196,
+      "relation_dump_fields": 59,
+      "relation_dump_costs_an_extra_generation": true,
+      "case_file_bytes": 5825,
+      "case_file_fields": 14
+    }
+  }
+}

@@ -1,0 +1,219 @@
+[
+  {
+    "id": "corp_stage2_ecl_drivers",
+    "domain": "corporate",
+    "question": "What is driving Stage 2 and ECL growth?",
+    "expect": "must_run",
+    "why": "Every term maps; a driver question runs the default decomposition and states it. The motivating flip."
+  },
+  {
+    "id": "corp_bare_exposure",
+    "domain": "corporate",
+    "question": "What is our exposure?",
+    "expect": "must_ask",
+    "why": "Bare 'exposure' has three materially different columns (EAD, limit, drawn)."
+  },
+  {
+    "id": "retail_bare_exposure",
+    "domain": "retail",
+    "question": "How much exposure do we have?",
+    "expect": "must_ask",
+    "why": "Bare 'exposure' on retail: EAD, limit or balance."
+  },
+  {
+    "id": "corp_pd_lgd_ccf_attribution",
+    "domain": "corporate",
+    "question": "Compare PD, LGD & CCF and tell me what is most dominant in this quarter's ECL change",
+    "expect": "must_ask",
+    "why": "Attribution order decides the ranking (analyst.md method ambiguity)."
+  },
+  {
+    "id": "retail_pd_lgd_attribution",
+    "domain": "retail",
+    "question": "Which of PD and LGD contributes most to the ECL movement?",
+    "expect": "must_ask",
+    "why": "Same attribution-order ambiguity on retail."
+  },
+  {
+    "id": "corp_avg_lgd",
+    "domain": "corporate",
+    "question": "What is the average LGD by sector?",
+    "expect": "must_ask",
+    "why": "Average of a ratio: EAD-weighted or simple changes the number."
+  },
+  {
+    "id": "retail_avg_coverage",
+    "domain": "retail",
+    "question": "What is the average coverage ratio by product?",
+    "expect": "must_ask",
+    "why": "Average of a ratio on retail."
+  },
+  {
+    "id": "corp_ecl_by_sector",
+    "domain": "corporate",
+    "question": "What is total ECL by sector?",
+    "expect": "must_run",
+    "why": "One reading."
+  },
+  {
+    "id": "corp_ead_by_stage",
+    "domain": "corporate",
+    "question": "Show exposure at default by stage",
+    "expect": "must_run",
+    "why": "'Exposure at default' is EAD, not the ambiguous bare term."
+  },
+  {
+    "id": "corp_stage3_ecl",
+    "domain": "corporate",
+    "question": "How much ECL do we hold on Stage 3?",
+    "expect": "must_run",
+    "why": "Mapped terms only."
+  },
+  {
+    "id": "corp_stage_migration",
+    "domain": "corporate",
+    "question": "What is the Stage 2 ECL and how did it change from last quarter?",
+    "expect": "must_run",
+    "why": "Mapped terms and a comparison the analyst can state."
+  },
+  {
+    "id": "corp_ecl_and_ead_by_sector",
+    "domain": "corporate",
+    "question": "Show ECL and EAD by sector",
+    "expect": "must_run",
+    "why": "'A and B' means both."
+  },
+  {
+    "id": "corp_top_sectors_ecl",
+    "domain": "corporate",
+    "question": "Which sectors have the highest ECL?",
+    "expect": "must_run",
+    "why": "Mapped; ranking is the default."
+  },
+  {
+    "id": "corp_why_ecl_up",
+    "domain": "corporate",
+    "question": "Why did ECL go up this quarter?",
+    "expect": "must_run",
+    "why": "A 'why' question runs the default decomposition."
+  },
+  {
+    "id": "corp_npl_by_sector",
+    "domain": "corporate",
+    "question": "What is the NPL ratio by sector?",
+    "expect": "must_run",
+    "why": "One governed measure."
+  },
+  {
+    "id": "corp_coverage_stage3",
+    "domain": "corporate",
+    "question": "What is the Stage 3 coverage?",
+    "expect": "must_run",
+    "why": "Mapped, no average word."
+  },
+  {
+    "id": "retail_ecl_by_product",
+    "domain": "retail",
+    "question": "What is total ECL by product?",
+    "expect": "must_run",
+    "why": "One reading."
+  },
+  {
+    "id": "retail_stage2_balance",
+    "domain": "retail",
+    "question": "How many accounts are in Stage 2?",
+    "expect": "must_run",
+    "why": "Mapped terms."
+  },
+  {
+    "id": "retail_ecl_and_balance",
+    "domain": "retail",
+    "question": "Show ECL and balance by product",
+    "expect": "must_run",
+    "why": "'A and B' means both."
+  },
+  {
+    "id": "retail_why_stage2_up",
+    "domain": "retail",
+    "question": "Why is Stage 2 growing?",
+    "expect": "must_run",
+    "why": "A 'why' question runs the default decomposition."
+  },
+  {
+    "id": "retail_dpd_ecl",
+    "domain": "retail",
+    "question": "What is ECL by days past due bucket?",
+    "expect": "must_run",
+    "why": "Mapped terms."
+  },
+  {
+    "id": "corp_mean_pd",
+    "domain": "corporate",
+    "question": "What is the mean PD of Stage 2 borrowers?",
+    "expect": "must_ask",
+    "why": "Mean of a ratio: weighting is a choice."
+  },
+  {
+    "id": "retail_exposure_stage",
+    "domain": "retail",
+    "question": "Break down exposure by stage",
+    "expect": "must_ask",
+    "why": "Bare 'exposure' on retail."
+  },
+  {
+    "id": "corp_ead_weighted_avg_pd",
+    "domain": "corporate",
+    "question": "What is the EAD-weighted average PD?",
+    "expect": "must_run",
+    "why": "Method already chosen; shares keywords with the averaging rule."
+  },
+  {
+    "id": "corp_simple_avg_lgd",
+    "domain": "corporate",
+    "question": "What is the simple average LGD by sector?",
+    "expect": "must_run",
+    "why": "Method already chosen ('simple')."
+  },
+  {
+    "id": "corp_split_ead_pd",
+    "domain": "corporate",
+    "question": "Split EAD and PD by sector",
+    "expect": "must_run",
+    "why": "'Split' is a breakdown, not an attribution."
+  },
+  {
+    "id": "corp_driving_pd_lgd_up",
+    "domain": "corporate",
+    "question": "What is driving PD and LGD up?",
+    "expect": "must_run",
+    "why": "Two factors and a driver word but no ECL target: nothing is attributed."
+  },
+  {
+    "id": "corp_sequential_attribution",
+    "domain": "corporate",
+    "question": "Sequential attribution of PD, LGD and CCF to the ECL change",
+    "expect": "must_run",
+    "why": "The attribution scheme is named."
+  },
+  {
+    "id": "corp_arabic_exposure",
+    "domain": "corporate",
+    "question": "ما هو التعرض في Real Estate؟",
+    "expect": "must_ask",
+    "why": "Non-Latin: the English matchers cannot see the ambiguous 'exposure', so the server must not call a question unneeded."
+  },
+  {
+    "id": "corp_deictic_follow_up",
+    "domain": "corporate",
+    "question": "just the top five by that measure",
+    "expect": "must_ask",
+    "why": "No measure in this question itself; the server cannot say it was understood (asking is allowed)."
+  },
+  {
+    "id": "corp_average_balance",
+    "domain": "corporate",
+    "question": "What is the average ECL by sector?",
+    "expect": "must_run",
+    "why": "Average of an amount, not a ratio."
+  }
+]

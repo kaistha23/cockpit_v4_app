@@ -1,0 +1,1741 @@
+{
+  "source": "MASTER_BUILD_SPEC.md Appendix C",
+  "count": 100,
+  "cases": [
+    {
+      "id": "V4-AT-001",
+      "group": "diagnosis_and_isolation",
+      "case": "Exact incident reference",
+      "expected": "Correlate err-2569c1be3faa to a recorded exception; otherwise mark root cause unconfirmed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL SOURCE"
+        ],
+        "tests": [
+          "test_incident_err_2569c1be3faa.py::test_the_incident_reference_matches_v3s_only_generator",
+          "test_incident_err_2569c1be3faa.py::test_v4_persists_an_error_id_and_an_operator_detail"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-002",
+      "group": "diagnosis_and_isolation",
+      "case": "Startup identity",
+      "expected": "Record process startup SHA, branch and runtime ID; do not derive current process code from a later checkout.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_diagnostics_separates_the_three_capabilities",
+          "test_limits_and_isolation.py::test_the_startup_sha_is_recorded_on_the_run"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-003",
+      "group": "diagnosis_and_isolation",
+      "case": "Separate worktree",
+      "expected": "V4 edits cannot modify the files used by active V3/other-module instances.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_launcher_safety.py::test_the_seed_script_refuses_the_v3_namespace"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-004",
+      "group": "diagnosis_and_isolation",
+      "case": "Port collision",
+      "expected": "Busy V4 port causes clear startup refusal/alternative selection without killing any occupant.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_launcher_safety.py::test_a_busy_port_is_reported_and_never_freed"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-005",
+      "group": "diagnosis_and_isolation",
+      "case": "Owned process stopping",
+      "expected": "Stop script refuses a reused PID or process with a mismatched command/start time/worktree.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_launcher_safety.py::test_a_reused_pid_is_refused",
+          "test_launcher_safety.py::test_a_process_in_another_directory_is_refused"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-006",
+      "group": "diagnosis_and_isolation",
+      "case": "Immutable release",
+      "expected": "Existing demo release is validated/reused read-only, never overwritten automatically.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_launcher_safety.py::test_the_seed_script_refuses_the_v3_namespace",
+          "test_launcher_safety.py::test_seeding_an_existing_release_does_not_overwrite_it"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-007",
+      "group": "native_tool_loop",
+      "case": "One-call help",
+      "expected": "Who are you? reaches finalize_response without metadata, SQL, Python, Sonnet or memory generation on the critical path.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_vertical_slice.py::test_who_are_you_finishes_in_one_generation"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-008",
+      "group": "native_tool_loop",
+      "case": "One-call theory",
+      "expected": "PIT vs TTC explanation makes no portfolio assertions or execution calls.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_non_execution_modes_settle_without_touching_data"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-009",
+      "group": "native_tool_loop",
+      "case": "Schema when needed",
+      "expected": "Missing relevant definitions are requested from inspect_catalog before executable use.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_an_empty_search_is_an_empty_search"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-010",
+      "group": "native_tool_loop",
+      "case": "No gratuitous schema call",
+      "expected": "Sufficient initial metadata allows execution without a compulsory extra discovery round.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_sufficient_starting_context_allows_execution_without_a_lookup"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-011",
+      "group": "native_tool_loop",
+      "case": "Tool IDs",
+      "expected": "Every accepted tool_use has its own immediately ordered matching tool_result in reused history.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_tool_results_follow_their_calls_in_order"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-012",
+      "group": "native_tool_loop",
+      "case": "Partial arguments",
+      "expected": "No streamed/incomplete/truncated tool arguments execute.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_truncated_response_executes_nothing"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-013",
+      "group": "native_tool_loop",
+      "case": "Truncated batch",
+      "expected": "No member of a truncated tool-use response executes before whole-turn validation.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_truncated_response_executes_nothing"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-014",
+      "group": "native_tool_loop",
+      "case": "Invalid structured action",
+      "expected": "Exactly one format recovery is possible; malformed action does not recurse indefinitely.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_launcher_safety.py::test_the_stop_script_contains_no_broad_kill",
+          "test_protocol_and_bounds.py::test_prose_without_a_tool_call_is_not_promoted_to_an_answer"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-015",
+      "group": "native_tool_loop",
+      "case": "Mixed action batch",
+      "expected": "Metadata/execution/finalization combinations forbidden by the contract get no side effects.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_mixed_batch_has_no_side_effects",
+          "test_protocol_and_bounds.py::test_batched_reads_are_allowed_and_bounded"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-016",
+      "group": "native_tool_loop",
+      "case": "Refusal",
+      "expected": "A provider refusal reaches a safe outcome without alternate-model bypass.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_refusal_does_not_try_another_model"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-017",
+      "group": "native_tool_loop",
+      "case": "Unknown stop reason",
+      "expected": "Unknown provider finish reasons fail explicitly, not loop or imply completion.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_an_unknown_stop_reason_fails_explicitly"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-018",
+      "group": "ownership_and_language",
+      "case": "Original wording",
+      "expected": "Preserve original names, numbers, dates, negation and language in model input and trace.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_vertical_slice.py::test_original_wording_reaches_the_model_unmodified"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-019",
+      "group": "ownership_and_language",
+      "case": "Mixed theory/data",
+      "expected": "Explain DSCR and rank borrowers covers both parts with evidence for the latter.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_a_mixed_request_marks_every_part"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-020",
+      "group": "ownership_and_language",
+      "case": "EWS theory",
+      "expected": "Generic EWS explanation is allowed without reading EWS data.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_non_execution_modes_settle_without_touching_data"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-021",
+      "group": "ownership_and_language",
+      "case": "EWS analysis referral",
+      "expected": "Specific EWS score question refers without executing to infer that score.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_a_referral_settles_without_executing_anything"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-022",
+      "group": "ownership_and_language",
+      "case": "What-if referral",
+      "expected": "New PD shock or new ECL simulation does not execute in Cockpit.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_a_referral_settles_without_executing_anything",
+          "test_ownership_and_security.py::test_execution_requires_a_declared_cockpit_data_analysis"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-023",
+      "group": "ownership_and_language",
+      "case": "Stored scenario read",
+      "expected": "Reading source-computed baseline/downside results remains allowed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_evidence_from_another_release_is_labelled_comparison"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-024",
+      "group": "ownership_and_language",
+      "case": "Stored vs new rating",
+      "expected": "Stored history can be read; a new score/rating cannot be assigned.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_non_execution_modes_settle_without_touching_data"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-025",
+      "group": "ownership_and_language",
+      "case": "Disabled destination",
+      "expected": "Disabled scoring workflow is identified honestly; no invented navigation.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_a_referral_settles_without_executing_anything"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-026",
+      "group": "ownership_and_language",
+      "case": "Current facts",
+      "expected": "Current external announcement/rate request does not get a memory-based answer.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_non_execution_modes_settle_without_touching_data"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-027",
+      "group": "ownership_and_language",
+      "case": "Mode switch",
+      "expected": "Theory -> theory follow-up -> portfolio analysis -> What-if recalculates mode each turn.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_each_turn_recomputes_its_own_owner"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-028",
+      "group": "ownership_and_language",
+      "case": "Ambiguous exposure",
+      "expected": "Missing definition is clarified or sourced from an approved dictionary, not silently assumed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_unresolved_ambiguity_blocks_execution"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-029",
+      "group": "ownership_and_language",
+      "case": "Excluded subquestion",
+      "expected": "A mixed cross-module request does not quietly drop the excluded portion.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_a_mixed_request_marks_every_part",
+          "test_ownership_and_security.py::test_a_referral_settles_without_executing_anything"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-030",
+      "group": "ownership_and_language",
+      "case": "Multilingual",
+      "expected": "Hindi, Bengali, Arabic and Hinglish fixtures preserve meaning with human-reviewed expected intent.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_multilingual_and_evidence_labels.py::test_the_original_question_reaches_the_analyst_intact"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-031",
+      "group": "domain_and_numerics",
+      "case": "Selective metadata",
+      "expected": "Help does not receive all 991 relation.column definitions or borrower samples.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_samples_are_refused_outside_a_data_analysis",
+          "test_vertical_slice.py::test_help_does_not_receive_the_whole_catalogue"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-032",
+      "group": "domain_and_numerics",
+      "case": "Complete requested definition",
+      "expected": "Selected fields retain full unit, grain, definition, coverage and necessary warnings.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_a_requested_field_comes_back_complete",
+          "test_catalog_answer_memory.py::test_a_large_field_request_paginates_rather_than_dropping_fields",
+          "test_catalog_answer_memory.py::test_join_warnings_name_the_repetition_they_prevent"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-033",
+      "group": "domain_and_numerics",
+      "case": "Profile denominators",
+      "expected": "Missingness derives from approved actual profiles, not ten sample rows.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_coverage_says_that_twenty_slots_are_not_twenty_observations"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-034",
+      "group": "domain_and_numerics",
+      "case": "No outside relations",
+      "expected": "Cross-domain tables, ATTACH/file reads and hidden catalog paths are denied.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_a_relation_outside_the_domain_is_named_not_invented",
+          "test_ownership_and_security.py::test_out_of_domain_and_escape_attempts_are_refused"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-035",
+      "group": "domain_and_numerics",
+      "case": "EAD by sector",
+      "expected": "Latest populated quarter and correct recorded exposure unit match independent oracle.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_vertical_slice.py::test_ead_by_sector_matches_an_independent_oracle"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-036",
+      "group": "domain_and_numerics",
+      "case": "Stage-2 change",
+      "expected": "Four-quarter comparison handles missing/entering/exiting sectors and disclosed measure.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_vertical_slice.py::test_stage2_year_change_handles_entering_and_exiting_sectors"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-037",
+      "group": "domain_and_numerics",
+      "case": "Borrower grain",
+      "expected": "Borrower financials are not multiplied by multiple facilities.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_borrower_financials_are_not_multiplied_by_facilities"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-038",
+      "group": "domain_and_numerics",
+      "case": "Shared collateral",
+      "expected": "Whole collateral value is not repeated across allocations.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_shared_collateral_is_counted_at_its_allocated_share"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-039",
+      "group": "domain_and_numerics",
+      "case": "Covenant status",
+      "expected": "Untested/waived/missing results are not silently treated as compliant.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_untested_covenants_are_distinguishable_from_compliant"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-040",
+      "group": "domain_and_numerics",
+      "case": "Scenario detail",
+      "expected": "Scenario/horizon detail does not multiply booked ECL.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_scenario_detail_does_not_multiply_booked_ecl"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-041",
+      "group": "domain_and_numerics",
+      "case": "Macro vintage",
+      "expected": "Positive offsets remain historical-vintage forecasts; later actuals do not leak.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_macro_forward_points_stay_labelled_forecasts"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-042",
+      "group": "domain_and_numerics",
+      "case": "Currency",
+      "expected": "SAR/SAR and million/million are not interchanged; display follows evidence units.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_the_release_declares_its_own_currency_and_scale"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-043",
+      "group": "domain_and_numerics",
+      "case": "Zero vs missing",
+      "expected": "Null, no eligible rows, invalid denominator and genuine zero remain distinguishable.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_no_eligible_rows_is_not_reported_as_zero",
+          "test_domain_and_numerics.py::test_a_claim_pointing_at_a_null_cell_is_refused"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-044",
+      "group": "domain_and_numerics",
+      "case": "Schema visibility",
+      "expected": "Source columns newly added outside the approved catalog are not automatically exposed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_a_column_outside_the_catalog_is_not_reachable"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-045",
+      "group": "domain_and_numerics",
+      "case": "Wide results",
+      "expected": "Oversized outputs have explicit pagination/limit markers and no whole-population claim from a preview.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_a_wide_result_is_marked_rather_than_silently_reduced"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-046",
+      "group": "execution_and_repair",
+      "case": "Exact authored code",
+      "expected": "Executed code equals the approved Opus-authored source byte-for-byte.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_the_executed_code_equals_the_submitted_code_byte_for_byte"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-047",
+      "group": "execution_and_repair",
+      "case": "No dropped steps",
+      "expected": "Overlong plan/batch is rejected to Opus, never clipped into another task.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_an_overlong_batch_is_rejected_whole_and_never_clipped"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-048",
+      "group": "execution_and_repair",
+      "case": "No field substitution",
+      "expected": "Described/invalid field ref receives a diagnostic; application does not rewrite it.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_an_unknown_field_gets_alternatives_not_a_substitution",
+          "test_domain_and_numerics.py::test_an_invalid_field_reference_gets_a_diagnostic_not_a_substitution"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-049",
+      "group": "execution_and_repair",
+      "case": "Real repair",
+      "expected": "Real provider generates both failed candidate and corrected query after a truthful diagnostic.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_failed_query_is_repaired_by_the_model_not_the_application"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-050",
+      "group": "execution_and_repair",
+      "case": "Failure packet",
+      "expected": "Retains original task/scope, relevant definitions, exact failed code and useful prior results.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_failed_query_is_repaired_by_the_model_not_the_application"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-051",
+      "group": "execution_and_repair",
+      "case": "Partial batch",
+      "expected": "Failed step stops dependents; completed earlier results preserve provenance/status.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_domain_and_numerics.py::test_a_failed_step_stops_its_dependents_and_preserves_the_rest"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-052",
+      "group": "execution_and_repair",
+      "case": "No progress",
+      "expected": "Identical deterministic failure is not rerun; counter still advances.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_the_same_deterministic_failure_is_not_run_twice"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-053",
+      "group": "execution_and_repair",
+      "case": "Transient recovery",
+      "expected": "Recorded environment change can permit retry without evading the five-submission cap.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_recorded_environment_change_permits_a_retry"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-054",
+      "group": "execution_and_repair",
+      "case": "SQL sandbox",
+      "expected": "Host/network/extension/configuration escapes are denied by actual isolated execution.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_out_of_domain_and_escape_attempts_are_refused"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-055",
+      "group": "execution_and_repair",
+      "case": "Python sandbox",
+      "expected": "No network/key/host socket/arbitrary filesystem; process/output/memory bounds enforced.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_python_is_unavailable_rather_than_silently_run_as_sql"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-056",
+      "group": "execution_and_repair",
+      "case": "Unavailable runner",
+      "expected": "Python/SQL unavailability is explicit, with no in-process substitute.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_python_is_unavailable_rather_than_silently_run_as_sql"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-057",
+      "group": "budgets",
+      "case": "Five submissions",
+      "expected": "Sixth execute_analysis is impossible; rejected complete candidates count.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_sixth_execution_submission_is_impossible"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-058",
+      "group": "budgets",
+      "case": "Three rounds",
+      "expected": "Fourth post-success execution round is impossible; failed-batch repair uses defined rule.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_fourth_successful_round_is_impossible"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-059",
+      "group": "budgets",
+      "case": "Call accounting",
+      "expected": "All generation and transport/format retries consume finite ledger entries.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_every_provider_attempt_including_counting_is_ledgered"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-060",
+      "group": "budgets",
+      "case": "Output accounting",
+      "expected": "Reasoning/output accounting follows verified model semantics; partial output never executed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_partial_output_is_never_executed"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-061",
+      "group": "budgets",
+      "case": "Adaptive context",
+      "expected": "A >64k valid affordable request is not refused solely by obsolete V3 caps.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_large_but_affordable_request_is_not_refused_by_an_old_cap"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-062",
+      "group": "budgets",
+      "case": "Actual hard limit",
+      "expected": "Essential request that exceeds verified capacity stops with INPUT_CONTEXT_LIMIT.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_request_beyond_capacity_stops_with_input_context_limit"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-063",
+      "group": "budgets",
+      "case": "Cost known",
+      "expected": "Unverified price/cache schedule cannot claim active spend enforcement.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_spend_is_reserved_before_the_call_and_settled_after"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-064",
+      "group": "budgets",
+      "case": "Cancel cost",
+      "expected": "Unknown provider cost remains reserved/pending rather than refunded as zero.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_a_failed_provider_call_holds_its_reservation_pending"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-065",
+      "group": "budgets",
+      "case": "Provider timeout",
+      "expected": "A stalled client cannot outlive the independent run/step watchdog.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_protocol_and_bounds.py::test_the_run_deadline_stops_the_loop"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-066",
+      "group": "budgets",
+      "case": "No summary budget drain",
+      "expected": "Memory job does not consume or reopen the completed analysis run.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_state_machine_and_memory.py::test_memory_is_off_by_default_and_schedules_nothing"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-067",
+      "group": "live_trace_and_lifecycle",
+      "case": "Real arrival",
+      "expected": "Browser receives actual backend progress before final answer, not buffered/fake steps.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL RUNNER/SOCKET",
+          "MODEL MOCK"
+        ],
+        "tests": [
+          "scripts/cockpit_v4/live_path_evidence.py"
+        ],
+        "note": "progress frames arrive before answer.ready",
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-068",
+      "group": "live_trace_and_lifecycle",
+      "case": "Hideable panel",
+      "expected": "Show/Hide state, accessible controls and auto-expansion of the failed step work.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT (browser reducer)"
+        ],
+        "tests": [
+          "reducer.test.ts::V4-AT-068: the failed step is identifiable for auto-expansio"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-069",
+      "group": "live_trace_and_lifecycle",
+      "case": "Substep localization",
+      "expected": "Operator can distinguish provider request/response/parse/policy/state/serialization failures.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL SOURCE",
+          "UNIT (browser reducer)"
+        ],
+        "tests": [
+          "test_incident_err_2569c1be3faa.py::test_v4_persists_an_error_id_and_an_operator_detail",
+          "reducer.test.ts::V4-AT-069: substeps keep their operation and detail referenc"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-070",
+      "group": "live_trace_and_lifecycle",
+      "case": "Secret-safe trace",
+      "expected": "No credentials, cookies, environment dump or private chain-of-thought in public/operator exports.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_no_secret_reaches_a_persisted_detail",
+          "test_ownership_and_security.py::test_the_trace_carries_no_private_reasoning"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-071",
+      "group": "live_trace_and_lifecycle",
+      "case": "Duplicate acceptance",
+      "expected": "Same principal/idempotency key/body returns one run and one paid attempt chain.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_the_same_key_and_body_returns_one_run"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-072",
+      "group": "live_trace_and_lifecycle",
+      "case": "Conflicting key",
+      "expected": "Same key with a different request body is rejected safely.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_the_same_key_with_a_different_body_is_a_typed_conflict"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-073",
+      "group": "live_trace_and_lifecycle",
+      "case": "Browser reconnect",
+      "expected": "SSE replays in order from a cursor without generating a new answer.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_sse_replays_committed_events_from_a_cursor"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-074",
+      "group": "live_trace_and_lifecycle",
+      "case": "Sequence gap",
+      "expected": "Gap/out-of-retention reconnect falls back to authoritative state, not invented events.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_sse_replays_committed_events_from_a_cursor"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-075",
+      "group": "live_trace_and_lifecycle",
+      "case": "Slow subscriber",
+      "expected": "Bounded delivery buffer cannot block worker or grow indefinitely.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_a_slow_subscriber_reads_a_bounded_page"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-076",
+      "group": "live_trace_and_lifecycle",
+      "case": "Stale result",
+      "expected": "An older request result cannot replace the newly selected active run.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_a_late_worker_cannot_overwrite_a_settled_run"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-077",
+      "group": "live_trace_and_lifecycle",
+      "case": "Cancel race",
+      "expected": "Cancellation and answer-ready races resolve atomically; no duplicate final state.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_cancellation_is_idempotent_and_does_not_unsettle_a_finished_run"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-078",
+      "group": "live_trace_and_lifecycle",
+      "case": "Worker death",
+      "expected": "Independent supervisor settles an abandoned run; no blind paid-call replay.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_a_dead_worker_is_settled_by_the_supervisor"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-079",
+      "group": "live_trace_and_lifecycle",
+      "case": "Database unavailable",
+      "expected": "Accepted work/next side effect is not claimed without durable state.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_no_run_is_claimed_when_the_store_cannot_commit"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-080",
+      "group": "live_trace_and_lifecycle",
+      "case": "Lost delivery",
+      "expected": "Persisted completed answer is retrievable after UI or network failure without a new paid run.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_a_completed_answer_survives_a_delivery_failure"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-081",
+      "group": "live_trace_and_lifecycle",
+      "case": "SSE vs 120sec",
+      "expected": "Deep terminal event remains deliverable at server deadline; no whole-stream 120sec abort.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "REAL RUNNER/SOCKET",
+          "MODEL MOCK"
+        ],
+        "tests": [
+          "scripts/cockpit_v4/live_path_evidence.py"
+        ],
+        "note": "the terminal event is delivered on the stream, not cut by a total-duration timer",
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-082",
+      "group": "live_trace_and_lifecycle",
+      "case": "Unknown connection",
+      "expected": "UI reports connection loss and last known stage, not a fabricated server failure.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT (browser reducer)"
+        ],
+        "tests": [
+          "reducer.test.ts::V4-AT-082: connection loss is a client state, not a server f"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-083",
+      "group": "memory_and_privacy",
+      "case": "Separate threads",
+      "expected": "No shared hard-coded cockpit-web thread leaks history across users/tabs.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_a_thread_id_is_server_generated_and_not_global"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-084",
+      "group": "memory_and_privacy",
+      "case": "Scalar arrays",
+      "expected": "Scalar text normalizes only under allowed contract; never character expansion.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_state_machine_and_memory.py::test_a_scalar_is_never_expanded_into_characters"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-085",
+      "group": "memory_and_privacy",
+      "case": "Recovery ambiguity",
+      "expected": "Single-character grades/IDs are not rejoined based on length alone.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_state_machine_and_memory.py::test_single_letter_grades_are_not_rejoined_by_length"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-086",
+      "group": "memory_and_privacy",
+      "case": "Summary race",
+      "expected": "Older memory task cannot overwrite newer covered-through-turn state.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_state_machine_and_memory.py::test_a_summary_cannot_overwrite_a_newer_one"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-087",
+      "group": "memory_and_privacy",
+      "case": "Summary failure",
+      "expected": "Delivered answer is unaffected; exact recent turns remain available.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_a_failed_memory_job_changes_nothing_the_user_saw"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-088",
+      "group": "memory_and_privacy",
+      "case": "Old referent",
+      "expected": "Authorized old turn can be retrieved without substituting summary speculation.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_an_earlier_turn_is_retrievable_exactly",
+          "test_catalog_answer_memory.py::test_a_summary_never_outranks_the_exact_turns_in_context"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-089",
+      "group": "memory_and_privacy",
+      "case": "Revocation",
+      "expected": "Permission revocation is enforced at tool/artifact/event access despite pinned release.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_permission_revocation_is_enforced_at_the_artifact"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-090",
+      "group": "memory_and_privacy",
+      "case": "Tenant isolation",
+      "expected": "Status/SSE/cancel/result/cache cross-tenant requests reveal no unauthorized data.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_another_tenant_cannot_read_a_run",
+          "test_ownership_and_security.py::test_an_artifact_from_another_tenant_is_not_confirmed_to_exist"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-091",
+      "group": "memory_and_privacy",
+      "case": "Local demo auth",
+      "expected": "Demo principal cannot authorize non-demo data, other modules or public/production mode.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_limits_and_isolation.py::test_the_demo_principal_cannot_name_its_own_tenant"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-092",
+      "group": "memory_and_privacy",
+      "case": "Credential isolation",
+      "expected": "Only COCKPIT_ANTHROPIC_API_KEY serves V4; no shared-key/model fallback.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_ownership_and_security.py::test_only_the_cockpit_credential_is_read"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-093",
+      "group": "final_answer_and_handoff",
+      "case": "Evidence bound numbers",
+      "expected": "Typed numeric claims match exact executed artifacts, unit and precision.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_vertical_slice.py::test_a_claim_that_does_not_match_the_artifact_is_refused"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-094",
+      "group": "final_answer_and_handoff",
+      "case": "Final correction",
+      "expected": "Only one answer-only correction; no new execution during that mode.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_only_one_answer_correction_is_available",
+          "test_catalog_answer_memory.py::test_no_new_execution_is_possible_during_an_answer_correction"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-095",
+      "group": "final_answer_and_handoff",
+      "case": "Optional chart",
+      "expected": "Invalid chart is dropped without repeating analysis.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_an_invalid_chart_is_dropped_without_another_analysis"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-096",
+      "group": "final_answer_and_handoff",
+      "case": "Valid suggestions",
+      "expected": "Suggestions reference available fields/quarters and cannot disguise excluded functions.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE"
+        ],
+        "tests": [
+          "test_catalog_answer_memory.py::test_suggestions_are_checked_against_the_catalog_not_executed"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-097",
+      "group": "final_answer_and_handoff",
+      "case": "No false delivery claim",
+      "expected": "Generated/sent/rendered are distinct; user history does not claim they saw an unacknowledged answer.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_a_completed_answer_survives_a_delivery_failure",
+          "test_limits_and_isolation.py::test_generated_sent_and_rendered_are_distinct_facts"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-098",
+      "group": "final_answer_and_handoff",
+      "case": "Safe launch",
+      "expected": "New worktree/runtime/ports are verified; existing demo/Docker/EWS services unaffected.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "MODEL MOCK",
+          "REAL DATABASE",
+          "REAL HTTP",
+          "REAL PROCESS"
+        ],
+        "tests": [
+          "test_api_and_lifecycle.py::test_diagnostics_separates_the_three_capabilities",
+          "test_launcher_safety.py::test_a_busy_port_is_reported_and_never_freed"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-099",
+      "group": "final_answer_and_handoff",
+      "case": "Matched baseline",
+      "expected": "Failure IDs and material messages compared under matching configuration; skipped/errors disclosed.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_multilingual_and_evidence_labels.py::test_the_acceptance_inventory_records_how_each_case_was_checked",
+          "test_multilingual_and_evidence_labels.py::test_the_regression_baseline_is_recorded_with_its_command"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    },
+    {
+      "id": "V4-AT-100",
+      "group": "final_answer_and_handoff",
+      "case": "Live vs fixture",
+      "expected": "Mocks, local estimates, real provider measurements and independent numerical oracles labeled separately.",
+      "evidence": {
+        "status": "COVERED",
+        "labels": [
+          "UNIT"
+        ],
+        "tests": [
+          "test_multilingual_and_evidence_labels.py::test_no_test_in_this_suite_claims_a_live_provider_measurement",
+          "test_multilingual_and_evidence_labels.py::test_the_numerical_oracles_are_independent_of_the_code_under_test",
+          "test_multilingual_and_evidence_labels.py::test_the_acceptance_inventory_records_how_each_case_was_checked"
+        ],
+        "real_provider": "NOT RUN \u2014 no credential authorized in this environment"
+      }
+    }
+  ],
+  "evidence_summary": {
+    "covered": 100,
+    "not_run": 0,
+    "total": 100,
+    "note": "COVERED means an automated test asserts the case in this build. No case is marked covered by a real provider: no paid live run was authorized in this environment."
+  }
+}

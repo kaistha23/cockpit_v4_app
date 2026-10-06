@@ -1,0 +1,1044 @@
+{
+  "generated_at": "2026-10-04T14:16:11+00:00",
+  "evidence_class": "REAL DATABASE · NO MODEL",
+  "label": "context budget: where input tokens go and what each costs on the local model",
+  "constants": {
+    "prompt_seconds_per_1k_input_tokens": 0.86,
+    "decode_seconds_per_1k_output_tokens": 23.0,
+    "bytes_per_token_typical": 3.6,
+    "bytes_per_token_provider_conservative": 2.2
+  },
+  "static": {
+    "corporate": {
+      "release_id": "v4-saudi-20q-v1",
+      "question": "What is total exposure at default by sector in the latest quarter?",
+      "action_turn": {
+        "components": [
+          {
+            "component": "system[0] analyst.md instruction",
+            "bytes": 16100,
+            "tokens_est_3_6": 4472,
+            "tokens_est_2_2": 7318,
+            "seconds": 3.85,
+            "tokens_calibrated": 5859,
+            "seconds_calibrated": 5.04
+          },
+          {
+            "component": "system[1] stable facts (all)",
+            "bytes": 11271,
+            "tokens_est_3_6": 3131,
+            "tokens_est_2_2": 5123,
+            "seconds": 2.69,
+            "tokens_calibrated": 4102,
+            "seconds_calibrated": 3.53
+          },
+          {
+            "component": "system[2] volatile scope/budgets/readiness",
+            "bytes": 3615,
+            "tokens_est_3_6": 1004,
+            "tokens_est_2_2": 1643,
+            "seconds": 0.86,
+            "tokens_calibrated": 1315,
+            "seconds_calibrated": 1.13
+          },
+          {
+            "component": "tools (action set)",
+            "bytes": 8520,
+            "tokens_est_3_6": 2367,
+            "tokens_est_2_2": 3873,
+            "seconds": 2.04,
+            "tokens_calibrated": 3100,
+            "seconds_calibrated": 2.67
+          },
+          {
+            "component": "first user message",
+            "bytes": 185,
+            "tokens_est_3_6": 51,
+            "tokens_est_2_2": 84,
+            "seconds": 0.04,
+            "tokens_calibrated": 67,
+            "seconds_calibrated": 0.06
+          }
+        ],
+        "stable_block_breakdown": [
+          {
+            "component": "  stable.cockpit_semantics",
+            "bytes": 10020,
+            "tokens_est_3_6": 2783,
+            "tokens_est_2_2": 4555,
+            "seconds": 2.39,
+            "tokens_calibrated": 3646,
+            "seconds_calibrated": 3.14
+          },
+          {
+            "component": "  stable.catalog_index",
+            "bytes": 795,
+            "tokens_est_3_6": 221,
+            "tokens_est_2_2": 361,
+            "seconds": 0.19,
+            "tokens_calibrated": 289,
+            "seconds_calibrated": 0.25
+          },
+          {
+            "component": "  stable.governed_values",
+            "bytes": 219,
+            "tokens_est_3_6": 61,
+            "tokens_est_2_2": 100,
+            "seconds": 0.05,
+            "tokens_calibrated": 80,
+            "seconds_calibrated": 0.07
+          },
+          {
+            "component": "  stable.catalog_index_note",
+            "bytes": 148,
+            "tokens_est_3_6": 41,
+            "tokens_est_2_2": 67,
+            "seconds": 0.04,
+            "tokens_calibrated": 54,
+            "seconds_calibrated": 0.05
+          }
+        ],
+        "volatile_block_breakdown": [
+          {
+            "component": "  volatile.pinned_scope",
+            "bytes": 1574,
+            "tokens_est_3_6": 437,
+            "tokens_est_2_2": 715,
+            "seconds": 0.38,
+            "tokens_calibrated": 573,
+            "seconds_calibrated": 0.49
+          },
+          {
+            "component": "  volatile.analysis_readiness",
+            "bytes": 1072,
+            "tokens_est_3_6": 298,
+            "tokens_est_2_2": 487,
+            "seconds": 0.26,
+            "tokens_calibrated": 390,
+            "seconds_calibrated": 0.34
+          },
+          {
+            "component": "  volatile.value_resolution",
+            "bytes": 568,
+            "tokens_est_3_6": 158,
+            "tokens_est_2_2": 258,
+            "seconds": 0.14,
+            "tokens_calibrated": 207,
+            "seconds_calibrated": 0.18
+          },
+          {
+            "component": "  volatile.budgets",
+            "bytes": 324,
+            "tokens_est_3_6": 90,
+            "tokens_est_2_2": 147,
+            "seconds": 0.08,
+            "tokens_calibrated": 118,
+            "seconds_calibrated": 0.1
+          }
+        ],
+        "tool_schemas": [
+          {
+            "name": "inspect_catalog",
+            "bytes": 2129
+          },
+          {
+            "name": "execute_analysis",
+            "bytes": 2588
+          },
+          {
+            "name": "read_artifact",
+            "bytes": 1045
+          },
+          {
+            "name": "finalize_response",
+            "bytes": 2750
+          }
+        ],
+        "total": {
+          "component": "TOTAL action turn, first call",
+          "bytes": 39691,
+          "tokens_est_3_6": 11025,
+          "tokens_est_2_2": 18041,
+          "seconds": 9.48,
+          "tokens_calibrated": 14444,
+          "seconds_calibrated": 12.42
+        }
+      },
+      "answer_turn_fixed_part": {
+        "note": "excludes the tool_result conversation, which is measured dynamically",
+        "system_blocks": [
+          {
+            "component": "answer system[0]",
+            "bytes": 16100,
+            "tokens_est_3_6": 4472,
+            "tokens_est_2_2": 7318,
+            "seconds": 3.85,
+            "tokens_calibrated": 5859,
+            "seconds_calibrated": 5.04
+          },
+          {
+            "component": "answer system[1] FINAL ANSWER",
+            "bytes": 290,
+            "tokens_est_3_6": 81,
+            "tokens_est_2_2": 132,
+            "seconds": 0.07,
+            "tokens_calibrated": 106,
+            "seconds_calibrated": 0.09
+          },
+          {
+            "component": "answer system[2]",
+            "bytes": 3615,
+            "tokens_est_3_6": 1004,
+            "tokens_est_2_2": 1643,
+            "seconds": 0.86,
+            "tokens_calibrated": 1315,
+            "seconds_calibrated": 1.13
+          },
+          {
+            "component": "answer system[3] THE ANSWER",
+            "bytes": 2414,
+            "tokens_est_3_6": 671,
+            "tokens_est_2_2": 1097,
+            "seconds": 0.58,
+            "tokens_calibrated": 878,
+            "seconds_calibrated": 0.76
+          },
+          {
+            "component": "answer system[4] PRESENTATION",
+            "bytes": 2524,
+            "tokens_est_3_6": 701,
+            "tokens_est_2_2": 1147,
+            "seconds": 0.6,
+            "tokens_calibrated": 918,
+            "seconds_calibrated": 0.79
+          }
+        ],
+        "tools (full set)": {
+          "component": "tools (full set)",
+          "bytes": 20012,
+          "tokens_est_3_6": 5559,
+          "tokens_est_2_2": 9096,
+          "seconds": 4.78,
+          "tokens_calibrated": 7282,
+          "seconds_calibrated": 6.26
+        },
+        "tool_schemas": [
+          {
+            "name": "inspect_catalog",
+            "bytes": 2129
+          },
+          {
+            "name": "inspect_product_knowledge",
+            "bytes": 1219
+          },
+          {
+            "name": "execute_analysis",
+            "bytes": 2588
+          },
+          {
+            "name": "read_artifact",
+            "bytes": 1045
+          },
+          {
+            "name": "finalize_response",
+            "bytes": 13021
+          }
+        ],
+        "total": {
+          "component": "TOTAL answer turn fixed part",
+          "bytes": 45140,
+          "tokens_est_3_6": 12539,
+          "tokens_est_2_2": 20518,
+          "seconds": 10.78,
+          "tokens_calibrated": 16426,
+          "seconds_calibrated": 14.13
+        }
+      }
+    },
+    "retail": {
+      "error": "PreflightFailed: release 'v4-saudi-retail-20m-v5' is not published in this runtime. Nothing was substituted for it. Provision it with:\n    python3 scripts/cockpit_v4/seed_release.py --release v4-saudi-retail-20m-v5"
+    },
+    "_calibration_note": "tokens_calibrated = bytes x 0.3639 tokens/byte (2.75 bytes/token): median recorded input_tokens of the first 40 ANALYSIS_ACTION calls over the static corporate action-turn bytes. The live DB may predate current code, so treat it as +-15%."
+  },
+  "dynamic": {
+    "runs_in_db": 45,
+    "runs_skipped_call_count_mismatch": 4,
+    "calls_analysed": 181,
+    "calibration": {
+      "tokens_per_byte_consecutive_action_deltas": 0.14,
+      "bytes_per_token_consecutive_action_deltas": 7.14,
+      "tokens_per_byte_regression_all_calls_unreliable": 0.5197,
+      "used_bytes_per_token": 2.75,
+      "intercept_action_calls_tokens": 14177,
+      "intercept_answer_calls_tokens": 12152,
+      "slope_action": 0.2252,
+      "slope_answer": 0.6023,
+      "note": "intercept = system+tools tokens the conversation bytes do not explain; slope = tokens per message byte"
+    },
+    "action_turns": {
+      "calls": 99,
+      "input_tokens": {
+        "mean": 14941,
+        "p50": 14593,
+        "p90": 16498,
+        "max": 27256
+      },
+      "input_seconds": {
+        "mean": 12.85,
+        "p50": 12.55,
+        "p90": 14.19,
+        "max": 23.44
+      },
+      "tool_result_share": {
+        "p50": 0.028,
+        "p90": 0.086
+      },
+      "fixed_tokens": {
+        "p50": 13752,
+        "p90": 14371
+      },
+      "components": [
+        {
+          "component": "fixed (system+tools)",
+          "share_p50": 0.931,
+          "share_p90": 0.995,
+          "tokens_p50": 13752,
+          "tokens_p90": 14371,
+          "tokens_mean": 13707,
+          "seconds_p50": 11.83,
+          "seconds_p90": 12.36,
+          "seconds_mean": 11.79
+        },
+        {
+          "component": "assistant_turns",
+          "share_p50": 0.018,
+          "share_p90": 0.105,
+          "tokens_p50": 267,
+          "tokens_p90": 1440,
+          "tokens_mean": 476,
+          "seconds_p50": 0.23,
+          "seconds_p90": 1.24,
+          "seconds_mean": 0.41
+        },
+        {
+          "component": "tool_result:execute_analysis:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.062,
+          "tokens_p50": 0,
+          "tokens_p90": 1063,
+          "tokens_mean": 352,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.91,
+          "seconds_mean": 0.3
+        },
+        {
+          "component": "first_user_message",
+          "share_p50": 0.005,
+          "share_p90": 0.045,
+          "tokens_p50": 66,
+          "tokens_p90": 697,
+          "tokens_mean": 234,
+          "seconds_p50": 0.06,
+          "seconds_p90": 0.6,
+          "seconds_mean": 0.2
+        },
+        {
+          "component": "tool_result:inspect_catalog:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 89,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.08
+        },
+        {
+          "component": "tool_result:inspect_catalog:ok",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 73,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.06
+        },
+        {
+          "component": "tool_result:clarify:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 4,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.0
+        },
+        {
+          "component": "tool_result:finalize_response:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 2,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.0
+        }
+      ],
+      "biggest_result_key_contributors": [
+        {
+          "result_key": "execute_analysis.budgets_remaining",
+          "tokens_p50": 430,
+          "tokens_p90": 861,
+          "tokens_mean_over_all_calls": 227,
+          "calls_present": 49
+        },
+        {
+          "result_key": "inspect_catalog.budgets_remaining",
+          "tokens_p50": 215,
+          "tokens_p90": 1228,
+          "tokens_mean_over_all_calls": 73,
+          "calls_present": 14
+        },
+        {
+          "result_key": "execute_analysis.detail",
+          "tokens_p50": 146,
+          "tokens_p90": 293,
+          "tokens_mean_over_all_calls": 44,
+          "calls_present": 21
+        },
+        {
+          "result_key": "execute_analysis.message",
+          "tokens_p50": 49,
+          "tokens_p90": 160,
+          "tokens_mean_over_all_calls": 34,
+          "calls_present": 49
+        },
+        {
+          "result_key": "inspect_catalog.fields",
+          "tokens_p50": 811,
+          "tokens_p90": 1064,
+          "tokens_mean_over_all_calls": 31,
+          "calls_present": 4
+        },
+        {
+          "result_key": "inspect_catalog.message",
+          "tokens_p50": 111,
+          "tokens_p90": 248,
+          "tokens_mean_over_all_calls": 11,
+          "calls_present": 9
+        },
+        {
+          "result_key": "inspect_catalog.discovery",
+          "tokens_p50": 180,
+          "tokens_p90": 180,
+          "tokens_mean_over_all_calls": 7,
+          "calls_present": 4
+        },
+        {
+          "result_key": "execute_analysis.error_code",
+          "tokens_p50": 8,
+          "tokens_p90": 29,
+          "tokens_mean_over_all_calls": 5,
+          "calls_present": 49
+        },
+        {
+          "result_key": "inspect_catalog.requested",
+          "tokens_p50": 111,
+          "tokens_p90": 146,
+          "tokens_mean_over_all_calls": 5,
+          "calls_present": 5
+        },
+        {
+          "result_key": "execute_analysis.field",
+          "tokens_p50": 8,
+          "tokens_p90": 13,
+          "tokens_mean_over_all_calls": 4,
+          "calls_present": 49
+        },
+        {
+          "result_key": "inspect_catalog.returned",
+          "tokens_p50": 110,
+          "tokens_p90": 145,
+          "tokens_mean_over_all_calls": 4,
+          "calls_present": 5
+        },
+        {
+          "result_key": "execute_analysis.status",
+          "tokens_p50": 5,
+          "tokens_p90": 11,
+          "tokens_mean_over_all_calls": 3,
+          "calls_present": 49
+        },
+        {
+          "result_key": "inspect_catalog.coverage",
+          "tokens_p50": 372,
+          "tokens_p90": 372,
+          "tokens_mean_over_all_calls": 3,
+          "calls_present": 1
+        },
+        {
+          "result_key": "clarify.message",
+          "tokens_p50": 58,
+          "tokens_p90": 58,
+          "tokens_mean_over_all_calls": 2,
+          "calls_present": 5
+        },
+        {
+          "result_key": "inspect_catalog.error_code",
+          "tokens_p50": 21,
+          "tokens_p90": 43,
+          "tokens_mean_over_all_calls": 2,
+          "calls_present": 9
+        }
+      ]
+    },
+    "answer_turns": {
+      "calls": 72,
+      "input_tokens": {
+        "mean": 22101,
+        "p50": 20798,
+        "p90": 31503,
+        "max": 59269
+      },
+      "input_seconds": {
+        "mean": 19.01,
+        "p50": 17.89,
+        "p90": 27.09,
+        "max": 50.97
+      },
+      "tool_result_share": {
+        "p50": 0.16,
+        "p90": 0.343
+      },
+      "fixed_tokens": {
+        "p50": 11462,
+        "p90": 24007
+      },
+      "components": [
+        {
+          "component": "fixed (system+tools)",
+          "share_p50": 0.776,
+          "share_p90": 0.905,
+          "tokens_p50": 11462,
+          "tokens_p90": 24007,
+          "tokens_mean": 16090,
+          "seconds_p50": 9.86,
+          "seconds_p90": 20.65,
+          "seconds_mean": 13.84
+        },
+        {
+          "component": "tool_result:execute_analysis:ok",
+          "share_p50": 0.078,
+          "share_p90": 0.274,
+          "tokens_p50": 1312,
+          "tokens_p90": 8840,
+          "tokens_mean": 3384,
+          "seconds_p50": 1.13,
+          "seconds_p90": 7.6,
+          "seconds_mean": 2.91
+        },
+        {
+          "component": "assistant_turns",
+          "share_p50": 0.052,
+          "share_p90": 0.147,
+          "tokens_p50": 878,
+          "tokens_p90": 3591,
+          "tokens_mean": 1552,
+          "seconds_p50": 0.76,
+          "seconds_p90": 3.09,
+          "seconds_mean": 1.33
+        },
+        {
+          "component": "tool_result:execute_analysis:rejected/other",
+          "share_p50": 0.017,
+          "share_p90": 0.056,
+          "tokens_p50": 439,
+          "tokens_p90": 1079,
+          "tokens_mean": 466,
+          "seconds_p50": 0.38,
+          "seconds_p90": 0.93,
+          "seconds_mean": 0.4
+        },
+        {
+          "component": "tool_result:inspect_catalog:ok",
+          "share_p50": 0.0,
+          "share_p90": 0.079,
+          "tokens_p50": 0,
+          "tokens_p90": 1260,
+          "tokens_mean": 208,
+          "seconds_p50": 0.0,
+          "seconds_p90": 1.08,
+          "seconds_mean": 0.18
+        },
+        {
+          "component": "first_user_message",
+          "share_p50": 0.004,
+          "share_p90": 0.012,
+          "tokens_p50": 65,
+          "tokens_p90": 205,
+          "tokens_mean": 182,
+          "seconds_p50": 0.06,
+          "seconds_p90": 0.18,
+          "seconds_mean": 0.16
+        },
+        {
+          "component": "tool_result:read_artifact:ok",
+          "share_p50": 0.0,
+          "share_p90": 0.033,
+          "tokens_p50": 0,
+          "tokens_p90": 595,
+          "tokens_mean": 105,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.51,
+          "seconds_mean": 0.09
+        },
+        {
+          "component": "tool_result:finalize_response:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 90,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.08
+        },
+        {
+          "component": "tool_result:inspect_catalog:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 8,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.01
+        },
+        {
+          "component": "tool_result:read_artifact:rejected/other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 7,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.01
+        },
+        {
+          "component": "user_other",
+          "share_p50": 0.0,
+          "share_p90": 0.0,
+          "tokens_p50": 0,
+          "tokens_p90": 0,
+          "tokens_mean": 2,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.0,
+          "seconds_mean": 0.0
+        }
+      ],
+      "biggest_result_key_contributors": [
+        {
+          "result_key": "execute_analysis.steps",
+          "tokens_p50": 1049,
+          "tokens_p90": 8576,
+          "tokens_mean_over_all_calls": 3118,
+          "calls_present": 72
+        },
+        {
+          "result_key": "execute_analysis.steps[].preview",
+          "tokens_p50": 229,
+          "tokens_p90": 7381,
+          "tokens_mean_over_all_calls": 1737,
+          "calls_present": 72
+        },
+        {
+          "result_key": "execute_analysis.steps[].answer_kit",
+          "tokens_p50": 968,
+          "tokens_p90": 4147,
+          "tokens_mean_over_all_calls": 591,
+          "calls_present": 20
+        },
+        {
+          "result_key": "execute_analysis.budgets_remaining",
+          "tokens_p50": 439,
+          "tokens_p90": 862,
+          "tokens_mean_over_all_calls": 515,
+          "calls_present": 72
+        },
+        {
+          "result_key": "execute_analysis.steps[].how_to_cite_these_numbers",
+          "tokens_p50": 304,
+          "tokens_p90": 1876,
+          "tokens_mean_over_all_calls": 427,
+          "calls_present": 52
+        },
+        {
+          "result_key": "inspect_catalog.fields",
+          "tokens_p50": 559,
+          "tokens_p90": 1064,
+          "tokens_mean_over_all_calls": 92,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.detail",
+          "tokens_p50": 177,
+          "tokens_p90": 399,
+          "tokens_mean_over_all_calls": 66,
+          "calls_present": 20
+        },
+        {
+          "result_key": "finalize_response.detail",
+          "tokens_p50": 1429,
+          "tokens_p90": 1429,
+          "tokens_mean_over_all_calls": 58,
+          "calls_present": 3
+        },
+        {
+          "result_key": "execute_analysis.steps[].row_ids",
+          "tokens_p50": 13,
+          "tokens_p90": 251,
+          "tokens_mean_over_all_calls": 56,
+          "calls_present": 72
+        },
+        {
+          "result_key": "execute_analysis.steps[].columns",
+          "tokens_p50": 20,
+          "tokens_p90": 164,
+          "tokens_mean_over_all_calls": 50,
+          "calls_present": 72
+        },
+        {
+          "result_key": "read_artifact.budgets_remaining",
+          "tokens_p50": 215,
+          "tokens_p90": 215,
+          "tokens_mean_over_all_calls": 41,
+          "calls_present": 13
+        },
+        {
+          "result_key": "execute_analysis.steps[].executed_code_digest",
+          "tokens_p50": 25,
+          "tokens_p90": 144,
+          "tokens_mean_over_all_calls": 40,
+          "calls_present": 72
+        },
+        {
+          "result_key": "execute_analysis.message",
+          "tokens_p50": 46,
+          "tokens_p90": 134,
+          "tokens_mean_over_all_calls": 38,
+          "calls_present": 46
+        },
+        {
+          "result_key": "execute_analysis.steps[].purpose",
+          "tokens_p50": 28,
+          "tokens_p90": 64,
+          "tokens_mean_over_all_calls": 36,
+          "calls_present": 72
+        },
+        {
+          "result_key": "inspect_catalog.budgets_remaining",
+          "tokens_p50": 215,
+          "tokens_p90": 215,
+          "tokens_mean_over_all_calls": 35,
+          "calls_present": 12
+        }
+      ]
+    },
+    "correction_turns": {
+      "calls": 9,
+      "input_tokens": {
+        "mean": 24674,
+        "p50": 23312,
+        "p90": 37022,
+        "max": 44610
+      },
+      "input_seconds": {
+        "mean": 21.22,
+        "p50": 20.05,
+        "p90": 31.84,
+        "max": 38.36
+      },
+      "tool_result_share": {
+        "p50": 0.222,
+        "p90": 0.482
+      },
+      "fixed_tokens": {
+        "p50": 11369,
+        "p90": 24422
+      },
+      "components": [
+        {
+          "component": "fixed (system+tools)",
+          "share_p50": 0.672,
+          "share_p90": 0.717,
+          "tokens_p50": 11369,
+          "tokens_p90": 24422,
+          "tokens_mean": 14615,
+          "seconds_p50": 9.78,
+          "seconds_p90": 21.0,
+          "seconds_mean": 12.57
+        },
+        {
+          "component": "tool_result:finalize_response:rejected/other",
+          "share_p50": 0.123,
+          "share_p90": 0.244,
+          "tokens_p50": 2302,
+          "tokens_p90": 7320,
+          "tokens_mean": 3926,
+          "seconds_p50": 1.98,
+          "seconds_p90": 6.3,
+          "seconds_mean": 3.38
+        },
+        {
+          "component": "tool_result:execute_analysis:ok",
+          "share_p50": 0.06,
+          "share_p90": 0.219,
+          "tokens_p50": 1001,
+          "tokens_p90": 6287,
+          "tokens_mean": 3110,
+          "seconds_p50": 0.86,
+          "seconds_p90": 5.41,
+          "seconds_mean": 2.68
+        },
+        {
+          "component": "assistant_turns",
+          "share_p50": 0.072,
+          "share_p90": 0.134,
+          "tokens_p50": 1588,
+          "tokens_p90": 2812,
+          "tokens_mean": 1891,
+          "seconds_p50": 1.37,
+          "seconds_p90": 2.42,
+          "seconds_mean": 1.63
+        },
+        {
+          "component": "first_user_message",
+          "share_p50": 0.007,
+          "share_p90": 0.087,
+          "tokens_p50": 196,
+          "tokens_p90": 1584,
+          "tokens_mean": 665,
+          "seconds_p50": 0.17,
+          "seconds_p90": 1.36,
+          "seconds_mean": 0.57
+        },
+        {
+          "component": "tool_result:execute_analysis:rejected/other",
+          "share_p50": 0.017,
+          "share_p90": 0.035,
+          "tokens_p50": 466,
+          "tokens_p90": 639,
+          "tokens_mean": 330,
+          "seconds_p50": 0.4,
+          "seconds_p90": 0.55,
+          "seconds_mean": 0.28
+        },
+        {
+          "component": "tool_result:read_artifact:ok",
+          "share_p50": 0.0,
+          "share_p90": 0.034,
+          "tokens_p50": 0,
+          "tokens_p90": 567,
+          "tokens_mean": 134,
+          "seconds_p50": 0.0,
+          "seconds_p90": 0.49,
+          "seconds_mean": 0.12
+        }
+      ],
+      "biggest_result_key_contributors": [
+        {
+          "result_key": "finalize_response.detail",
+          "tokens_p50": 1752,
+          "tokens_p90": 6646,
+          "tokens_mean_over_all_calls": 3451,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.steps",
+          "tokens_p50": 737,
+          "tokens_p90": 6016,
+          "tokens_mean_over_all_calls": 2842,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.steps[].answer_kit",
+          "tokens_p50": 3064,
+          "tokens_p90": 5829,
+          "tokens_mean_over_all_calls": 1634,
+          "calls_present": 5
+        },
+        {
+          "result_key": "execute_analysis.steps[].preview",
+          "tokens_p50": 229,
+          "tokens_p90": 2184,
+          "tokens_mean_over_all_calls": 822,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.budgets_remaining",
+          "tokens_p50": 447,
+          "tokens_p90": 689,
+          "tokens_mean_over_all_calls": 437,
+          "calls_present": 9
+        },
+        {
+          "result_key": "finalize_response.budgets_remaining",
+          "tokens_p50": 223,
+          "tokens_p90": 224,
+          "tokens_mean_over_all_calls": 220,
+          "calls_present": 9
+        },
+        {
+          "result_key": "finalize_response.message",
+          "tokens_p50": 186,
+          "tokens_p90": 339,
+          "tokens_mean_over_all_calls": 215,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.steps[].how_to_cite_these_numbers",
+          "tokens_p50": 302,
+          "tokens_p90": 309,
+          "tokens_mean_over_all_calls": 134,
+          "calls_present": 4
+        },
+        {
+          "result_key": "read_artifact.budgets_remaining",
+          "tokens_p50": 215,
+          "tokens_p90": 215,
+          "tokens_mean_over_all_calls": 47,
+          "calls_present": 2
+        },
+        {
+          "result_key": "execute_analysis.steps[].purpose",
+          "tokens_p50": 33,
+          "tokens_p90": 49,
+          "tokens_mean_over_all_calls": 36,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.message",
+          "tokens_p50": 63,
+          "tokens_p90": 98,
+          "tokens_mean_over_all_calls": 35,
+          "calls_present": 5
+        },
+        {
+          "result_key": "execute_analysis.steps[].columns",
+          "tokens_p50": 24,
+          "tokens_p90": 53,
+          "tokens_mean_over_all_calls": 34,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.detail",
+          "tokens_p50": 146,
+          "tokens_p90": 146,
+          "tokens_mean_over_all_calls": 32,
+          "calls_present": 2
+        },
+        {
+          "result_key": "execute_analysis.steps[].row_ids",
+          "tokens_p50": 13,
+          "tokens_p90": 75,
+          "tokens_mean_over_all_calls": 31,
+          "calls_present": 9
+        },
+        {
+          "result_key": "execute_analysis.steps[].executed_code_digest",
+          "tokens_p50": 25,
+          "tokens_p90": 31,
+          "tokens_mean_over_all_calls": 28,
+          "calls_present": 9
+        }
+      ]
+    },
+    "action_input_growth_by_call_index": {
+      "0": {
+        "n": 41,
+        "mean_tokens": 14253
+      },
+      "1": {
+        "n": 22,
+        "mean_tokens": 15235
+      },
+      "2": {
+        "n": 14,
+        "mean_tokens": 14932
+      },
+      "3": {
+        "n": 7,
+        "mean_tokens": 14702
+      },
+      "4": {
+        "n": 6,
+        "mean_tokens": 17141
+      },
+      "5": {
+        "n": 6,
+        "mean_tokens": 16244
+      },
+      "6": {
+        "n": 2,
+        "mean_tokens": 15341
+      },
+      "7": {
+        "n": 1,
+        "mean_tokens": 16662
+      }
+    }
+  },
+  "recommendations_not_implemented": [
+    {
+      "rank": 1,
+      "component": "analyst.md instruction (answer turn)",
+      "bytes": 16100,
+      "seconds_per_answer_turn": 5.04,
+      "what": "16 KB of instruction written to choose what to run is carried unchanged on the turn that only writes. An answer-turn variant of the instruction (writing rules, citation rules, scope) could drop the action-planning sections.",
+      "risk": "MEDIUM. The instruction carries governance rules the answer must still obey (assumptions, entity scope, no invented numbers). Needs the 96-question corpus re-scored; cut sections, never rewrite wording."
+    },
+    {
+      "rank": 2,
+      "component": "finalize_response tool schema (answer turn, full set)",
+      "bytes": 13021,
+      "seconds_per_answer_turn": 4.07,
+      "what": "13 KB schema vs 2.7 KB on the action turn. Largest single tool; includes presentation/chart and numeric-claim contracts that overlap the ANSWER and PRESENTATION system blocks (another 5 KB).",
+      "risk": "MEDIUM-HIGH. The schema is what the provider validates against and what forces structured claims; removing fields changes the contract. Safe part: de-duplicate prose in descriptions that the system blocks already state."
+    },
+    {
+      "rank": 3,
+      "component": "execute_analysis OK result packet (steps: preview rows, answer_kit, how_to_cite_these_numbers)",
+      "mean_tokens": 3384,
+      "seconds_per_answer_turn": 2.91,
+      "seconds_p90": 7.6,
+      "preview_mean_tokens": 1737,
+      "answer_kit_mean_tokens": 591,
+      "how_to_cite_mean_tokens": 427,
+      "what": "Mean cost is modest but it is the tail: p90 turns carry 8k+ tokens, almost all preview rows. Cap rows sent to the model (top N plus totals; full rows stay in the artifact for the verifier) and send answer_kit and citation guide once per result, not once per step.",
+      "risk": "HIGH. The answer cites numbers from preview rows and the claim verifier binds to row ids; cutting rows or ids can make correct claims unverifiable. Only trim columns the plan did not select and rows beyond what the narrative can name."
+    },
+    {
+      "rank": 4,
+      "component": "tool schemas the answer turn cannot usefully call (inspect_catalog, execute_analysis, read_artifact)",
+      "bytes": 5762,
+      "seconds_per_answer_turn": 1.8,
+      "what": "Offered on the answer turn although it should only call finalize_response. Withholding them (as inspect_product_knowledge already is) saves their schemas.",
+      "risk": "MEDIUM. A corrective execute_analysis or read_artifact on the answer turn becomes impossible; today's ANSWER_CORRECTION path may rely on them."
+    }
+  ],
+  "what_this_proves": [
+    "How many bytes and estimated tokens each component of the assembled request occupies for a corporate and a retail analytical question, built by the real context.build with the real catalogue.",
+    "How the real recorded conversations grew across calls and which tool-result types filled them, with p50/p90 shares.",
+    "What each component costs in prompt-processing seconds at the measured 0.86 s per 1k tokens."
+  ],
+  "what_this_does_not_prove": [
+    "That trimming any component preserves answer quality: no model ran and no golden question was re-scored.",
+    "Exact token counts: tokens are estimated from bytes, calibrated against the recorded input_tokens by regression; the tokenizer itself was not run.",
+    "That recorded conversations match today's code: the DB holds runs from earlier builds; static numbers are the current code.",
+    "Prompt-cache effects: oMLX prefix-cache reuse would lower the real cost of the stable prefix; seconds here are the uncached upper bound."
+  ]
+}

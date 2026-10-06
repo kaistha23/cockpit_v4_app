@@ -1,0 +1,3443 @@
+{
+  "about": "Golden questions for measuring a model on Cockpit V4 (slm_v1 pattern), schema 2. Each entry carries a split (train|holdout|sealed), a status (ready|pending_formula), the state a correct run must end in (expect_state), and a contract (keys, measures, units, scale, cardinality, tolerance) describing what a correct answer is. gold_sql computes the figures a correct answer must contain; the evaluator checks that those figures appear in the run's stored results (result_match) and that the narrative's numbers come from those results (answer_grounded). 'group' ties paraphrases together: splits are assigned per group so a paraphrase of a train question can never sit in holdout or sealed.",
+  "schema": 2,
+  "questions": [
+    {
+      "id": "c01",
+      "group": "ead_ecl_by_stage",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is the total exposure at default and ECL by stage for the latest quarter?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "stage"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn",
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million",
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT stage, SUM(ead_sar_mn) AS ead_sar_mn, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_facility_quarter) GROUP BY stage ORDER BY stage",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c02",
+      "group": "ead_ecl_by_stage",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Break down EAD and expected credit loss by IFRS 9 stage this quarter.",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "stage"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn",
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million",
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT stage, SUM(ead_sar_mn) AS ead_sar_mn, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_facility_quarter) GROUP BY stage ORDER BY stage",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c03",
+      "group": "twin_c03",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which sectors have the highest ECL in the latest quarter?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "subset",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_facility_quarter) GROUP BY sector ORDER BY ecl_sar_mn DESC LIMIT 5",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c04",
+      "group": "stage2_share_trend",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How has the Stage 2 share of EAD changed over the last four quarters?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "reporting_quarter"
+        ],
+        "measures": {
+          "stage2_share_pct": "stage2_share_pct"
+        },
+        "units": {
+          "stage2_share_pct": "percent"
+        },
+        "scale": {
+          "stage2_share_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT reporting_quarter, SUM(CASE WHEN stage = 2 THEN ead_sar_mn ELSE 0 END) / SUM(ead_sar_mn) * 100 AS stage2_share_pct FROM corp_facility_quarter WHERE reporting_quarter IN (SELECT DISTINCT reporting_quarter FROM corp_facility_quarter ORDER BY reporting_quarter DESC LIMIT 4) GROUP BY reporting_quarter ORDER BY reporting_quarter",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c05",
+      "group": "ecl_qoq_by_sector",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How did ECL change by sector between the previous quarter and the latest quarter?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ecl_prev": "ecl_prev",
+          "ecl_latest": "ecl_latest"
+        },
+        "units": {
+          "ecl_prev": "SAR million",
+          "ecl_latest": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "WITH q AS (SELECT DISTINCT reporting_quarter FROM corp_facility_quarter ORDER BY reporting_quarter DESC LIMIT 2), s AS (SELECT sector, reporting_quarter, SUM(ecl_sar_mn) AS ecl FROM corp_facility_quarter WHERE reporting_quarter IN (SELECT reporting_quarter FROM q) GROUP BY 1, 2) SELECT sector, MAX(CASE WHEN reporting_quarter = (SELECT MIN(reporting_quarter) FROM q) THEN ecl END) AS ecl_prev, MAX(CASE WHEN reporting_quarter = (SELECT MAX(reporting_quarter) FROM q) THEN ecl END) AS ecl_latest FROM s GROUP BY sector ORDER BY sector",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c06",
+      "group": "watchlist_count",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many borrowers are on the watchlist in the latest quarter?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "borrowers_on_watchlist": "borrowers_on_watchlist"
+        },
+        "units": {
+          "borrowers_on_watchlist": "count"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT COUNT(DISTINCT borrower_id) AS borrowers_on_watchlist FROM corp_borrower_quarter WHERE watchlist_flag AND reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_borrower_quarter)",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c07",
+      "group": "coverage_by_stage",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is the ECL coverage ratio for each stage this quarter?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "stage"
+        ],
+        "measures": {
+          "ecl_coverage_pct": "ecl_coverage_pct"
+        },
+        "units": {
+          "ecl_coverage_pct": "percent"
+        },
+        "scale": {
+          "ecl_coverage_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT stage, SUM(ecl_sar_mn) / SUM(ead_sar_mn) * 100 AS ecl_coverage_pct FROM corp_facility_quarter WHERE reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_facility_quarter) GROUP BY stage ORDER BY stage",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "c08",
+      "group": "twin_c08",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many covenants are in breach in the latest quarter, by covenant type?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "covenant_type"
+        ],
+        "measures": {
+          "breaches": "breaches"
+        },
+        "units": {
+          "breaches": "count"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT covenant_type, COUNT(*) AS breaches FROM corp_covenant_quarter WHERE breach_flag AND reporting_quarter = (SELECT MAX(reporting_quarter) FROM corp_covenant_quarter) GROUP BY covenant_type ORDER BY breaches DESC",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r01",
+      "group": "retail_ecl_by_stage",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is the total ECL by stage for the latest month?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "stage"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT stage, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY stage ORDER BY stage",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r02",
+      "group": "twin_c03",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "Which products have the highest ECL in the latest month?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY product ORDER BY ecl_sar_mn DESC",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r03",
+      "group": "retail_dpd30_trend",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is the trend in 30+ days past due balances over the last six months?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "reporting_month"
+        ],
+        "measures": {
+          "dpd30_balance_sar_mn": "dpd30_balance_sar_mn"
+        },
+        "units": {
+          "dpd30_balance_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT reporting_month, SUM(CASE WHEN dpd_days >= 30 THEN balance_sar_mn ELSE 0 END) AS dpd30_balance_sar_mn FROM retail_account_month WHERE reporting_month IN (SELECT DISTINCT reporting_month FROM retail_account_month ORDER BY reporting_month DESC LIMIT 6) GROUP BY reporting_month ORDER BY reporting_month",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r04",
+      "group": "retail_stage2_mom",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How has Stage 2 exposure changed month on month over the last three months?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "reporting_month"
+        ],
+        "measures": {
+          "stage2_ead_sar_mn": "stage2_ead_sar_mn"
+        },
+        "units": {
+          "stage2_ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT reporting_month, SUM(ead_sar_mn) AS stage2_ead_sar_mn FROM retail_account_month WHERE stage = 2 AND reporting_month IN (SELECT DISTINCT reporting_month FROM retail_account_month ORDER BY reporting_month DESC LIMIT 3) GROUP BY reporting_month ORDER BY reporting_month",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r05",
+      "group": "retail_delinquency_mix",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How is the balance spread across delinquency buckets in the latest month?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "delinquency_bucket"
+        ],
+        "measures": {
+          "balance_sar_mn": "balance_sar_mn"
+        },
+        "units": {
+          "balance_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT delinquency_bucket, SUM(balance_sar_mn) AS balance_sar_mn FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY delinquency_bucket ORDER BY delinquency_bucket",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r06",
+      "group": "retail_ecl_by_segment",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is ECL by customer segment for the latest month?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY customer_segment ORDER BY ecl_sar_mn DESC",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r07",
+      "group": "twin_c03",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "Rank the retail products by expected credit loss this month.",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY product ORDER BY ecl_sar_mn DESC",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "r08",
+      "group": "retail_default_rate",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What share of accounts are in default in the latest month, by product?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "golden",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "default_rate_pct": "default_rate_pct"
+        },
+        "units": {
+          "default_rate_pct": "percent"
+        },
+        "scale": {
+          "default_rate_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(CASE WHEN default_flag THEN 1.0 ELSE 0.0 END) * 100 AS default_rate_pct FROM retail_account_month WHERE reporting_month = (SELECT MAX(reporting_month) FROM retail_account_month) GROUP BY product ORDER BY default_rate_pct DESC",
+      "expected": null,
+      "tags": []
+    },
+    {
+      "id": "qb_c01",
+      "group": "twin_qb_c01",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is exposure at default by sector this quarter?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c02",
+      "group": "twin_qb_c02",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is recognised ECL by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c03",
+      "group": "twin_qb_c02",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is ECL by product type?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product_type"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product_type, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_c04",
+      "group": "twin_qb_c04",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What share of exposure is in stage 2, by sector?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "stage2_share": "stage2_share"
+        },
+        "units": {
+          "stage2_share": "percent"
+        },
+        "scale": {
+          "stage2_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(CASE WHEN stage = 2 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS stage2_share FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c05",
+      "group": "twin_qb_c05",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is ECL coverage of exposure, by sector?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "coverage": "coverage"
+        },
+        "units": {
+          "coverage": "percent"
+        },
+        "scale": {
+          "coverage": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(ecl_sar_mn) / NULLIF(SUM(ead_sar_mn), 0) AS coverage FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c06",
+      "group": "twin_qb_c06",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is exposure by region?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "region"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT region, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "region"
+      ]
+    },
+    {
+      "id": "qb_c07",
+      "group": "qb_c07",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is exposure by relationship segment?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "relationship_tier"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT relationship_tier, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "segmentation"
+      ]
+    },
+    {
+      "id": "qb_c08",
+      "group": "qb_c08",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many borrowers are in each sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "borrowers": "borrowers"
+        },
+        "units": {
+          "borrowers": "borrowers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, COUNT(DISTINCT borrower_id) AS borrowers FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "identity",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c09",
+      "group": "qb_c09",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is exposure by internal rating?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "rating_current"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT b.rating_current, SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f JOIN corp_borrower_quarter b ON b.borrower_id = f.borrower_id AND b.reporting_quarter = f.reporting_quarter WHERE f.reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "rating",
+        "exposure"
+      ]
+    },
+    {
+      "id": "qb_c10",
+      "group": "qb_c10",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which parent groups hold the most exposure?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "group_name"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT b.group_name, SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f JOIN corp_borrower_quarter b ON b.borrower_id = f.borrower_id AND b.reporting_quarter = f.reporting_quarter WHERE f.reporting_quarter = '2026Q2' GROUP BY 1 ORDER BY ead_sar_mn DESC, b.group_name LIMIT 10",
+      "expected": null,
+      "tags": [
+        "concentration"
+      ]
+    },
+    {
+      "id": "qb_c11",
+      "group": "qb_c11",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many borrowers were downgraded, by sector?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "borrowers": "borrowers"
+        },
+        "units": {
+          "borrowers": "borrowers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, COUNT(DISTINCT borrower_id) AS borrowers FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' AND rating_migration = 'DOWNGRADE' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "rating",
+        "migration"
+      ]
+    },
+    {
+      "id": "qb_c12",
+      "group": "twin_c08",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many covenants are in breach, by covenant type?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "covenant_type"
+        ],
+        "measures": {
+          "breaches": "breaches"
+        },
+        "units": {
+          "breaches": "covenants"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT covenant_type, COUNT(*) AS breaches FROM corp_covenant_quarter WHERE reporting_quarter = '2026Q2' AND breach_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "covenants"
+      ]
+    },
+    {
+      "id": "qb_c13",
+      "group": "qb_c13",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How much exposure sits behind a covenant breach?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f WHERE f.reporting_quarter = '2026Q2' AND f.facility_id IN (SELECT DISTINCT facility_id FROM corp_covenant_quarter WHERE reporting_quarter = '2026Q2' AND breach_flag)",
+      "expected": null,
+      "tags": [
+        "covenants",
+        "exposure"
+      ]
+    },
+    {
+      "id": "qb_c14",
+      "group": "qb_c14",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is collateral cover by collateral type?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "collateral_type"
+        ],
+        "measures": {
+          "allocated_value_sar_mn": "allocated_value_sar_mn"
+        },
+        "units": {
+          "allocated_value_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT collateral_type, SUM(allocated_value_sar_mn) AS allocated_value_sar_mn FROM corp_collateral_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral"
+      ]
+    },
+    {
+      "id": "qb_c15",
+      "group": "twin_qb_c15",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is average utilisation by product type?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product_type"
+        ],
+        "measures": {
+          "utilisation_pct": "utilisation_pct"
+        },
+        "units": {
+          "utilisation_pct": "percent"
+        },
+        "scale": {
+          "utilisation_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product_type, AVG(utilisation_pct) AS utilisation_pct FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_c16",
+      "group": "twin_qb_c16",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How did total exposure move over the latest quarter?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "ead_movement_sar_mn": "ead_movement_sar_mn"
+        },
+        "units": {
+          "ead_movement_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(CASE WHEN reporting_quarter = '2026Q2' THEN ead_sar_mn ELSE 0 END) - SUM(CASE WHEN reporting_quarter = '2026Q1' THEN ead_sar_mn ELSE 0 END) AS ead_movement_sar_mn FROM corp_facility_quarter WHERE reporting_quarter IN ('2026Q2', '2026Q1')",
+      "expected": null,
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "id": "qb_c17",
+      "group": "twin_qb_c17",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How did ECL move year on year?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "ecl_movement_sar_mn": "ecl_movement_sar_mn"
+        },
+        "units": {
+          "ecl_movement_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(CASE WHEN reporting_quarter = '2026Q2' THEN ecl_sar_mn ELSE 0 END) - SUM(CASE WHEN reporting_quarter = '2025Q2' THEN ecl_sar_mn ELSE 0 END) AS ecl_movement_sar_mn FROM corp_facility_quarter WHERE reporting_quarter IN ('2026Q2', '2025Q2')",
+      "expected": null,
+      "tags": [
+        "movement",
+        "yoy"
+      ]
+    },
+    {
+      "id": "qb_c18",
+      "group": "qb_c18",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What share of exposure is in stage 3?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "stage3_share": "stage3_share"
+        },
+        "units": {
+          "stage3_share": "percent"
+        },
+        "scale": {
+          "stage3_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(CASE WHEN stage = 3 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS stage3_share FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2'",
+      "expected": null,
+      "tags": [
+        "ifrs9"
+      ]
+    },
+    {
+      "id": "qb_c19",
+      "group": "qb_c19",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How much exposure is on the watchlist, by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT b.sector, SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f JOIN corp_borrower_quarter b ON b.borrower_id = f.borrower_id AND b.reporting_quarter = f.reporting_quarter WHERE f.reporting_quarter = '2026Q2' AND b.watchlist_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "watchlist",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c20",
+      "group": "twin_qb_c20",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What have we written off this quarter, by sector?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "write_off_sar_mn": "write_off_sar_mn"
+        },
+        "units": {
+          "write_off_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(write_off_sar_mn) AS write_off_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "loss"
+      ]
+    },
+    {
+      "id": "qb_c21",
+      "group": "twin_qb_c21",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What have we recovered this quarter, by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "recovery_sar_mn": "recovery_sar_mn"
+        },
+        "units": {
+          "recovery_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(recovery_sar_mn) AS recovery_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "loss"
+      ]
+    },
+    {
+      "id": "qb_c22",
+      "group": "qb_c22",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many facilities have cured, by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "facilities": "facilities"
+        },
+        "units": {
+          "facilities": "facilities"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, COUNT(DISTINCT facility_id) AS facilities FROM corp_facility_quarter WHERE cure_flag = 1 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "cure"
+      ]
+    },
+    {
+      "id": "qb_c23",
+      "group": "twin_qb_c23",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How much of the book is funded?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "facility_class"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT facility_class, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_c24",
+      "group": "qb_c24",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which sub-sectors carry the most ECL?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sub_sector"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sub_sector, SUM(ecl_sar_mn) AS ecl_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1 ORDER BY ecl_sar_mn DESC, sub_sector LIMIT 10",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c25",
+      "group": "qb_c25",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is average leverage by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "leverage_x": "leverage_x"
+        },
+        "units": {
+          "leverage_x": "times"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, AVG(leverage_x) AS leverage_x FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "financials",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c26",
+      "group": "qb_c26",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is average debt service cover by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "dscr_x": "dscr_x"
+        },
+        "units": {
+          "dscr_x": "times"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, AVG(dscr_x) AS dscr_x FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "financials",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c27",
+      "group": "qb_c27",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is average EBITDA margin by sector?",
+      "split": "holdout",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ebitda_margin_pct": "ebitda_margin_pct"
+        },
+        "units": {
+          "ebitda_margin_pct": "percent"
+        },
+        "scale": {
+          "ebitda_margin_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, AVG(ebitda_margin_pct) AS ebitda_margin_pct FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "financials",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c28",
+      "group": "qb_c28",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What drives the ratings that moved?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "rating_driver"
+        ],
+        "measures": {
+          "borrowers": "borrowers"
+        },
+        "units": {
+          "borrowers": "borrowers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT rating_driver, COUNT(DISTINCT borrower_id) AS borrowers FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' AND rating_migration <> 'STABLE' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "rating",
+        "driver"
+      ]
+    },
+    {
+      "id": "qb_c29",
+      "group": "qb_c29",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How far have ratings drifted from origination?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "notches": "notches"
+        },
+        "units": {
+          "notches": "notches"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, AVG(rating_notches_from_origination) AS notches FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "rating",
+        "history"
+      ]
+    },
+    {
+      "id": "qb_c30",
+      "group": "twin_qb_c30",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is loss given default by product type?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product_type"
+        ],
+        "measures": {
+          "lgd_pct": "lgd_pct"
+        },
+        "units": {
+          "lgd_pct": "percent"
+        },
+        "scale": {
+          "lgd_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product_type, AVG(lgd_pct) AS lgd_pct FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_c31",
+      "group": "twin_qb_c31",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is average LTV by collateral type?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "collateral_type"
+        ],
+        "measures": {
+          "ltv_pct": "ltv_pct"
+        },
+        "units": {
+          "ltv_pct": "percent"
+        },
+        "scale": {
+          "ltv_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT collateral_type, AVG(ltv_pct) AS ltv_pct FROM corp_collateral_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral"
+      ]
+    },
+    {
+      "id": "qb_c32",
+      "group": "qb_c32",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which collateral valuations are the oldest?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "collateral_type"
+        ],
+        "measures": {
+          "stale": "stale"
+        },
+        "units": {
+          "stale": "valuations"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT collateral_type, COUNT(*) AS stale FROM corp_collateral_quarter WHERE reporting_quarter = '2026Q2' AND valuation_age_quarters >= 4 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral",
+        "governance"
+      ]
+    },
+    {
+      "id": "qb_c33",
+      "group": "qb_c33",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many covenants have been waived?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "waiver_status"
+        ],
+        "measures": {
+          "covenants": "covenants"
+        },
+        "units": {
+          "covenants": "covenants"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT waiver_status, COUNT(*) AS covenants FROM corp_covenant_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "covenants"
+      ]
+    },
+    {
+      "id": "qb_c34",
+      "group": "qb_c34",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which covenants have breached repeatedly?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "covenant_type"
+        ],
+        "measures": {
+          "covenants": "covenants"
+        },
+        "units": {
+          "covenants": "covenants"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT covenant_type, COUNT(*) AS covenants FROM corp_covenant_quarter WHERE reporting_quarter = '2026Q2' AND consecutive_breaches >= 2 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "covenants",
+        "persistence"
+      ]
+    },
+    {
+      "id": "qb_c35",
+      "group": "qb_c35",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How long have exposures been in their stage?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "stage"
+        ],
+        "measures": {
+          "quarters": "quarters"
+        },
+        "units": {
+          "quarters": "quarters"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT stage, AVG(quarters_in_stage) AS quarters FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "persistence"
+      ]
+    },
+    {
+      "id": "qb_c36",
+      "group": "qb_c36",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is undrawn commitment by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "undrawn_sar_mn": "undrawn_sar_mn"
+        },
+        "units": {
+          "undrawn_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(undrawn_sar_mn) AS undrawn_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c37",
+      "group": "qb_c37",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many facilities are past due, by sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "facilities": "facilities"
+        },
+        "units": {
+          "facilities": "facilities"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, COUNT(DISTINCT facility_id) AS facilities FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' AND dpd_days > 0 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "delinquency",
+        "sector"
+      ]
+    },
+    {
+      "id": "qb_c38",
+      "group": "qb_c38",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "What is 12-month PD by rating?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "rating_current"
+        ],
+        "measures": {
+          "pd_ttc_12m": "pd_ttc_12m"
+        },
+        "units": {
+          "pd_ttc_12m": "percent"
+        },
+        "scale": {
+          "pd_ttc_12m": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-09,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT rating_current, AVG(pd_ttc_12m) AS pd_ttc_12m FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "rating",
+        "pd"
+      ]
+    },
+    {
+      "id": "qb_c39",
+      "group": "qb_c39",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How many borrowers have been restructured?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "borrowers": "borrowers"
+        },
+        "units": {
+          "borrowers": "borrowers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, COUNT(DISTINCT borrower_id) AS borrowers FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' AND restructured_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "forbearance"
+      ]
+    },
+    {
+      "id": "qb_c40",
+      "group": "qb_c40",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "How much of project finance sits in each sector?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT sector, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' AND product_type = 'project_finance' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "product",
+        "crosscut"
+      ]
+    },
+    {
+      "id": "qb_r01",
+      "group": "twin_qb_c01",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure at default by product this month?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r02",
+      "group": "twin_qb_c02",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is recognised ECL by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r03",
+      "group": "qb_r03",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is ECL by behavioural score band?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "score_band"
+        ],
+        "measures": {
+          "ecl_sar_mn": "ecl_sar_mn"
+        },
+        "units": {
+          "ecl_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT score_band, SUM(ecl_sar_mn) AS ecl_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "behaviour"
+      ]
+    },
+    {
+      "id": "qb_r04",
+      "group": "twin_qb_c04",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What share of exposure is in stage 2, by product?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "stage2_share": "stage2_share"
+        },
+        "units": {
+          "stage2_share": "percent"
+        },
+        "scale": {
+          "stage2_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(CASE WHEN stage = 2 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS stage2_share FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r05",
+      "group": "qb_r05",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure by delinquency bucket?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "delinquency_bucket"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT delinquency_bucket, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "delinquency"
+      ]
+    },
+    {
+      "id": "qb_r06",
+      "group": "qb_r06",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure by origination vintage?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "vintage_year"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT CAST(vintage_year AS VARCHAR) AS vintage_year, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "vintage"
+      ]
+    },
+    {
+      "id": "qb_r07",
+      "group": "qb_r07",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure by customer segment?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "segmentation"
+      ]
+    },
+    {
+      "id": "qb_r08",
+      "group": "twin_qb_c06",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure by region?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "region"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT region, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "region"
+      ]
+    },
+    {
+      "id": "qb_r09",
+      "group": "qb_r09",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many accounts cured this month, by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "accounts": "accounts"
+        },
+        "units": {
+          "accounts": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, COUNT(DISTINCT account_id) AS accounts FROM retail_account_month WHERE reporting_month = '2026-08' AND cure_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "cure"
+      ]
+    },
+    {
+      "id": "qb_r10",
+      "group": "qb_r10",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many customers' scores deteriorated?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "customers": "customers"
+        },
+        "units": {
+          "customers": "customers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, COUNT(DISTINCT customer_id) AS customers FROM retail_customer_month WHERE reporting_month = '2026-08' AND score_migration = 'DETERIORATED' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour",
+        "migration"
+      ]
+    },
+    {
+      "id": "qb_r11",
+      "group": "qb_r11",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "Which customers carry the most exposure?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_id"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_id, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1 ORDER BY ead_sar_mn DESC, customer_id LIMIT 10",
+      "expected": null,
+      "tags": [
+        "concentration"
+      ]
+    },
+    {
+      "id": "qb_r12",
+      "group": "twin_qb_c23",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How much of the book is secured?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "secured_flag"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT CAST(secured_flag AS VARCHAR) AS secured_flag, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral",
+        "exposure"
+      ]
+    },
+    {
+      "id": "qb_r13",
+      "group": "twin_qb_c16",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How did total exposure move over the latest month?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "ead_movement_sar_mn": "ead_movement_sar_mn"
+        },
+        "units": {
+          "ead_movement_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(CASE WHEN reporting_month = '2026-08' THEN ead_sar_mn ELSE 0 END) - SUM(CASE WHEN reporting_month = '2026-07' THEN ead_sar_mn ELSE 0 END) AS ead_movement_sar_mn FROM retail_account_month WHERE reporting_month IN ('2026-08', '2026-07')",
+      "expected": null,
+      "tags": [
+        "movement"
+      ]
+    },
+    {
+      "id": "qb_r14",
+      "group": "twin_qb_c17",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How did ECL move year on year?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "ecl_movement_sar_mn": "ecl_movement_sar_mn"
+        },
+        "units": {
+          "ecl_movement_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(CASE WHEN reporting_month = '2026-08' THEN ecl_sar_mn ELSE 0 END) - SUM(CASE WHEN reporting_month = '2025-08' THEN ecl_sar_mn ELSE 0 END) AS ecl_movement_sar_mn FROM retail_account_month WHERE reporting_month IN ('2026-08', '2025-08')",
+      "expected": null,
+      "tags": [
+        "movement",
+        "yoy"
+      ]
+    },
+    {
+      "id": "qb_r15",
+      "group": "twin_qb_c05",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is ECL coverage of exposure?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [],
+        "measures": {
+          "coverage": "coverage"
+        },
+        "units": {
+          "coverage": "percent"
+        },
+        "scale": {
+          "coverage": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-09,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT SUM(ecl_sar_mn) / NULLIF(SUM(ead_sar_mn), 0) AS coverage FROM retail_account_month WHERE reporting_month = '2026-08'",
+      "expected": null,
+      "tags": [
+        "ifrs9"
+      ]
+    },
+    {
+      "id": "qb_r16",
+      "group": "qb_r16",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What share of exposure is past due, by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "dpd_share": "dpd_share"
+        },
+        "units": {
+          "dpd_share": "percent"
+        },
+        "scale": {
+          "dpd_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(CASE WHEN dpd_days > 0 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS dpd_share FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "delinquency",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r17",
+      "group": "twin_qb_c15",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is average utilisation by product?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "utilisation_pct": "utilisation_pct"
+        },
+        "units": {
+          "utilisation_pct": "percent"
+        },
+        "scale": {
+          "utilisation_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(utilisation_pct) AS utilisation_pct FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r18",
+      "group": "twin_qb_c20",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What have we written off this month, by product?",
+      "split": "sealed",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "write_off_sar_mn": "write_off_sar_mn"
+        },
+        "units": {
+          "write_off_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(write_off_sar_mn) AS write_off_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "loss"
+      ]
+    },
+    {
+      "id": "qb_r19",
+      "group": "twin_qb_c21",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What have we recovered this month, by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "recovery_sar_mn": "recovery_sar_mn"
+        },
+        "units": {
+          "recovery_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(recovery_sar_mn) AS recovery_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "loss"
+      ]
+    },
+    {
+      "id": "qb_r20",
+      "group": "twin_qb_c30",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is loss given default by product?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "lgd_pct": "lgd_pct"
+        },
+        "units": {
+          "lgd_pct": "percent"
+        },
+        "scale": {
+          "lgd_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(lgd_pct) AS lgd_pct FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r21",
+      "group": "qb_r21",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is 12-month PD by score band?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "score_band"
+        ],
+        "measures": {
+          "pd_pit_12m": "pd_pit_12m"
+        },
+        "units": {
+          "pd_pit_12m": "percent"
+        },
+        "scale": {
+          "pd_pit_12m": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-09,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT score_band, AVG(pd_pit_12m) AS pd_pit_12m FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour",
+        "pd"
+      ]
+    },
+    {
+      "id": "qb_r22",
+      "group": "qb_r22",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How does stage 2 vary with months on book?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "years_on_book"
+        ],
+        "measures": {
+          "stage2_share": "stage2_share"
+        },
+        "units": {
+          "stage2_share": "percent"
+        },
+        "scale": {
+          "stage2_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT CAST(months_on_book // 12 AS VARCHAR) AS years_on_book, SUM(CASE WHEN stage = 2 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS stage2_share FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "vintage",
+        "seasoning"
+      ]
+    },
+    {
+      "id": "qb_r23",
+      "group": "qb_r23",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is average payment ratio by product?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "payment_ratio_pct": "payment_ratio_pct"
+        },
+        "units": {
+          "payment_ratio_pct": "percent"
+        },
+        "scale": {
+          "payment_ratio_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(payment_ratio_pct) AS payment_ratio_pct FROM retail_behaviour_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour"
+      ]
+    },
+    {
+      "id": "qb_r24",
+      "group": "qb_r24",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many accounts missed a payment in the last year?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "accounts": "accounts"
+        },
+        "units": {
+          "accounts": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, COUNT(DISTINCT account_id) AS accounts FROM retail_behaviour_month WHERE reporting_month = '2026-08' AND missed_payments_12m > 0 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour",
+        "delinquency"
+      ]
+    },
+    {
+      "id": "qb_r25",
+      "group": "qb_r25",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many accounts are over their limit?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "accounts": "accounts"
+        },
+        "units": {
+          "accounts": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, COUNT(DISTINCT account_id) AS accounts FROM retail_behaviour_month WHERE reporting_month = '2026-08' AND overlimit_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour"
+      ]
+    },
+    {
+      "id": "qb_r26",
+      "group": "qb_r26",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is average cash advance ratio by product?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ratio": "ratio"
+        },
+        "units": {
+          "ratio": "percent"
+        },
+        "scale": {
+          "ratio": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(cash_advance_ratio_pct) AS ratio FROM retail_behaviour_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour"
+      ]
+    },
+    {
+      "id": "qb_r27",
+      "group": "qb_r27",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many bureau enquiries have customers made?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "inquiries": "inquiries"
+        },
+        "units": {
+          "inquiries": "enquiries"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, AVG(bureau_inquiries_6m) AS inquiries FROM retail_behaviour_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour",
+        "bureau"
+      ]
+    },
+    {
+      "id": "qb_r28",
+      "group": "twin_qb_c31",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is average LTV by collateral type?",
+      "split": "train",
+      "status": "pending_formula",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "collateral_type"
+        ],
+        "measures": {
+          "ltv_pct": "ltv_pct"
+        },
+        "units": {
+          "ltv_pct": "percent"
+        },
+        "scale": {
+          "ltv_pct": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT collateral_type, AVG(ltv_pct) AS ltv_pct FROM retail_collateral_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral"
+      ]
+    },
+    {
+      "id": "qb_r29",
+      "group": "qb_r29",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is the value of collateral held, by type?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "collateral_type"
+        ],
+        "measures": {
+          "collateral_value_sar_mn": "collateral_value_sar_mn"
+        },
+        "units": {
+          "collateral_value_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT collateral_type, SUM(collateral_value_sar_mn) AS collateral_value_sar_mn FROM retail_collateral_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "collateral"
+      ]
+    },
+    {
+      "id": "qb_r30",
+      "group": "qb_r30",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many customers are in each score band?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "score_band"
+        ],
+        "measures": {
+          "customers": "customers"
+        },
+        "units": {
+          "customers": "customers"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT score_band, COUNT(DISTINCT customer_id) AS customers FROM retail_customer_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "behaviour"
+      ]
+    },
+    {
+      "id": "qb_r31",
+      "group": "qb_r31",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is average tenure by customer segment?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "tenure_months": "tenure_months"
+        },
+        "units": {
+          "tenure_months": "months"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, AVG(tenure_months) AS tenure_months FROM retail_customer_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "identity"
+      ]
+    },
+    {
+      "id": "qb_r32",
+      "group": "qb_r32",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many products does each segment hold?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "accounts_held": "accounts_held"
+        },
+        "units": {
+          "accounts_held": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, AVG(accounts_held) AS accounts_held FROM retail_customer_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "identity",
+        "cross-sell"
+      ]
+    },
+    {
+      "id": "qb_r33",
+      "group": "qb_r33",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is the worst stage each segment reaches?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "customer_segment"
+        ],
+        "measures": {
+          "worst_stage": "worst_stage"
+        },
+        "units": {
+          "worst_stage": "stage"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT customer_segment, MAX(worst_stage) AS worst_stage FROM retail_customer_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9"
+      ]
+    },
+    {
+      "id": "qb_r34",
+      "group": "twin_qb_c06",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is exposure by product and region?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product_region"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product || ' / ' || region AS product_region, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "crosscut"
+      ]
+    },
+    {
+      "id": "qb_r35",
+      "group": "qb_r35",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How much credit card exposure is past due?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "delinquency_bucket"
+        ],
+        "measures": {
+          "ead_sar_mn": "ead_sar_mn"
+        },
+        "units": {
+          "ead_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT delinquency_bucket, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' AND product = 'Credit Card' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "crosscut",
+        "delinquency"
+      ]
+    },
+    {
+      "id": "qb_r36",
+      "group": "qb_r36",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many accounts are in default, by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "accounts": "accounts"
+        },
+        "units": {
+          "accounts": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, COUNT(DISTINCT account_id) AS accounts FROM retail_account_month WHERE reporting_month = '2026-08' AND default_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "delinquency"
+      ]
+    },
+    {
+      "id": "qb_r37",
+      "group": "qb_r37",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is limit headroom by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "headroom_sar_mn": "headroom_sar_mn"
+        },
+        "units": {
+          "headroom_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(limit_sar_mn) - SUM(balance_sar_mn) AS headroom_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "exposure",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r38",
+      "group": "qb_r38",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How many accounts flagged SICR, by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "accounts": "accounts"
+        },
+        "units": {
+          "accounts": "accounts"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, COUNT(DISTINCT account_id) AS accounts FROM retail_account_month WHERE reporting_month = '2026-08' AND sicr_flag GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9"
+      ]
+    },
+    {
+      "id": "qb_r39",
+      "group": "twin_qb_c02",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "What is lifetime ECL by product?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "ecl_lifetime_sar_mn": "ecl_lifetime_sar_mn"
+        },
+        "units": {
+          "ecl_lifetime_sar_mn": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.01,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(ecl_lifetime_sar_mn) AS ecl_lifetime_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "ifrs9",
+        "product"
+      ]
+    },
+    {
+      "id": "qb_r40",
+      "group": "qb_r40",
+      "domain": "retail",
+      "mode": "standard",
+      "question": "How has the 2024 vintage performed by product?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "question_bank",
+      "contract": {
+        "keys": [
+          "product"
+        ],
+        "measures": {
+          "stage2_share": "stage2_share"
+        },
+        "units": {
+          "stage2_share": "percent"
+        },
+        "scale": {
+          "stage2_share": "fraction"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 1e-06,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "SELECT product, SUM(CASE WHEN stage >= 2 THEN ead_sar_mn ELSE 0 END) / NULLIF(SUM(ead_sar_mn), 0) AS stage2_share FROM retail_account_month WHERE reporting_month = '2026-08' AND vintage_year = 2024 GROUP BY 1",
+      "expected": null,
+      "tags": [
+        "vintage",
+        "crosscut"
+      ]
+    },
+    {
+      "id": "c_s3_overlap",
+      "group": "twin_c_s3_overlap",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which sub-sectors share top 10, that had the largest absolute and relative increase in Stage 3 EAD between 2025Q2 and 2026Q2?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "user",
+      "contract": {
+        "keys": [
+          "sub_sector"
+        ],
+        "measures": {
+          "ead_sar_mn_change": "abs_change",
+          "ead_sar_mn_pct_change": "pct_change"
+        },
+        "units": {
+          "ead_sar_mn_change": "SAR million",
+          "ead_sar_mn_pct_change": "percent"
+        },
+        "scale": {
+          "ead_sar_mn_pct_change": "percent"
+        },
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "WITH s AS (SELECT sub_sector, SUM(ead_sar_mn) FILTER (WHERE reporting_quarter = '2025Q2') AS ead_2025q2, SUM(ead_sar_mn) FILTER (WHERE reporting_quarter = '2026Q2') AS ead_2026q2 FROM corp_facility_quarter WHERE stage = 3 AND reporting_quarter IN ('2025Q2', '2026Q2') GROUP BY sub_sector), d AS (SELECT sub_sector, ead_2025q2, ead_2026q2, COALESCE(ead_2026q2, 0) - COALESCE(ead_2025q2, 0) AS ead_sar_mn_change, (ead_2026q2 - ead_2025q2) / NULLIF(ABS(ead_2025q2), 0) * 100 AS ead_sar_mn_pct_change FROM s), a AS (SELECT sub_sector FROM d ORDER BY ead_sar_mn_change DESC, sub_sector LIMIT 10), r AS (SELECT sub_sector FROM d WHERE ead_sar_mn_pct_change IS NOT NULL ORDER BY ead_sar_mn_pct_change DESC, sub_sector LIMIT 10) SELECT d.* FROM d JOIN a USING (sub_sector) JOIN r USING (sub_sector) ORDER BY ead_sar_mn_change DESC",
+      "expected": null,
+      "tags": [
+        "movement",
+        "yoy",
+        "ranking",
+        "intersection",
+        "stage3",
+        "regression:run-b8aa21b3"
+      ]
+    },
+    {
+      "id": "c_s3_top5_abs",
+      "group": "twin_c_s3_overlap",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which 5 sub-sectors had the largest increase in Stage 3 EAD between 2025Q2 and 2026Q2?",
+      "split": "holdout",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "user",
+      "contract": {
+        "keys": [
+          "sub_sector"
+        ],
+        "measures": {
+          "ead_sar_mn_change": "abs_change"
+        },
+        "units": {
+          "ead_sar_mn_change": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "WITH s AS (SELECT sub_sector, SUM(ead_sar_mn) FILTER (WHERE reporting_quarter = '2025Q2') AS ead_2025q2, SUM(ead_sar_mn) FILTER (WHERE reporting_quarter = '2026Q2') AS ead_2026q2 FROM corp_facility_quarter WHERE stage = 3 AND reporting_quarter IN ('2025Q2', '2026Q2') GROUP BY sub_sector), d AS (SELECT sub_sector, ead_2025q2, ead_2026q2, COALESCE(ead_2026q2, 0) - COALESCE(ead_2025q2, 0) AS ead_sar_mn_change, (ead_2026q2 - ead_2025q2) / NULLIF(ABS(ead_2025q2), 0) * 100 AS ead_sar_mn_pct_change FROM s) SELECT * FROM d ORDER BY ead_sar_mn_change DESC, sub_sector LIMIT 5",
+      "expected": null,
+      "tags": [
+        "movement",
+        "yoy",
+        "ranking",
+        "stage3",
+        "regression:run-b8aa21b3"
+      ],
+      "note": "N=5 on purpose: in this release the top 10 by 2026Q2 level and by change are the same set, so a top-10 golden could not tell a level sort from a change sort."
+    },
+    {
+      "id": "c_ecl_top5_increase",
+      "group": "twin_c_ecl_top5_increase",
+      "domain": "corporate",
+      "mode": "standard",
+      "question": "Which 5 sectors had the largest ECL increase from 2025Q4 to 2026Q2?",
+      "split": "train",
+      "status": "ready",
+      "expect_state": "COMPLETED",
+      "release_id": null,
+      "source": "user",
+      "contract": {
+        "keys": [
+          "sector"
+        ],
+        "measures": {
+          "ecl_sar_mn_change": "abs_change"
+        },
+        "units": {
+          "ecl_sar_mn_change": "SAR million"
+        },
+        "scale": {},
+        "cardinality": "exact",
+        "tolerance": {
+          "rel": 0.005,
+          "abs": 1e-06
+        }
+      },
+      "gold_sql": "WITH s AS (SELECT sector, SUM(ecl_sar_mn) FILTER (WHERE reporting_quarter = '2025Q4') AS ecl_2025q4, SUM(ecl_sar_mn) FILTER (WHERE reporting_quarter = '2026Q2') AS ecl_2026q2 FROM corp_facility_quarter WHERE reporting_quarter IN ('2025Q4', '2026Q2') GROUP BY sector) SELECT sector, ecl_2025q4, ecl_2026q2, COALESCE(ecl_2026q2, 0) - COALESCE(ecl_2025q4, 0) AS ecl_sar_mn_change FROM s ORDER BY ecl_sar_mn_change DESC, sector LIMIT 5",
+      "expected": null,
+      "tags": [
+        "movement",
+        "ranking",
+        "between"
+      ]
+    }
+  ]
+}

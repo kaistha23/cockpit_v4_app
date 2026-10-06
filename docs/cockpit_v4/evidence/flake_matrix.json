@@ -1,0 +1,572 @@
+{
+  "label": "REAL BROWSER \u00b7 REAL UI \u00b7 REAL BACKEND \u00b7 MOCK ANALYST",
+  "note": "Each flow run independently against one long-lived stack, so state leaking between runs is visible rather than reset away. Failures are recorded, not retried.",
+  "ui": "http://127.0.0.1:5473",
+  "runs_per_flow": 5,
+  "flows": 13,
+  "total_runs": 65,
+  "stable_flows": 13,
+  "flaky_flows": [],
+  "elapsed_seconds": 219.0,
+  "matrix": [
+    {
+      "flow": "ask-and-answer",
+      "pattern": "asking from home opens a conversation",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.26,
+      "seconds_max": 2.75,
+      "seconds_median": 2.36,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.75,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.33,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.26,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.65,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.36,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "process-panel",
+      "pattern": "the process panel appears and consumes",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 3.39,
+      "seconds_max": 3.93,
+      "seconds_median": 3.52,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 3.93,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 3.81,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 3.52,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 3.52,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 3.39,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "follow-up",
+      "pattern": "a follow-up appends and does not replace",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 4.47,
+      "seconds_max": 5.16,
+      "seconds_median": 4.9,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 4.93,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 4.79,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 4.9,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 4.47,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 5.16,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "refresh-restore",
+      "pattern": "a refresh restores the transcript",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 4.31,
+      "seconds_max": 4.51,
+      "seconds_median": 4.37,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 4.37,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 4.51,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 4.33,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 4.41,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 4.31,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "continue-where-left-off",
+      "pattern": "Continue where you left off",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 3.75,
+      "seconds_max": 4.23,
+      "seconds_median": 3.9,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 3.87,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 3.9,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 3.75,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 4.23,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 4.2,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "dashboard",
+      "pattern": "segments requiring attention loads",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.03,
+      "seconds_max": 2.26,
+      "seconds_median": 2.1,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.13,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.1,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.07,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.26,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.03,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "drawer",
+      "pattern": "clicking a segment card opens the right-side drawer",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.1,
+      "seconds_max": 2.48,
+      "seconds_median": 2.42,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.47,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.42,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.34,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.1,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.48,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "investigate",
+      "pattern": "Investigate Further opens a seeded V4 thread",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.42,
+      "seconds_max": 2.89,
+      "seconds_median": 2.71,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.88,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.42,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.45,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.89,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.71,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "domain-switch",
+      "pattern": "switching the book asks the server again",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.28,
+      "seconds_max": 2.69,
+      "seconds_median": 2.47,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.28,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.29,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.63,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.69,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.47,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "domain-numbers",
+      "pattern": "each book shows its own release, currency",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.13,
+      "seconds_max": 2.43,
+      "seconds_median": 2.34,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.38,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.33,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.13,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.34,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.43,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "back-to-cockpit",
+      "pattern": "the way back to Cockpit is at the top left",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 4.0,
+      "seconds_max": 4.29,
+      "seconds_median": 4.18,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 4.0,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 4.29,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 4.2,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 4.0,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 4.18,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "opening-questions",
+      "pattern": "a seeded thread opens on three to five",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 2.19,
+      "seconds_max": 2.7,
+      "seconds_median": 2.51,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 2.64,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 2.7,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 2.51,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 2.19,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 2.51,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "flow": "ask-next-overlap",
+      "pattern": "the Ask next strip never overlaps",
+      "runs": 5,
+      "passed": 5,
+      "failed": 0,
+      "stable": true,
+      "seconds_min": 4.48,
+      "seconds_max": 4.99,
+      "seconds_median": 4.61,
+      "attempts": [
+        {
+          "attempt": 1,
+          "passed": true,
+          "seconds": 4.99,
+          "detail": ""
+        },
+        {
+          "attempt": 2,
+          "passed": true,
+          "seconds": 4.48,
+          "detail": ""
+        },
+        {
+          "attempt": 3,
+          "passed": true,
+          "seconds": 4.61,
+          "detail": ""
+        },
+        {
+          "attempt": 4,
+          "passed": true,
+          "seconds": 4.56,
+          "detail": ""
+        },
+        {
+          "attempt": 5,
+          "passed": true,
+          "seconds": 4.66,
+          "detail": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,706 @@
+{
+  "generated_at": "2026-10-01T07:43:06Z",
+  "release_id": "v4-saudi-20q-v1",
+  "periods": {
+    "latest": "2026Q2",
+    "prior": "2026Q1",
+    "year_ago": "2025Q2",
+    "last_four": [
+      "2025Q3",
+      "2025Q4",
+      "2026Q1",
+      "2026Q2"
+    ]
+  },
+  "evidence_class": "MODEL MOCK \u00b7 REAL DATABASE \u00b7 REAL PIPELINE",
+  "paid_provider_calls": 0,
+  "what_this_proves": "CreditProbe V4 validated, bound, executed, stored and published each of these twenty analyses, and every published figure matches an independent pandas oracle computed from the pinned release.",
+  "what_this_does_not_prove": "that the analyst model would choose these analyses, write this SQL, or write prose of this quality. The analyst turn is scripted in this module and the two model-dependent rubric dimensions are left unscored for that reason.",
+  "rubric": [
+    {
+      "dimension": "numerical_correctness",
+      "weight": 40,
+      "model_dependent": false,
+      "test": "every published figure reconciles to the pandas oracle"
+    },
+    {
+      "dimension": "answers_what_was_asked",
+      "weight": 20,
+      "model_dependent": false,
+      "test": "coverage names each subquestion and resolves to evidence"
+    },
+    {
+      "dimension": "insight_and_interpretation",
+      "weight": 15,
+      "model_dependent": true,
+      "test": "requires a live analyst turn; not scored against a mock"
+    },
+    {
+      "dimension": "evidence_and_traceability",
+      "weight": 10,
+      "model_dependent": false,
+      "test": "each claim's artifact, row and column resolve to the stored cell it quotes"
+    },
+    {
+      "dimension": "visual_fidelity",
+      "weight": 5,
+      "model_dependent": false,
+      "test": "the form the analyst declared is the form published, and a question warranting none publishes none"
+    },
+    {
+      "dimension": "visualization_judgement",
+      "weight": 5,
+      "model_dependent": true,
+      "test": "deciding whether this result warrants a chart at all is the analyst's call; a scripted turn was handed the answer"
+    },
+    {
+      "dimension": "clarity_of_writing",
+      "weight": 5,
+      "model_dependent": true,
+      "test": "requires a live analyst turn; not scored against a mock"
+    }
+  ],
+  "scorable_total": 75,
+  "questions": [
+    {
+      "question_id": "Q01",
+      "category": "data_pull",
+      "question": "What is total exposure at default by sector in the latest quarter?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 12,
+      "oracle_row_count": 12,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": "bar",
+      "chart_reason": "a ranked sector comparison reads faster as a bar than as a column of numbers",
+      "numeric_claims": 1,
+      "wall_ms": 52,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q02",
+      "category": "data_pull",
+      "question": "Show the top 10 borrowers by recorded ECL in the latest quarter, with sector, IFRS 9 stage, EAD and ECL.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 10,
+      "oracle_row_count": 10,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": "bar",
+      "chart_reason": "ten named contributors rank usefully",
+      "numeric_claims": 1,
+      "wall_ms": 57,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q03",
+      "category": "data_pull",
+      "question": "Show Stage 2 exposure at default by sector in the latest quarter and each sector's share of total Stage 2 EAD.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 4,
+      "oracle_row_count": 4,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": "bar",
+      "chart_reason": "shares of one total compare well as bars",
+      "numeric_claims": 1,
+      "wall_ms": 54,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q04",
+      "category": "data_pull",
+      "question": "Which borrowers had a recorded covenant breach in any of the latest four quarters, and was a waiver recorded?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 47,
+      "oracle_row_count": 47,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "a list of names and flags is a table; a chart of it would add nothing",
+      "numeric_claims": 1,
+      "wall_ms": 53,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q05",
+      "category": "data_pull",
+      "question": "Which borrowers were downgraded in the latest quarter? Show previous rating, current rating, EAD and recorded ECL.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 15,
+      "oracle_row_count": 15,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "a short named list with before/after grades reads better as a table",
+      "numeric_claims": 1,
+      "wall_ms": 62,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q06",
+      "category": "diagnostic",
+      "question": "Which sectors saw the largest increase in Stage 2 exposure over the latest year?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 12,
+      "oracle_row_count": 12,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": "bar",
+      "chart_reason": "a ranked movement compares as bars",
+      "numeric_claims": 1,
+      "wall_ms": 61,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q07",
+      "category": "diagnostic",
+      "question": "Which sectors had ECL grow faster than EAD in the latest quarter?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 0,
+      "oracle_row_count": 0,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": null,
+      "chart_reason": "two rates per sector compare as paired bars; the gap is the finding",
+      "numeric_claims": 0,
+      "wall_ms": 55,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q08",
+      "category": "diagnostic",
+      "question": "Which sectors contributed most to the change in total ECL from the previous quarter?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 12,
+      "oracle_row_count": 12,
+      "rows_match_oracle": true,
+      "chart_policy": "waterfall",
+      "chart_published": "waterfall",
+      "chart_reason": "the parts sum exactly to the whole movement, which is what a bridge is for",
+      "numeric_claims": 1,
+      "wall_ms": 61,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q09",
+      "category": "diagnostic",
+      "question": "Which borrowers were downgraded and also moved into Stage 2 in the latest quarter? How much EAD and ECL do they represent?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 1,
+      "oracle_row_count": 1,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "an intersection of two conditions is a short list, possibly empty",
+      "numeric_claims": 1,
+      "wall_ms": 56,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q10",
+      "category": "diagnostic",
+      "question": "Which sectors had deterioration in collateral coverage together with an increase in recorded ECL?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 0,
+      "oracle_row_count": 0,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "two movements per sector on different scales; the table is honest, a dual axis is not",
+      "numeric_claims": 0,
+      "wall_ms": 54,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q11",
+      "category": "remediation",
+      "question": "For the sector with the largest ECL increase this quarter, show the five borrowers contributing most to that increase and tell me what I should review next.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 0,
+      "oracle_row_count": 0,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": null,
+      "chart_reason": "five named contributors to one movement",
+      "numeric_claims": 0,
+      "wall_ms": 58,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q12",
+      "category": "remediation",
+      "question": "Prioritise borrowers with covenant breaches, material EAD and rating deterioration. Explain why each deserves review and what evidence should be checked.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 26,
+      "oracle_row_count": 26,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "a prioritised review list is a table",
+      "numeric_claims": 1,
+      "wall_ms": 58,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q13",
+      "category": "remediation",
+      "question": "Which borrowers combine past-due deterioration, Stage 2 status and weakening collateral coverage? What should a senior credit officer investigate next?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 0,
+      "oracle_row_count": 0,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "a three-way intersection, possibly empty",
+      "numeric_claims": 0,
+      "wall_ms": 54,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q14",
+      "category": "remediation",
+      "question": "Which sectors have both rising concentration and rising ECL? Should any of them be taken into a targeted What-If review?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 0,
+      "oracle_row_count": 0,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "two movements and a referral; the recommendation is the output",
+      "numeric_claims": 0,
+      "wall_ms": 56,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q15",
+      "category": "remediation",
+      "question": "Show the borrowers with the largest rating deterioration and ECL increase over the latest year. What review actions would you prioritise?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 16,
+      "oracle_row_count": 16,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "notches and money on one row read as a table",
+      "numeric_claims": 1,
+      "wall_ms": 62,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q16",
+      "category": "multi_part",
+      "question": "For the latest quarter, show the top five sectors by EAD, their Stage 2 share and ECL. Compare them with the previous quarter and tell me which two deserve the most attention.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 5,
+      "oracle_row_count": 5,
+      "rows_match_oracle": true,
+      "chart_policy": "horizontal_bar",
+      "chart_published": "bar",
+      "chart_reason": "five sectors on one measure; the other columns belong in the table",
+      "numeric_claims": 1,
+      "wall_ms": 66,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q17",
+      "category": "multi_part",
+      "question": "For Construction, show EAD, ECL and Stage 2 share in the latest quarter, compare each with a year ago, then show the five borrowers carrying the most ECL.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 5,
+      "oracle_row_count": 5,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "three KPIs and a five-row list; a chart of three numbers is decoration",
+      "numeric_claims": 1,
+      "wall_ms": 70,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q18",
+      "category": "multi_part",
+      "question": "For Information Technology, compare covenant-breach exposure, collateral coverage and ECL with the previous quarter and a year ago. Which borrowers matter most?",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 3,
+      "oracle_row_count": 5,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "three measures across three periods is a table; charting it would need three charts",
+      "numeric_claims": 1,
+      "wall_ms": 61,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q19",
+      "category": "multi_part",
+      "question": "Give me the latest-quarter portfolio EAD, recorded ECL, ECL/EAD and Stage 2 share, show how each changed quarter-on-quarter, and identify the largest sector and borrower ECL contributors.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 1,
+      "oracle_row_count": 1,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "four KPIs with movements is a KPI table; a chart of four scalars is decoration",
+      "numeric_claims": 1,
+      "wall_ms": 69,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    },
+    {
+      "question_id": "Q20",
+      "category": "multi_part",
+      "question": "Which sectors deteriorated on at least two of these measures over the latest quarter: ECL, Stage 2 share, rating quality and past-due exposure? Show the evidence and rank the result.",
+      "mode": "DATA_ANALYSIS",
+      "terminal_state": "COMPLETED",
+      "executed": true,
+      "generations": 2,
+      "row_count": 2,
+      "oracle_row_count": 2,
+      "rows_match_oracle": true,
+      "chart_policy": "none",
+      "chart_published": null,
+      "chart_reason": "a count of measures with the evidence behind each is a table",
+      "numeric_claims": 1,
+      "wall_ms": 64,
+      "rubric": {
+        "marks": {
+          "numerical_correctness": 40,
+          "answers_what_was_asked": 20,
+          "evidence_and_traceability": 10,
+          "visual_fidelity": 5
+        },
+        "scored": 75,
+        "scorable_total": 75,
+        "not_scored": [
+          "insight_and_interpretation",
+          "visualization_judgement",
+          "clarity_of_writing"
+        ]
+      }
+    }
+  ]
+}

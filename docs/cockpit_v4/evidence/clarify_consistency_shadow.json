@@ -1,0 +1,28 @@
+{
+  "label": "REAL PROVIDER \u00b7 REAL DATABASE \u00b7 REAL WORKER",
+  "model": "claude-opus-5",
+  "clarify_gate": "shadow",
+  "runs_per_question": 10,
+  "runs": 10,
+  "cumulative_usd": 0.0,
+  "stopped": null,
+  "started_at": "2026-10-05T08:16:03.516559+00:00",
+  "questions": [
+    {
+      "id": "corp_stage2_ecl_drivers",
+      "domain": "corporate",
+      "question": "What is driving Stage 2 and ECL growth?",
+      "expect": "must_run",
+      "runs": 10,
+      "ask_rate": 0.0,
+      "flip_rate": 0.0,
+      "would_have_refused": 0,
+      "refused": 0,
+      "distinct_clarification_texts": 0,
+      "clarification_texts": {},
+      "states": {
+        "FAILED": 10
+      }
+    }
+  ]
+}

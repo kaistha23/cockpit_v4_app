@@ -1,0 +1,68 @@
+{
+  "type": "object",
+  "properties": {
+    "objective": {
+      "type": "string"
+    },
+    "subquestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0
+    },
+    "scope": {
+      "$ref": "#/$defs/Scope"
+    },
+    "metadata_receipt_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "fields_required": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "expected_output_grain": {
+      "type": "string"
+    },
+    "expected_units": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Step"
+      },
+      "minItems": 1,
+      "maxItems": 8
+    },
+    "repair_of_submission_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "objective",
+    "steps"
+  ],
+  "additionalProperties": false
+}

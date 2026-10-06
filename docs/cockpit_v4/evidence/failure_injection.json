@@ -1,0 +1,139 @@
+{
+  "evidence_class": "MODEL MOCK \u00b7 REAL DATABASE/RUNNER",
+  "paid_provider_calls": 0,
+  "invariant": "every injected failure reaches a terminal state, carries a specific code, and publishes nothing shaped like an answer",
+  "cases": [
+    {
+      "case": "provider unreachable",
+      "terminal_state": "FAILED",
+      "error_code": "PROVIDER_UNAVAILABLE",
+      "expected_error_code": "PROVIDER_UNAVAILABLE",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "intent.validated",
+        "model.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "provider rejected the request (HTTP 400)",
+      "terminal_state": "FAILED",
+      "error_code": "TOOL_SCHEMA_INVALID",
+      "expected_error_code": "TOOL_SCHEMA_INVALID",
+      "published_an_answer": false,
+      "operator_reference": true,
+      "operator_class": true,
+      "events": [
+        "intent.validated",
+        "model.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "credential rejected",
+      "terminal_state": "FAILED",
+      "error_code": "PROVIDER_AUTH",
+      "expected_error_code": "PROVIDER_AUTH",
+      "published_an_answer": false,
+      "operator_reference": true,
+      "operator_class": true,
+      "events": [
+        "intent.validated",
+        "model.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "provider rate limit",
+      "terminal_state": "FAILED",
+      "error_code": "PROVIDER_RATE_LIMIT",
+      "expected_error_code": "PROVIDER_RATE_LIMIT",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "intent.validated",
+        "model.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "model output fails the contract",
+      "terminal_state": "FAILED",
+      "error_code": "CALL_LIMIT",
+      "expected_error_code": "INVALID_MODEL_OUTPUT",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "tool.failed",
+        "model.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "SQL does not bind",
+      "terminal_state": "UNSUPPORTED",
+      "error_code": "",
+      "expected_error_code": "SQL_VALIDATION",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "intent.validated",
+        "answer.validated",
+        "answer.ready"
+      ]
+    },
+    {
+      "case": "query reaches outside the release",
+      "terminal_state": "UNSUPPORTED",
+      "error_code": "",
+      "expected_error_code": "SECURITY_DENIED",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "intent.validated",
+        "answer.validated",
+        "answer.ready"
+      ]
+    },
+    {
+      "case": "artifact store unavailable mid-run",
+      "terminal_state": "FAILED",
+      "error_code": "STORAGE_UNAVAILABLE",
+      "expected_error_code": "STORAGE_UNAVAILABLE",
+      "published_an_answer": false,
+      "operator_reference": true,
+      "operator_class": true,
+      "events": []
+    },
+    {
+      "case": "the run never finalizes",
+      "terminal_state": "FAILED",
+      "error_code": "NO_PROGRESS",
+      "expected_error_code": "NO_PROGRESS",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": [
+        "model.parsed",
+        "tool.requested",
+        "run.failed"
+      ]
+    },
+    {
+      "case": "the user cancelled",
+      "terminal_state": "CANCELLED",
+      "error_code": "CANCELLED_BY_USER",
+      "expected_error_code": "CANCELLED_BY_USER",
+      "published_an_answer": false,
+      "operator_reference": false,
+      "operator_class": false,
+      "events": []
+    }
+  ]
+}

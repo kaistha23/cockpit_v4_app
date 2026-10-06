@@ -1,0 +1,5603 @@
+{
+  "label": "MODEL MOCK \u00b7 REAL DATABASE \u00b7 REAL WORKER \u00b7 HARNESS DRY RUN",
+  "live": false,
+  "model": "claude-opus-5",
+  "price_card": "config/cockpit_v4/price_card.claude-opus-5.json",
+  "price_card_source": "Anthropic published schedule, platform.claude.com/docs/en/about-claude/pricing, 'Model pricing' table, row 'Claude Opus 5'.",
+  "price_card_verified_at": "2026-09-21",
+  "releases": {
+    "corporate": "v4-saudi-corporate-20q-v4",
+    "retail": "v4-saudi-retail-20m-v5"
+  },
+  "cap_usd": 25.0,
+  "stop_at_usd": 20.0,
+  "per_run_ceiling_usd": 1.5,
+  "runs": 41,
+  "cumulative_usd": 0.7425,
+  "stopped": null,
+  "started_at": "2026-09-21T03:46:38.492468+00:00",
+  "journeys": [
+    {
+      "journey": "L01",
+      "coverage": "simple Corporate",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "yes",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-e0c674ce59dc4b8594961ba10b0a56a7",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is exposure at default by sector this quarter?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-e4b2da8fde64",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is exposure at default by sector this quarter?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is exposure at default by sector this quarter?",
+                "subquestions": [
+                  "What is exposure at default by sector this quarter?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_facility_quarter.sector"
+                ],
+                "expected_output_grain": "sector",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT sector, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is exposure at default by sector this quarter?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "37b19f47b025d61cfcc82d6f5a0eb378",
+              "created_at": "2026-09-21T03:46:30.581+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 276,
+          "served_model": "",
+          "cumulative_usd": 0.027
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Agriculture and Agri-processing": 895138.3,
+          "Chemicals": 1044725.42,
+          "Construction": 1869524.58,
+          "Healthcare": 938348.6,
+          "Hospitality": 1114146.03,
+          "Information Technology": 960477.91,
+          "Manufacturing": 1345476.26,
+          "Metals and Mining": 763418.88,
+          "Power and Utilities": 948211.23,
+          "Real Estate": 1614126.76,
+          "Retail Trade": 1084802.61,
+          "Telecommunications": 685223.58,
+          "Transport and Logistics": 1139204.05,
+          "Wholesale Trade": 967189.97
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L02",
+      "coverage": "simple Retail",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "yes",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-61988bc8d69d4456b49105138b048835",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is exposure at default by product this month?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-4d7eb69bd421",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is exposure at default by product this month?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is exposure at default by product this month?",
+                "subquestions": [
+                  "What is exposure at default by product this month?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026-08"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "retail_account_month.ead_sar_mn",
+                  "retail_account_month.product"
+                ],
+                "expected_output_grain": "product",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT product, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is exposure at default by product this month?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "b1e893599c6af4750e0724ba2e7eb2b8",
+              "created_at": "2026-09-21T03:46:32.895+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 2092,
+          "served_model": "",
+          "cumulative_usd": 0.054
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Auto Finance": 740.8253,
+          "Buy Now Pay Later": 38.95622,
+          "Credit Card": 513.18428,
+          "Mortgage": 16648.92204,
+          "Personal Finance": 1796.9442999999999
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L03",
+      "coverage": "trend",
+      "domain_id": "corporate",
+      "notes": "\u00a74: quarter on quarter, not month on month.",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-37ec2df330e8427db99913c68039f323",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How did total exposure move over the latest quarter?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-6c74c230badb",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "How did total exposure move over the latest quarter?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "How did total exposure move over the latest quarter?",
+                "subquestions": [
+                  "How did total exposure move over the latest quarter?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn"
+                ],
+                "expected_output_grain": "portfolio",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT SUM(CASE WHEN reporting_quarter = '2026Q2' THEN ead_sar_mn ELSE 0 END) - SUM(CASE WHEN reporting_quarter = '2026Q1' THEN ead_sar_mn ELSE 0 END) AS ead_movement_sar_mn FROM corp_facility_quarter WHERE reporting_quarter IN ('2026Q2', '2026Q1')",
+                    "parameters": {},
+                    "purpose": "How did total exposure move over the latest quarter?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "2b69dcf7d4a429add02e6031ecb435f3",
+              "created_at": "2026-09-21T03:46:33.255+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 117,
+          "served_model": "",
+          "cumulative_usd": 0.081
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": 328504.8400000017,
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L04",
+      "coverage": "delinquency",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "yes",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-9d1668d702404ce9b5e1c60ff324bb0c",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is exposure by delinquency bucket?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-6d82d86f00f1",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is exposure by delinquency bucket?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is exposure by delinquency bucket?",
+                "subquestions": [
+                  "What is exposure by delinquency bucket?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026-08"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "retail_account_month.ead_sar_mn",
+                  "retail_account_month.delinquency_bucket"
+                ],
+                "expected_output_grain": "delinquency_bucket",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT delinquency_bucket, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is exposure by delinquency bucket?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "2f52efb21de33c4239380411e61dbc53",
+              "created_at": "2026-09-21T03:46:33.592+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 64,
+          "served_model": "",
+          "cumulative_usd": 0.108
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "1-29": 147.1634,
+          "30-59": 92.2027,
+          "60-89": 70.65716,
+          "90+": 184.85222,
+          "Current": 19243.95666
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L05",
+      "coverage": "concentration",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "yes",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-8c1f853dd75f443780253be30c7631d2",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Which parent groups hold the most exposure?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-c4946493e393",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "Which parent groups hold the most exposure?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "Which parent groups hold the most exposure?",
+                "subquestions": [
+                  "Which parent groups hold the most exposure?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_borrower_quarter.group_name"
+                ],
+                "expected_output_grain": "group",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT b.group_name, SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f JOIN corp_borrower_quarter b ON b.borrower_id = f.borrower_id AND b.reporting_quarter = f.reporting_quarter WHERE f.reporting_quarter = '2026Q2' GROUP BY 1 ORDER BY ead_sar_mn DESC, b.group_name LIMIT 10",
+                    "parameters": {},
+                    "purpose": "Which parent groups hold the most exposure?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "c18117c3d47ec98866579a27ee679901",
+              "created_at": "2026-09-21T03:46:33.907+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 131,
+          "served_model": "",
+          "cumulative_usd": 0.135
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Tuwaiq Holding": 1852305.54,
+          "Al Rawdah Group": 1601761.65,
+          "Red Sea Holding": 1139204.05,
+          "Eastern Industrial Group": 1044725.42,
+          "Kingdom Digital Group": 960477.91,
+          "Arabian Energy Group": 948211.23,
+          "Peninsula Communications Group": 685223.58,
+          "Al Faisaliah Industrial Group": 63743.85,
+          "Arar National Medical Holding": 6623.97,
+          "Arar Eastern Hospitality Holding": 6576.0
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L06",
+      "coverage": "rating movement",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-917ed9941d164a27ad113bf38bb41ef6",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How many borrowers were downgraded, by sector?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-21f3285fa586",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "How many borrowers were downgraded, by sector?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "How many borrowers were downgraded, by sector?",
+                "subquestions": [
+                  "How many borrowers were downgraded, by sector?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_borrower_quarter.rating_migration",
+                  "corp_borrower_quarter.borrower_id",
+                  "corp_borrower_quarter.sector"
+                ],
+                "expected_output_grain": "sector",
+                "expected_units": {
+                  "": "borrowers"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT sector, COUNT(DISTINCT borrower_id) AS borrowers FROM corp_borrower_quarter WHERE reporting_quarter = '2026Q2' AND rating_migration = 'DOWNGRADE' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "How many borrowers were downgraded, by sector?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "0ee7b08f81422dfa8d1ec77675af234f",
+              "created_at": "2026-09-21T03:46:34.225+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 100,
+          "served_model": "",
+          "cumulative_usd": 0.162
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Agriculture and Agri-processing": 25.0,
+          "Chemicals": 20.0,
+          "Construction": 197.0,
+          "Healthcare": 10.0,
+          "Hospitality": 55.0,
+          "Information Technology": 13.0,
+          "Manufacturing": 44.0,
+          "Metals and Mining": 19.0,
+          "Power and Utilities": 10.0,
+          "Real Estate": 108.0,
+          "Retail Trade": 60.0,
+          "Telecommunications": 17.0,
+          "Transport and Logistics": 29.0,
+          "Wholesale Trade": 21.0
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L07",
+      "coverage": "score movement",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-6de864ccba7049f89e3d4692aeb12493",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How many customers' scores deteriorated?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-ef0bf2e0c251",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "How many customers' scores deteriorated?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "How many customers' scores deteriorated?",
+                "subquestions": [
+                  "How many customers' scores deteriorated?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026-08"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "retail_customer_month.score_migration",
+                  "retail_customer_month.customer_id",
+                  "retail_customer_month.customer_segment"
+                ],
+                "expected_output_grain": "customer_segment",
+                "expected_units": {
+                  "": "customers"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT customer_segment, COUNT(DISTINCT customer_id) AS customers FROM retail_customer_month WHERE reporting_month = '2026-08' AND score_migration = 'DETERIORATED' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "How many customers' scores deteriorated?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "7a5ff04fd3ae16ae1030ceee358e2866",
+              "created_at": "2026-09-21T03:46:34.456+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 68,
+          "served_model": "",
+          "cumulative_usd": 0.189
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Affluent": 3405.0,
+          "Mass": 3483.0,
+          "Payroll": 3435.0,
+          "Private": 3436.0
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L08",
+      "coverage": "migration / staging",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-25794fb63e344e30a9272343fdfb9b0c",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How long have exposures been in their stage?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-2909363dd53c",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "How long have exposures been in their stage?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "How long have exposures been in their stage?",
+                "subquestions": [
+                  "How long have exposures been in their stage?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.quarters_in_stage",
+                  "corp_facility_quarter.stage"
+                ],
+                "expected_output_grain": "stage",
+                "expected_units": {
+                  "": "quarters"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT stage, AVG(quarters_in_stage) AS quarters FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "How long have exposures been in their stage?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "d7a3c31fcf41ff264ca1b626fbae1a93",
+              "created_at": "2026-09-21T03:46:34.740+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 91,
+          "served_model": "",
+          "cumulative_usd": 0.216
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "1": 16.620207108872098,
+          "2": 6.096634281748786,
+          "3": 5.699785177228787
+        },
+        "published": {},
+        "tolerance": 1e-06,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L09",
+      "coverage": "multi-relation",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-ec2b5479096b4896a433818cdcf021f7",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much exposure sits behind a covenant breach?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-cfb34b8fa531",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "How much exposure sits behind a covenant breach?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "How much exposure sits behind a covenant breach?",
+                "subquestions": [
+                  "How much exposure sits behind a covenant breach?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_covenant_quarter.breach_flag"
+                ],
+                "expected_output_grain": "portfolio",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT SUM(f.ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter f WHERE f.reporting_quarter = '2026Q2' AND f.facility_id IN (SELECT DISTINCT facility_id FROM corp_covenant_quarter WHERE reporting_quarter = '2026Q2' AND breach_flag)",
+                    "parameters": {},
+                    "purpose": "How much exposure sits behind a covenant breach?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "9da2c0b5196a3f025c10f422cdfef299",
+              "created_at": "2026-09-21T03:46:35.033+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 149,
+          "served_model": "",
+          "cumulative_usd": 0.243
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": 2092633.76,
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L10",
+      "coverage": "multi-relation, two-key grain",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-ed04c8d4043b42cb8fdd04779668b104",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is exposure by product and region?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-4d179cb76f7d",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is exposure by product and region?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is exposure by product and region?",
+                "subquestions": [
+                  "What is exposure by product and region?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026-08"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "retail_account_month.ead_sar_mn",
+                  "retail_account_month.product",
+                  "retail_account_month.region"
+                ],
+                "expected_output_grain": "product_region",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT product || ' / ' || region AS product_region, SUM(ead_sar_mn) AS ead_sar_mn FROM retail_account_month WHERE reporting_month = '2026-08' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is exposure by product and region?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "824192067dad57b2d537d16ad38f7820",
+              "created_at": "2026-09-21T03:46:35.533+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 53,
+          "served_model": "",
+          "cumulative_usd": 0.27
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Auto Finance / Asir": 94.77168,
+          "Auto Finance / Eastern Province": 97.71732,
+          "Auto Finance / Hail": 90.13518,
+          "Auto Finance / Madinah": 91.55448,
+          "Auto Finance / Makkah": 94.6686,
+          "Auto Finance / Qassim": 88.81406,
+          "Auto Finance / Riyadh": 91.11161,
+          "Auto Finance / Tabuk": 92.05237,
+          "Buy Now Pay Later / Asir": 4.77689,
+          "Buy Now Pay Later / Eastern Province": 4.99466,
+          "Buy Now Pay Later / Hail": 4.78811,
+          "Buy Now Pay Later / Madinah": 4.89833,
+          "Buy Now Pay Later / Makkah": 4.96238,
+          "Buy Now Pay Later / Qassim": 4.78802,
+          "Buy Now Pay Later / Riyadh": 4.89323,
+          "Buy Now Pay Later / Tabuk": 4.8546,
+          "Credit Card / Asir": 63.77284,
+          "Credit Card / Eastern Province": 60.102289999999996,
+          "Credit Card / Hail": 64.14684,
+          "Credit Card / Madinah": 65.84654,
+          "Credit Card / Makkah": 64.81816,
+          "Credit Card / Qassim": 66.75453,
+          "Credit Card / Riyadh": 65.66542,
+          "Credit Card / Tabuk": 62.07766,
+          "Mortgage / Asir": 2040.57935,
+          "Mortgage / Eastern Province": 2105.1597,
+          "Mortgage / Hail": 2065.06569,
+          "Mortgage / Madinah": 2088.11422,
+          "Mortgage / Makkah": 2044.98503,
+          "Mortgage / Qassim": 2084.28835,
+          "Mortgage / Riyadh": 2077.15524,
+          "Mortgage / Tabuk": 2143.57446,
+          "Personal Finance / Asir": 236.78405,
+          "Personal Finance / Eastern Province": 232.71966,
+          "Personal Finance / Hail": 219.21736,
+          "Personal Finance / Madinah": 218.87682,
+          "Personal Finance / Makkah": 224.55498,
+          "Personal Finance / Qassim": 223.70556,
+          "Personal Finance / Riyadh": 220.64492,
+          "Personal Finance / Tabuk": 220.44095
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L11",
+      "coverage": "ratio and denominator",
+      "domain_id": "corporate",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-a26531d54c5e4f039b9496d3a9439cb5",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is ECL coverage of exposure, by sector?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-e12c84a9fbc3",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is ECL coverage of exposure, by sector?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is ECL coverage of exposure, by sector?",
+                "subquestions": [
+                  "What is ECL coverage of exposure, by sector?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ecl_sar_mn",
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_facility_quarter.sector"
+                ],
+                "expected_output_grain": "sector",
+                "expected_units": {
+                  "": "percent"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT sector, SUM(ecl_sar_mn) / NULLIF(SUM(ead_sar_mn), 0) AS coverage FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is ECL coverage of exposure, by sector?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "9d300e233c09490c774385f4f17ed09c",
+              "created_at": "2026-09-21T03:46:35.851+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 86,
+          "served_model": "",
+          "cumulative_usd": 0.297
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Agriculture and Agri-processing": 0.02919189280583793,
+          "Chemicals": 0.019988870472779342,
+          "Construction": 0.14736994920922622,
+          "Healthcare": 0.014935356753343055,
+          "Hospitality": 0.05288357559376665,
+          "Information Technology": 0.011779691945231723,
+          "Manufacturing": 0.026784283730134337,
+          "Metals and Mining": 0.01682199567817867,
+          "Power and Utilities": 0.010924614655745008,
+          "Real Estate": 0.11487922955939346,
+          "Retail Trade": 0.04613941507755037,
+          "Telecommunications": 0.017562135412794756,
+          "Transport and Logistics": 0.03439967949552146,
+          "Wholesale Trade": 0.027666214321887563
+        },
+        "published": {},
+        "tolerance": 1e-06,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L12",
+      "coverage": "portfolio aggregation, single scalar",
+      "domain_id": "retail",
+      "notes": "A single coverage ratio. A chart of one number is decoration: the Round H restraint rule says say it and send no chart.",
+      "expect_chart": "no",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-d1603cfc14714d28bdf97dffbba4984b",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is ECL coverage of exposure?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-78e9b52eb80b",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is ECL coverage of exposure?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is ECL coverage of exposure?",
+                "subquestions": [
+                  "What is ECL coverage of exposure?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026-08"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "retail_account_month.ecl_sar_mn",
+                  "retail_account_month.ead_sar_mn"
+                ],
+                "expected_output_grain": "portfolio",
+                "expected_units": {
+                  "": "percent"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT SUM(ecl_sar_mn) / NULLIF(SUM(ead_sar_mn), 0) AS coverage FROM retail_account_month WHERE reporting_month = '2026-08'",
+                    "parameters": {},
+                    "purpose": "What is ECL coverage of exposure?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "4ebd95db5e349f8ca85ad41cbc6d3919",
+              "created_at": "2026-09-21T03:46:36.179+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 50,
+          "served_model": "",
+          "cumulative_usd": 0.324
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": 0.011376386222209394,
+        "published": {},
+        "tolerance": 1e-09,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L13",
+      "coverage": "ECL decomposition",
+      "domain_id": "corporate",
+      "notes": "A contribution bridge. Graded on method (a decomposition that reconciles to the total move) and form.",
+      "expect_chart": "yes",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-04c9cdac7b494698bbd74628648c3d8c",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Which sectors contributed most to the change in total ECL from the previous quarter?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 121,
+          "served_model": "",
+          "cumulative_usd": 0.3375
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "L14",
+      "coverage": "complex diagnosis",
+      "domain_id": "corporate",
+      "notes": "Multi-measure, multi-period. Graded on whether the analyst states its own deterioration rule.",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-78f02b750d7943cb923223bc18877495",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Which sectors deteriorated on at least two of these measures over the latest quarter: ECL, Stage 2 share, and ECL coverage of exposure?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 271,
+          "served_model": "",
+          "cumulative_usd": 0.351
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "L15",
+      "coverage": "poor English / typo-heavy",
+      "domain_id": "corporate",
+      "notes": "Must reach L01's answer. Typos are not an ambiguity, and the trace must show entity/value resolution, not a fabricated spelling-correction stage.",
+      "expect_chart": "",
+      "expect_clarification": "no",
+      "turns": [
+        {
+          "run_id": "run-059bc4e936ca4f8291f10aeb11a4156f",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "wat is the toatl expsoure at defalt by secter this qtr",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-4f8242fe760b",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "wat is the toatl expsoure at defalt by secter this qtr",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "wat is the toatl expsoure at defalt by secter this qtr",
+                "subquestions": [
+                  "wat is the toatl expsoure at defalt by secter this qtr"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_facility_quarter.sector"
+                ],
+                "expected_output_grain": "portfolio",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT sector, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "wat is the toatl expsoure at defalt by secter this qtr",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "37b19f47b025d61cfcc82d6f5a0eb378",
+              "created_at": "2026-09-21T03:46:37.039+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 116,
+          "served_model": "",
+          "cumulative_usd": 0.378
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Agriculture and Agri-processing": 895138.3,
+          "Chemicals": 1044725.42,
+          "Construction": 1869524.58,
+          "Healthcare": 938348.6,
+          "Hospitality": 1114146.03,
+          "Information Technology": 960477.91,
+          "Manufacturing": 1345476.26,
+          "Metals and Mining": 763418.88,
+          "Power and Utilities": 948211.23,
+          "Real Estate": 1614126.76,
+          "Retail Trade": 1084802.61,
+          "Telecommunications": 685223.58,
+          "Transport and Logistics": 1139204.05,
+          "Wholesale Trade": 967189.97
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L16",
+      "coverage": "true clarification",
+      "domain_id": "corporate",
+      "notes": "The bare word 'exposure' behind 'single-name limit' is the documented blocking ambiguity: ead_reported, gross_carrying_amount or drawn_balance. CP-1.1 should also be retrieved by name after the Round H fix.",
+      "expect_chart": "",
+      "expect_clarification": "yes",
+      "turns": [
+        {
+          "run_id": "run-1a6c476d200e4ffc9c3dc9ed68e4b929",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Which sectors are above the single-name limit?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 88,
+          "served_model": "",
+          "cumulative_usd": 0.3915
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "L17",
+      "coverage": "unnecessary-clarification negative control",
+      "domain_id": "corporate",
+      "notes": "Every term resolves. Asking here is the failure.",
+      "expect_chart": "yes",
+      "expect_clarification": "no",
+      "turns": [
+        {
+          "run_id": "run-76614b02ce404227b161faf65a7e0807",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is exposure at default by sector this quarter?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [
+            {
+              "submission_id": "sub-3b1c45e46964",
+              "ordinal": 1,
+              "round": 1,
+              "payload": {
+                "intent": {
+                  "query_mode": "DATA_ANALYSIS",
+                  "owner": "COCKPIT",
+                  "understood_request": "What is exposure at default by sector this quarter?",
+                  "response_language": "en",
+                  "blocking_ambiguities": [],
+                  "resolved_assumptions": [],
+                  "canonical_mappings": [],
+                  "excluded_parts": [],
+                  "public_rationale": "direct read"
+                },
+                "objective": "What is exposure at default by sector this quarter?",
+                "subquestions": [
+                  "What is exposure at default by sector this quarter?"
+                ],
+                "scope": {
+                  "reporting_months": [
+                    "2026Q2"
+                  ],
+                  "filters": {}
+                },
+                "metadata_receipt_ids": [],
+                "fields_required": [
+                  "corp_facility_quarter.ead_sar_mn",
+                  "corp_facility_quarter.sector"
+                ],
+                "expected_output_grain": "portfolio",
+                "expected_units": {
+                  "": "SAR million"
+                },
+                "steps": [
+                  {
+                    "step_id": "s1",
+                    "language": "sql",
+                    "code": "SELECT sector, SUM(ead_sar_mn) AS ead_sar_mn FROM corp_facility_quarter WHERE reporting_quarter = '2026Q2' GROUP BY 1",
+                    "parameters": {},
+                    "purpose": "What is exposure at default by sector this quarter?",
+                    "input_artifact_ids": [],
+                    "depends_on_step_ids": []
+                  }
+                ],
+                "repair_of_submission_id": ""
+              },
+              "status": "ok",
+              "no_progress_key": "37b19f47b025d61cfcc82d6f5a0eb378",
+              "created_at": "2026-09-21T03:46:37.406+00:00"
+            }
+          ],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.completed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.027,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 77,
+          "served_model": "",
+          "cumulative_usd": 0.4185
+        }
+      ],
+      "oracle": {
+        "checked": true,
+        "expected": {
+          "Agriculture and Agri-processing": 895138.3,
+          "Chemicals": 1044725.42,
+          "Construction": 1869524.58,
+          "Healthcare": 938348.6,
+          "Hospitality": 1114146.03,
+          "Information Technology": 960477.91,
+          "Manufacturing": 1345476.26,
+          "Metals and Mining": 763418.88,
+          "Power and Utilities": 948211.23,
+          "Real Estate": 1614126.76,
+          "Retail Trade": 1084802.61,
+          "Telecommunications": 685223.58,
+          "Transport and Logistics": 1139204.05,
+          "Wholesale Trade": 967189.97
+        },
+        "published": {},
+        "tolerance": 0.01,
+        "note": "compared by hand in the report: the analyst chooses its own claim ids, so an automatic join would assume the mapping this is meant to check"
+      }
+    },
+    {
+      "journey": "L18",
+      "coverage": "grain refusal + analyst-authored repair",
+      "domain_id": "corporate",
+      "notes": "Borrower grain from a facility-grain relation. The product must refuse an ungoverned collapse and the ANALYST must author the corrected submission. CreditProbe must not rewrite the SQL.",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-60688241a38244479750c22bbd4e80e4",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "For each borrower, what is the average utilisation of their facilities this quarter, and how many facilities does each have?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 183,
+          "served_model": "",
+          "cumulative_usd": 0.432
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "M01",
+      "coverage": "multi-turn narrowing",
+      "domain_id": "corporate",
+      "notes": "Each turn must inherit the filters of the one before.",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-b1665993e7804aa1984f9058e9bcd8e5",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is total exposure at default?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 55,
+          "served_model": "",
+          "cumulative_usd": 0.4455
+        },
+        {
+          "run_id": "run-bf0aab623ecd4f57b1fae2b98d5764f1",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And for the Construction sector?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 2,
+          "latency_ms": 25,
+          "served_model": "",
+          "cumulative_usd": 0.459
+        },
+        {
+          "run_id": "run-bede17619cde4bcba340a5afc38977c4",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is project finance?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 3,
+          "latency_ms": 46,
+          "served_model": "",
+          "cumulative_usd": 0.4725
+        },
+        {
+          "run_id": "run-453c4b7f713d48e0a8c173edc81325f6",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is impaired?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 4,
+          "latency_ms": 24,
+          "served_model": "",
+          "cumulative_usd": 0.486
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "M02",
+      "coverage": "period-changing follow-up",
+      "domain_id": "corporate",
+      "notes": "The last turn changes the PERIOD and nothing else. Latest corporate period is 2026Q2.",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-58e0e104f726486da66c468df8e875e2",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is total exposure at default?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 55,
+          "served_model": "",
+          "cumulative_usd": 0.4995
+        },
+        {
+          "run_id": "run-f11076e1a2e6498791ddedb3f3aa28a6",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And for the Manufacturing sector?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 2,
+          "latency_ms": 25,
+          "served_model": "",
+          "cumulative_usd": 0.513
+        },
+        {
+          "run_id": "run-b6073286a4c14233b2355655b91b799c",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is project finance?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 3,
+          "latency_ms": 22,
+          "served_model": "",
+          "cumulative_usd": 0.5265
+        },
+        {
+          "run_id": "run-84ad9f44a704403eaa7a505f20dab892",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is impaired?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 4,
+          "latency_ms": 25,
+          "served_model": "",
+          "cumulative_usd": 0.54
+        },
+        {
+          "run_id": "run-8af9006cda264abfa4f2116923f833f3",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How did that compare a quarter ago?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 5,
+          "latency_ms": 53,
+          "served_model": "",
+          "cumulative_usd": 0.5535
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "M03",
+      "coverage": "multi-turn narrowing, Retail",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-b4c8463e791841768d68d52958c8d99f",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is total exposure at default?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 35,
+          "served_model": "",
+          "cumulative_usd": 0.567
+        },
+        {
+          "run_id": "run-115f9ffaa0eb498dbd78815a8df82113",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And for Credit Card?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 2,
+          "latency_ms": 16,
+          "served_model": "",
+          "cumulative_usd": 0.5805
+        },
+        {
+          "run_id": "run-c4e6d149ec374ba089f9212a6a55f719",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And within the Payroll segment?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 3,
+          "latency_ms": 19,
+          "served_model": "",
+          "cumulative_usd": 0.594
+        },
+        {
+          "run_id": "run-3ee5353758974c96bb751b2f0307b33a",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is past due?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 4,
+          "latency_ms": 22,
+          "served_model": "",
+          "cumulative_usd": 0.6075
+        },
+        {
+          "run_id": "run-15cfdf48c0014ad99686fabaef6cae1c",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And what is the ECL on it?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 5,
+          "latency_ms": 16,
+          "served_model": "",
+          "cumulative_usd": 0.621
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "M04",
+      "coverage": "period-changing follow-up, Retail",
+      "domain_id": "retail",
+      "notes": "",
+      "expect_chart": "",
+      "expect_clarification": "",
+      "turns": [
+        {
+          "run_id": "run-4e398a4c34c54f06a8a730a4472f029f",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "What is total exposure at default?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 32,
+          "served_model": "",
+          "cumulative_usd": 0.6345
+        },
+        {
+          "run_id": "run-47b8b169d7604d7eac79d0ca4970637a",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And for Personal Finance?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 2,
+          "latency_ms": 15,
+          "served_model": "",
+          "cumulative_usd": 0.648
+        },
+        {
+          "run_id": "run-500d3032aa3840829986aaa48a5072ec",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And within the Affluent segment?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 3,
+          "latency_ms": 19,
+          "served_model": "",
+          "cumulative_usd": 0.6615
+        },
+        {
+          "run_id": "run-d8621ff362e54d6eaa5adf83747935d1",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How much of that is past due?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 4,
+          "latency_ms": 22,
+          "served_model": "",
+          "cumulative_usd": 0.675
+        },
+        {
+          "run_id": "run-aad195bd9ed44d81b26201dbbeac4e6a",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "How did that compare a month ago?",
+          "domain_id": "retail",
+          "release_id": "v4-saudi-retail-20m-v5",
+          "release_fingerprint": "a1e797dcc73236b7a0bdac3635712a912c5680a1b3c7de60f059c78d893706cb",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 5,
+          "latency_ms": 30,
+          "served_model": "",
+          "cumulative_usd": 0.6885
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    },
+    {
+      "journey": "M05",
+      "coverage": "narrowing across a clarification",
+      "domain_id": "corporate",
+      "notes": "Turn 2 ANSWERS turn 1's clarification. The Round H history projection must carry `you_asked` so the analyst does not have to guess what three words mean.",
+      "expect_chart": "",
+      "expect_clarification": "yes",
+      "turns": [
+        {
+          "run_id": "run-911f664717e24bada91fa5baf557ce9f",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Which sectors are above the single-name limit?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 1,
+          "latency_ms": 84,
+          "served_model": "",
+          "cumulative_usd": 0.702
+        },
+        {
+          "run_id": "run-4b278553cdfc4876aea907ed4d7dfb55",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Exposure at default",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 2,
+          "latency_ms": 35,
+          "served_model": "",
+          "cumulative_usd": 0.7155
+        },
+        {
+          "run_id": "run-158c2200847148d6bc388e9cdb3b4087",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "Just the top five by that measure",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 3,
+          "latency_ms": 43,
+          "served_model": "",
+          "cumulative_usd": 0.729
+        },
+        {
+          "run_id": "run-740cdfe3f3254f6b9d859b3ec6f53304",
+          "state": "COMPLETED",
+          "error_code": "",
+          "question": "And how much of that is Stage 2?",
+          "domain_id": "corporate",
+          "release_id": "v4-saudi-corporate-20q-v4",
+          "release_fingerprint": "e37236d0f6d4e494fea0fe2f2b66b83085e76cb9eabdd2c2e2b95ea87a36750f",
+          "disposition": "",
+          "narrative": "",
+          "canonical_mappings": null,
+          "resolved_assumptions": null,
+          "blocking_ambiguities": null,
+          "clarification_question": "",
+          "clarification_options": [],
+          "coverage": [],
+          "limitations": [],
+          "suggested_questions": [],
+          "numeric_claims": [],
+          "tables": [],
+          "charts": [],
+          "chart_count": 0,
+          "submissions": [],
+          "events": [
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "run.started",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "context.ready",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.response_received",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "model.parsed",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "tool.requested",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "intent.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.validated",
+              "at": "",
+              "body": null
+            },
+            {
+              "type": "answer.ready",
+              "at": "",
+              "body": null
+            }
+          ],
+          "spend": {
+            "committed_usd": 0.0135,
+            "pending_usd": 0.0,
+            "uncertain": false
+          },
+          "turn": 4,
+          "latency_ms": 30,
+          "served_model": "",
+          "cumulative_usd": 0.7425
+        }
+      ],
+      "oracle": {
+        "checked": false,
+        "why": "graded on behaviour, not on a figure"
+      }
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The user's product question, in their own words. Used to select sections when you do not name topics."
+    },
+    "topics": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "positioning",
+          "audience",
+          "arc",
+          "modules",
+          "cockpit",
+          "early_warning",
+          "tac",
+          "layers",
+          "what_if",
+          "scorecard_validation",
+          "playbook",
+          "lenses",
+          "planner",
+          "supporting",
+          "relationships",
+          "boundaries",
+          "governance",
+          "examples"
+        ]
+      },
+      "minItems": 0,
+      "description": "Name the sections you want. Naming two module topics also returns how they relate."
+    },
+    "detail": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "standard",
+        "full",
+        null
+      ],
+      "description": "'full' adds worked examples, question-type tables and the fuller module detail."
+    }
+  },
+  "required": [
+    "topics"
+  ],
+  "additionalProperties": false
+}

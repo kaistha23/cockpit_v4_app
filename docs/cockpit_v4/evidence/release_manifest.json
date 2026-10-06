@@ -1,0 +1,61 @@
+{
+  "release": "v4-saudi-20q-v1",
+  "namespace": "cockpit_v4",
+  "relations": {
+    "cockpit_reporting_calendar": {
+      "rows": 20,
+      "columns": 29,
+      "bytes": 18383
+    },
+    "cockpit_facility_quarter": {
+      "rows": 3163,
+      "columns": 198,
+      "bytes": 1140918
+    },
+    "cockpit_ifrs9_detail": {
+      "rows": 10440,
+      "columns": 44,
+      "bytes": 980130
+    },
+    "cockpit_borrower_financial_quarter": {
+      "rows": 1936,
+      "columns": 135,
+      "bytes": 1365563
+    },
+    "cockpit_rating_ratio_quarter": {
+      "rows": 1936,
+      "columns": 170,
+      "bytes": 849749
+    },
+    "cockpit_qualitative_quarter": {
+      "rows": 38720,
+      "columns": 33,
+      "bytes": 583698
+    },
+    "cockpit_collateral_quarter": {
+      "rows": 6220,
+      "columns": 49,
+      "bytes": 745511
+    },
+    "cockpit_collateral_allocation": {
+      "rows": 9180,
+      "columns": 34,
+      "bytes": 311956
+    },
+    "cockpit_covenant_quarter": {
+      "rows": 5838,
+      "columns": 59,
+      "bytes": 262986
+    },
+    "cockpit_macro_quarter_window": {
+      "rows": 12000,
+      "columns": 40,
+      "bytes": 217057
+    },
+    "cockpit_macro_pivot": {
+      "rows": 60,
+      "columns": 203,
+      "bytes": 234759
+    }
+  }
+}

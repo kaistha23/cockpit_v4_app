@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:creditprobe:cockpit-v4:error:1",
+  "type": "object",
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "error_id": {
+      "type": "string"
+    },
+    "error_code": {
+      "type": "string",
+      "enum": [
+        "INPUT_CONTEXT_LIMIT",
+        "OUTPUT_LIMIT",
+        "COST_LIMIT",
+        "CALL_LIMIT",
+        "EXECUTION_LIMIT",
+        "ROUND_LIMIT",
+        "NO_PROGRESS",
+        "MODEL_CONFIGURATION_MISSING",
+        "PROVIDER_CREDENTIAL_MISSING",
+        "CAPABILITY_UNVERIFIED",
+        "PROVIDER_AUTH",
+        "PROVIDER_UNAVAILABLE",
+        "PROVIDER_RATE_LIMIT",
+        "INVALID_MODEL_OUTPUT",
+        "DATA_UNAVAILABLE",
+        "SQL_VALIDATION",
+        "SQL_RUNTIME",
+        "PYTHON_UNAVAILABLE",
+        "SECURITY_DENIED",
+        "ANSWER_VALIDATION",
+        "STORAGE_UNAVAILABLE",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "context",
+        "model",
+        "intent",
+        "catalog",
+        "execution_validation",
+        "sql",
+        "python",
+        "artifact_read",
+        "answer_validation",
+        "answer_delivery",
+        "supervision",
+        "memory"
+      ]
+    },
+    "operation": {
+      "type": "string"
+    },
+    "public_message": {
+      "type": "string"
+    },
+    "last_successful_seq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "retry_class": {
+      "type": "string",
+      "enum": [
+        "opus_code_repair",
+        "format_regeneration",
+        "transient_transport",
+        "user_clarification",
+        "operator_action",
+        "never"
+      ]
+    },
+    "execution_occurred": {
+      "type": "boolean"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "operator_detail_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "run_id",
+    "error_id",
+    "error_code",
+    "stage",
+    "operation",
+    "public_message",
+    "last_successful_seq",
+    "retry_class",
+    "execution_occurred",
+    "trace_id",
+    "operator_detail_ref"
+  ],
+  "additionalProperties": false
+}

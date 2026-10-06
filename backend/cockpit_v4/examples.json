@@ -1,0 +1,259 @@
+{
+ "schema": 2,
+ "note": "Curated worked plans drawn ONLY from split=train, status=ready items of tests/cockpit_v4/golden/questions.json, written against the LIVE releases (v4-saudi-corporate-20q-v4, v4-saudi-retail-20m-v5) and verified by scripts/cockpit_v4/verify_examples.py. Relative periods on purpose.",
+ "examples": [
+  {
+   "id": "c01",
+   "source_id": "c01",
+   "domain": "corporate",
+   "question": "What is the total exposure at default and ECL by stage for the latest quarter?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn",
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "stage"
+    ],
+    "period": {
+     "kind": "latest"
+    }
+   }
+  },
+  {
+   "id": "c05",
+   "source_id": "c05",
+   "domain": "corporate",
+   "question": "How did ECL change by sector between the previous quarter and the latest quarter?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "sector"
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "compare": "prior"
+   }
+  },
+  {
+   "id": "qb_c06",
+   "source_id": "qb_c06",
+   "domain": "corporate",
+   "question": "What is exposure by region?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn"
+    ],
+    "dimensions": [
+     "region"
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "sort": "measure_desc"
+   }
+  },
+  {
+   "id": "qb_c40",
+   "source_id": "qb_c40",
+   "domain": "corporate",
+   "question": "How much of project finance sits in each sector?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn"
+    ],
+    "dimensions": [
+     "sector"
+    ],
+    "filters": [
+     {
+      "field": "product_type",
+      "values": [
+       "project_finance"
+      ]
+     }
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "sort": "measure_desc"
+   }
+  },
+  {
+   "id": "qb_c36_explicit",
+   "source_id": "qb_c36",
+   "domain": "corporate",
+   "question": "What is undrawn commitment by sector as at 2025Q4?",
+   "plan": {
+    "measures": [
+     "undrawn_sar_mn"
+    ],
+    "dimensions": [
+     "sector"
+    ],
+    "period": {
+     "kind": "explicit",
+     "values": [
+      "2025Q4"
+     ]
+    },
+    "sort": "measure_desc"
+   },
+   "note": "The period value comes from the example question. Use only a period the current question names; otherwise use latest."
+  },
+  {
+   "id": "qb_c16",
+   "source_id": "qb_c16",
+   "domain": "corporate",
+   "question": "How did total exposure move over the latest quarter?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn"
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "compare": "prior"
+   }
+  },
+  {
+   "id": "r01",
+   "source_id": "r01",
+   "domain": "retail",
+   "question": "What is the total ECL by stage for the latest month?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "stage"
+    ],
+    "period": {
+     "kind": "latest"
+    }
+   }
+  },
+  {
+   "id": "r01_explicit",
+   "source_id": "r01",
+   "domain": "retail",
+   "question": "What is the total ECL by stage as at 2026-03?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "stage"
+    ],
+    "period": {
+     "kind": "explicit",
+     "values": [
+      "2026-03"
+     ]
+    }
+   },
+   "note": "The period value comes from the example question. Use only a period the current question names; otherwise use latest."
+  },
+  {
+   "id": "r04",
+   "source_id": "r04",
+   "domain": "retail",
+   "question": "How has Stage 2 exposure changed month on month over the last three months?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn"
+    ],
+    "filters": [
+     {
+      "field": "stage",
+      "values": [
+       "2"
+      ]
+     }
+    ],
+    "period": {
+     "kind": "last_n",
+     "n": 3
+    }
+   }
+  },
+  {
+   "id": "r06",
+   "source_id": "r06",
+   "domain": "retail",
+   "question": "What is ECL by customer segment for the latest month?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "customer_segment"
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "sort": "measure_desc"
+   }
+  },
+  {
+   "id": "qb_r02",
+   "source_id": "qb_r02",
+   "domain": "retail",
+   "question": "What is recognised ECL by product?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "product"
+    ],
+    "period": {
+     "kind": "latest"
+    }
+   }
+  },
+  {
+   "id": "qb_r13",
+   "source_id": "qb_r13",
+   "domain": "retail",
+   "question": "How did total exposure move over the latest month?",
+   "plan": {
+    "measures": [
+     "ead_sar_mn"
+    ],
+    "period": {
+     "kind": "latest"
+    },
+    "compare": "prior"
+   }
+  },
+  {
+   "id": "c_ecl_top5_increase",
+   "source_id": "c_ecl_top5_increase",
+   "domain": "corporate",
+   "question": "Which 5 sectors had the largest ECL increase from 2025Q4 to 2026Q2?",
+   "plan": {
+    "measures": [
+     "ecl_sar_mn"
+    ],
+    "dimensions": [
+     "sector"
+    ],
+    "period": {
+     "kind": "explicit",
+     "values": [
+      "2025Q4",
+      "2026Q2"
+     ]
+    },
+    "compare": "between",
+    "sort": "change_desc",
+    "limit": 5
+   },
+   "note": "The period values come from the example question. compare 'between' needs the two periods the current question names; sort 'change_desc' with limit ranks by the increase, not the current level."
+  }
+ ]
+}

@@ -1,0 +1,68 @@
+{
+  "model": "STUB ANALYST. No paid provider call was made. The release, the SQL, the arithmetic, the display policy and the validator are all real.",
+  "release": {
+    "release_id": "v4-saudi-20q-v1",
+    "release_fingerprint": "24df0d375e72d1cd23a8a92f1410745426d35cd756858b266a0e801e64acca88",
+    "domain_id": "corporate_cockpit",
+    "tenant_id": "demo-tenant",
+    "country": "Saudi Arabia",
+    "reporting_currency": "SAR",
+    "amount_scale": "million",
+    "latest_populated_quarter": "2026Q2",
+    "reporting_frequency": "quarterly",
+    "not_client_data": true
+  },
+  "question": "What is total exposure at default by sector in the latest quarter?",
+  "quarter": "2026Q2",
+  "rendered_narrative": "Total portfolio EAD in 2026Q2 is SAR 40,599 million. The four largest sectors carry 56.70% of it.",
+  "model_calls": 2,
+  "answer_format_recoveries": 0,
+  "answer_corrections": 0,
+  "claims": [
+    {
+      "claim_id": "total_ead",
+      "unit": "SAR million",
+      "display_precision": 0,
+      "analyst_sent_a_value": false
+    },
+    {
+      "claim_id": "top4_share",
+      "unit": "percent",
+      "display_precision": 2,
+      "analyst_sent_a_value": false
+    }
+  ],
+  "total_ead": {
+    "oracle_canonical": "40599.173664",
+    "published": "SAR 40,599 million",
+    "policy_rendering": "SAR 40,599 million"
+  },
+  "top4_share": {
+    "oracle_canonical": "56.70434499856228403851091741",
+    "policy_rendering": "56.70%"
+  },
+  "table": {
+    "rendered_by": "creditprobe",
+    "row_count": 12,
+    "column_units": {
+      "ead_reported_sar_mn": "SAR million"
+    },
+    "first_three_rows": [
+      {
+        "sector": "Information Technology",
+        "canonical": "7013.1167117986615",
+        "display": "SAR 7,013 million"
+      },
+      {
+        "sector": "Manufacturing",
+        "canonical": "6936.155746775151",
+        "display": "SAR 6,936 million"
+      },
+      {
+        "sector": "Power and Utilities",
+        "canonical": "4563.685615211775",
+        "display": "SAR 4,564 million"
+      }
+    ]
+  }
+}

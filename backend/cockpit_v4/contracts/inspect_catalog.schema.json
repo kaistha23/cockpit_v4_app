@@ -1,0 +1,81 @@
+{
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "relation_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "field_ids": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "detail": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "discovery",
+          "fields",
+          "relationships",
+          "coverage",
+          "samples"
+        ]
+      },
+      "minItems": 1,
+      "description": "Which metadata categories to return. 'samples' may be given alone or implied by a non-zero sample_rows; the two mean the same thing and neither form is rejected. Absent, null and empty all mean the same thing; the server stores one canonical form."
+    },
+    "reporting_periods": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Reporting {{PERIODS}} to describe coverage for, e.g. {{LATEST_PERIOD}}. Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "sample_rows": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Masked sample rows, 0-10. A non-zero value IS the request for samples: it and 'samples' in detail mean the same thing, either alone is honoured, and neither is rejected for lacking the other. Absent and null mean none."
+    },
+    "cursor": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Optional. Omit it when you have nothing to say about it."
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

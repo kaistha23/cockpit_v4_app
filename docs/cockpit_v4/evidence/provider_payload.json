@@ -1,0 +1,62 @@
+{
+  "label": "MODEL MOCK \u2014 the assembled request, never sent",
+  "payloads": {
+    "ead_by_sector": {
+      "question": "What is total exposure at default by sector in the latest quarter?",
+      "model": "mock-analyst",
+      "max_tokens": 3072,
+      "system_blocks": 3,
+      "system_bytes": 33029,
+      "message_bytes": 221,
+      "tools": [
+        {
+          "name": "execute_analysis",
+          "schema_bytes": 2320
+        }
+      ],
+      "unsupported_schema_keywords": []
+    },
+    "explain_tac": {
+      "question": "Explain TAC.",
+      "model": "mock-analyst",
+      "max_tokens": 3072,
+      "system_blocks": 4,
+      "system_bytes": 39580,
+      "message_bytes": 167,
+      "tools": [
+        {
+          "name": "inspect_product_knowledge",
+          "schema_bytes": 845
+        },
+        {
+          "name": "execute_analysis",
+          "schema_bytes": 2320
+        },
+        {
+          "name": "finalize_response",
+          "schema_bytes": 2261
+        }
+      ],
+      "unsupported_schema_keywords": []
+    },
+    "who_are_you": {
+      "question": "Who are you?",
+      "model": "mock-analyst",
+      "max_tokens": 3072,
+      "system_blocks": 4,
+      "system_bytes": 39584,
+      "message_bytes": 167,
+      "tools": [
+        {
+          "name": "execute_analysis",
+          "schema_bytes": 2320
+        },
+        {
+          "name": "finalize_response",
+          "schema_bytes": 2261
+        }
+      ],
+      "unsupported_schema_keywords": []
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "evidence_class": "MODEL MOCK \u00b7 REAL DATABASE/RUNNER \u00b7 BOTH BOOKS",
+  "paid_provider_calls": 0,
+  "what_is_measured": "CreditProbe's own time, per book: opening a domain session cold and warm, computing a dashboard and an ECL panel cold and cached, browsing a schema, and driving one analytical run end to end with a scripted analyst.",
+  "what_is_not_measured": "provider latency, and browser rendering. A live answer adds the model's time on top of every figure here.",
+  "budgets_ms": {
+    "session_cold_open": 6000.0,
+    "session_warm_open": 50.0,
+    "dashboard_cold": 3000.0,
+    "dashboard_cached": 25.0,
+    "ecl_panel_cold": 3000.0,
+    "ecl_panel_cached": 25.0,
+    "schema_browse": 250.0,
+    "analysis_end_to_end": 4000.0,
+    "domain_switch": 3000.0
+  },
+  "measurements": {
+    "analysis_end_to_end:corporate": {
+      "samples": 5,
+      "min_ms": 15.6,
+      "median_ms": 15.9,
+      "p90_ms": 18.8,
+      "max_ms": 18.8
+    },
+    "analysis_end_to_end:retail": {
+      "samples": 5,
+      "min_ms": 15.6,
+      "median_ms": 16.1,
+      "p90_ms": 20.0,
+      "max_ms": 20.0
+    },
+    "dashboard_cached:corporate": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "dashboard_cached:retail": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "dashboard_cold:corporate": {
+      "samples": 5,
+      "min_ms": 48.9,
+      "median_ms": 49.3,
+      "p90_ms": 51.1,
+      "max_ms": 51.1
+    },
+    "dashboard_cold:retail": {
+      "samples": 5,
+      "min_ms": 63.2,
+      "median_ms": 63.6,
+      "p90_ms": 64.3,
+      "max_ms": 64.3
+    },
+    "domain_switch:back": {
+      "samples": 1,
+      "min_ms": 0.3,
+      "median_ms": 0.3,
+      "p90_ms": 0.3,
+      "max_ms": 0.3
+    },
+    "domain_switch:first": {
+      "samples": 1,
+      "min_ms": 635.2,
+      "median_ms": 635.2,
+      "p90_ms": 635.2,
+      "max_ms": 635.2
+    },
+    "domain_switch:second": {
+      "samples": 1,
+      "min_ms": 824.1,
+      "median_ms": 824.1,
+      "p90_ms": 824.1,
+      "max_ms": 824.1
+    },
+    "ecl_panel_cached:corporate": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "ecl_panel_cached:retail": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "ecl_panel_cold:corporate": {
+      "samples": 5,
+      "min_ms": 5.2,
+      "median_ms": 5.3,
+      "p90_ms": 5.6,
+      "max_ms": 5.6
+    },
+    "ecl_panel_cold:retail": {
+      "samples": 5,
+      "min_ms": 8.2,
+      "median_ms": 8.3,
+      "p90_ms": 8.4,
+      "max_ms": 8.4
+    },
+    "schema_browse:corporate": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "schema_browse:retail": {
+      "samples": 5,
+      "min_ms": 0.0,
+      "median_ms": 0.0,
+      "p90_ms": 0.0,
+      "max_ms": 0.0
+    },
+    "session_cold_open:corporate": {
+      "samples": 3,
+      "min_ms": 629.3,
+      "median_ms": 630.4,
+      "p90_ms": 630.7,
+      "max_ms": 630.7
+    },
+    "session_cold_open:retail": {
+      "samples": 3,
+      "min_ms": 807.5,
+      "median_ms": 807.5,
+      "p90_ms": 821.9,
+      "max_ms": 821.9
+    },
+    "session_warm_open:corporate": {
+      "samples": 9,
+      "min_ms": 0.2,
+      "median_ms": 0.2,
+      "p90_ms": 0.3,
+      "max_ms": 0.3
+    },
+    "session_warm_open:retail": {
+      "samples": 9,
+      "min_ms": 0.2,
+      "median_ms": 0.2,
+      "p90_ms": 0.3,
+      "max_ms": 0.3
+    }
+  }
+}

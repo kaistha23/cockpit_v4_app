@@ -1,0 +1,53 @@
+{
+  "what": "a four-step, 100-row analysis answered properly",
+  "estimator": "len(json)/2.2 -- provider.count_input",
+  "answer_object_naming_every_row": {
+    "bytes": 12624,
+    "tokens": 5739,
+    "narrative_bytes": 1172,
+    "numeric_claims": 16,
+    "numeric_claims_bytes": 8550,
+    "numeric_claims_share": 0.677
+  },
+  "answer_object": {
+    "bytes": 7120,
+    "tokens": 3237,
+    "narrative_bytes": 1172,
+    "numeric_claims": 16,
+    "numeric_claims_bytes": 3046,
+    "numeric_claims_share": 0.428
+  },
+  "row_scope_shorthand_saved": {
+    "bytes": 5504,
+    "tokens": 2502,
+    "share": 0.436,
+    "operands_that_span_a_whole_result": 8
+  },
+  "allowance": {
+    "before_stage_2": 4096,
+    "base": 8192,
+    "ceiling_on_a_truncated_re_ask": 12288,
+    "fits_before_stage_2": true,
+    "naming_every_row_fits_before_stage_2": false,
+    "fits_now": true
+  },
+  "tool_result_after_the_shrink": {
+    "four_step_bytes": 49874,
+    "four_step_tokens": 22670,
+    "one_step_bytes": 11374,
+    "preview_bytes": 9417,
+    "row_ids_bytes": 690,
+    "claim_guide_bytes": 784
+  },
+  "tool_result_before_the_shrink": {
+    "four_step_bytes": 115790,
+    "one_step_bytes": 27503,
+    "preview_formatted_bytes": 11437,
+    "claim_guide_bytes": 5453
+  },
+  "tool_result_saved": {
+    "bytes": 65916,
+    "share": 0.569,
+    "tokens": 29961
+  }
+}

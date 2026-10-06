@@ -1,0 +1,426 @@
+{
+  "version": "1",
+  "note": "Reference contract, not proof of runtime liveness. Deadline/watchdog/storage assumptions and real transition guard tests are required. Terminal states have no analytical outgoing edges; late messages settle usage only.",
+  "initial": "ACCEPTED",
+  "working_states": [
+    "ACCEPTED",
+    "CONTEXT_READY",
+    "MODEL_RUNNING",
+    "ACTION_VALIDATING",
+    "TOOL_RUNNING",
+    "FINAL_VALIDATING"
+  ],
+  "terminal_states": [
+    "COMPLETED",
+    "PARTIAL",
+    "WAITING_FOR_USER",
+    "REFERRED",
+    "UNSUPPORTED",
+    "FAILED",
+    "CANCELLED",
+    "EXPIRED",
+    "INTERRUPTED"
+  ],
+  "edges": [
+    {
+      "source": "ACCEPTED",
+      "target": "CONTEXT_READY",
+      "event": "context_ready",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "persist context, lease and event"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "MODEL_RUNNING",
+      "event": "dispatch",
+      "guard": "capabilities, price, time and counters permit",
+      "consumes": "generation_attempt",
+      "side_effect": "atomic cost reservation; dispatch"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "FAILED",
+      "event": "preflight_or_budget_failure",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "persist reason"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "ACTION_VALIDATING",
+      "event": "complete_tool_response",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "record provider response; validate parse"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "CONTEXT_READY",
+      "event": "format_or_output_retry",
+      "guard": "one format retry remains",
+      "consumes": "format_retry",
+      "side_effect": "roll back incomplete assistant history; record usage"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "CONTEXT_READY",
+      "event": "transient_transport_retry",
+      "guard": "one transport retry remains and remaining time permits",
+      "consumes": "transport_retry",
+      "side_effect": "account pending usage"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "UNSUPPORTED",
+      "event": "provider_refusal",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "FAILED",
+      "event": "nonrecoverable_provider_or_app_error",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "TOOL_RUNNING",
+      "event": "authorized_read",
+      "guard": "metadata/artifact budget available",
+      "consumes": "tool_call",
+      "side_effect": ""
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "TOOL_RUNNING",
+      "event": "authorized_execution",
+      "guard": "submission/round/step budgets available",
+      "consumes": "execution_submission",
+      "side_effect": "begin round according to prior batch status"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "CONTEXT_READY",
+      "event": "execution_validation_error",
+      "guard": "submissions remain",
+      "consumes": "execution_submission",
+      "side_effect": "matching error tool result"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "CONTEXT_READY",
+      "event": "invalid_action_or_schema",
+      "guard": "format recovery remains",
+      "consumes": "format_retry",
+      "side_effect": "matching tool error"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "FINAL_VALIDATING",
+      "event": "finalize_response",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "FAILED",
+      "event": "security_or_unrecoverable_error",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "CONTEXT_READY",
+      "event": "tool_success",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "persist result and matching tool result"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "CONTEXT_READY",
+      "event": "repairable_execution_failure",
+      "guard": "remaining budgets permit",
+      "consumes": "none",
+      "side_effect": "persist actual failure/partial results"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "FAILED",
+      "event": "unrecoverable_tool_failure",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "PARTIAL",
+      "event": "verified_partial_terminal",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "COMPLETED",
+      "event": "valid_answer",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "atomic final answer + terminal event"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "PARTIAL",
+      "event": "valid_partial",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "atomic final answer + terminal event"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "WAITING_FOR_USER",
+      "event": "valid_clarification",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "atomic final answer + terminal event"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "REFERRED",
+      "event": "valid_referral",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "atomic final answer + terminal event"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "UNSUPPORTED",
+      "event": "valid_unsupported",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "atomic final answer + terminal event"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "CONTEXT_READY",
+      "event": "answer_validation_error",
+      "guard": "one answer correction remains and budget permits",
+      "consumes": "answer_correction",
+      "side_effect": "disable new execution"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "FAILED",
+      "event": "answer_validation_failed_again",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "PARTIAL",
+      "event": "only_verified_partial_safe",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": ""
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "ACCEPTED",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "CONTEXT_READY",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "MODEL_RUNNING",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "ACTION_VALIDATING",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "TOOL_RUNNING",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "CANCELLED",
+      "event": "cancel_wins",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, terminate owned children"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "EXPIRED",
+      "event": "deadline",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "fence work, preserve evidence"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "INTERRUPTED",
+      "event": "worker_lease_lost",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "no blind replay"
+    },
+    {
+      "source": "FINAL_VALIDATING",
+      "target": "FAILED",
+      "event": "unexpected_exception",
+      "guard": "",
+      "consumes": "none",
+      "side_effect": "sanitized exact operation/error ID"
+    }
+  ]
+}

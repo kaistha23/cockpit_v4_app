@@ -1,0 +1,194 @@
+{
+  "type": "object",
+  "properties": {
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "answer",
+        "partial_answer",
+        "referral",
+        "clarification",
+        "unsupported",
+        "safe_failure"
+      ]
+    },
+    "narrative": {
+      "type": "string",
+      "description": "Use typed claim placeholders for numeric portfolio findings."
+    },
+    "coverage": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Coverage"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "numeric_claims": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/NumericClaim"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "evidence_refs": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "tables": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Table"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "charts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Chart"
+      },
+      "minItems": 0,
+      "maxItems": 8,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form. Pick the form from the SHAPE of the result: a ranked comparison is a bar, a series over time is a line, a from/to pair with a measure is a heatmap (the grid, whose diagonal is everything that did not move -- a rating or stage migration is this and is unreadable as a flat list), a contribution bridge is a waterfall, two measures against each other is a scatter, and the spread of a measure across a category is a box. CreditProbe computes every value, including a box's quartiles. SEVERAL SMALL CHARTS BEAT ONE CROWDED ONE: a trend per product is one chart per product, and they are published in the order you send them. NOT EVERY ANSWER NEEDS A CHART, and reaching for one because the capability exists is the commonest way a good answer is made to look padded. A single figure has no shape to draw: a chart of one bar is a decoration around a sentence, so send none. Two or three values a reader compares at a glance are already clearer in the table beside them. Chart the result when the FORM shows something the reader would otherwise have to work out from the rows -- a ranking, a movement over time, a concentration, a migration, a spread -- and say which of those it is in `why_this_chart`. A chart you cannot justify in one line is usually a chart the answer does not need. If the reader named a form -- \"give me a line chart\" -- use that form."
+    },
+    "limitations": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "suggested_questions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/$defs/Suggestion"
+      },
+      "minItems": 0,
+      "maxItems": 3,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "clarification_question": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "clarification_options": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "minItems": 0,
+      "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+    },
+    "referral_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referral_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "understood_request": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "What you took the question to mean, in one sentence."
+    },
+    "response_language": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The language you answered in, as a BCP-47 tag."
+    },
+    "blocking_ambiguities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Terms with two defensible readings that would give materially different numbers. THE ONLY THING THAT STOPS AN ANALYSIS. A period you resolved yourself is NOT one of these -- it is a resolved assumption."
+    },
+    "resolved_assumptions": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Choices you made and are declaring, not questions. A period you picked because none was given belongs here, written as this book writes it: \"{{PERIOD_EXAMPLE}}\"."
+    },
+    "canonical_mappings": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Terms this book already defines, and what they map to. For example \"{{MAPPED_TERM_EXAMPLE}}\"."
+    },
+    "excluded_parts": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "description": "Parts of the question this answer does not cover."
+    },
+    "public_rationale": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Why you answered it this way, for the reader."
+    }
+  },
+  "required": [
+    "disposition",
+    "narrative"
+  ],
+  "additionalProperties": false
+}

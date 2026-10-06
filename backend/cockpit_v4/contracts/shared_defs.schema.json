@@ -1,0 +1,488 @@
+{
+  "$defs": {
+    "Intent": {
+      "type": "object",
+      "properties": {
+        "query_mode": {
+          "type": "string",
+          "enum": [
+            "PRODUCT_HELP",
+            "THEORY_CONCEPT",
+            "DATA_ANALYSIS",
+            "OTHER_FUNCTIONALITY",
+            "CLARIFICATION_REQUIRED",
+            "UNSUPPORTED"
+          ]
+        },
+        "owner": {
+          "type": "string",
+          "enum": [
+            "COCKPIT",
+            "EWS",
+            "CREDIT_SCORING",
+            "SCORECARD_VALIDATION",
+            "WHAT_IF",
+            "LENSES",
+            "GENERAL_CREDITPROBE_HELP",
+            "NONE"
+          ]
+        },
+        "understood_request": {
+          "type": "string"
+        },
+        "response_language": {
+          "type": "string"
+        },
+        "blocking_ambiguities": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Terms with two defensible readings that would produce materially different numbers, and only those. THIS IS THE ONLY FIELD THAT STOPS EXECUTION. A resolution you have made does not belong here. Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "resolved_assumptions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Choices you made and are declaring, e.g. '{{PERIOD_EXAMPLE}}'. Shown in the trace and in your answer. Does not stop execution. Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "canonical_mappings": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Terms this domain already defines, e.g. 'exposure at default = ead_reported'. Not a choice and not a question. Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "excluded_parts": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "public_rationale": {
+          "type": "string",
+          "description": "Concise action rationale, never private chain-of-thought."
+        }
+      },
+      "required": [
+        "query_mode",
+        "owner",
+        "understood_request",
+        "response_language",
+        "blocking_ambiguities",
+        "resolved_assumptions",
+        "canonical_mappings",
+        "excluded_parts",
+        "public_rationale"
+      ],
+      "additionalProperties": false
+    },
+    "Scope": {
+      "type": "object",
+      "properties": {
+        "reporting_periods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "borrower_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "facility_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "filters": {
+          "type": "object"
+        },
+        "currency_basis": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "EvidenceRef": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string"
+        },
+        "row_key": {
+          "type": "string"
+        },
+        "column_id": {
+          "type": "string"
+        },
+        "scope_ref": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "row_key",
+        "column_id"
+      ],
+      "additionalProperties": false
+    },
+    "NumericClaim": {
+      "type": "object",
+      "properties": {
+        "claim_id": {
+          "type": "string"
+        },
+        "decimal_value": {
+          "type": "string",
+          "description": "OPTIONAL, and normally OMITTED. CreditProbe computes this number from the evidence or the derivation you name, and formats it for the reader. Send one only to cross-check yourself; it is verified, and a value that does not reconcile refuses the answer."
+        },
+        "unit": {
+          "type": "string"
+        },
+        "evidence": {
+          "$ref": "#/$defs/EvidenceRef",
+          "description": "For a DIRECT value only: the one result cell it was read from. Omit it when sending a derivation."
+        },
+        "display_precision": {
+          "type": "integer",
+          "minimum": -1,
+          "maximum": 12,
+          "description": "OPTIONAL. Omit it: the unit decides. Money shows no decimal places, percentages and ratios show two, counts none."
+        },
+        "derivation": {
+          "$ref": "#/$defs/Derivation",
+          "description": "For a CALCULATED value only -- a total across rows, a share of a total, a difference, a growth rate. Omit it when sending evidence."
+        }
+      },
+      "required": [
+        "claim_id",
+        "unit"
+      ],
+      "additionalProperties": false,
+      "description": "One number in the answer: WHERE it comes from, not what it is. Send EXACTLY ONE of 'evidence' (the value appears in one result cell) or 'derivation' (the value is calculated from cells that do). Sending both, or neither, is refused. You do not need to send the number itself -- reference the claim from your narrative as {{claim.<id>}} and CreditProbe substitutes the validated, formatted figure."
+    },
+    "Table": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "artifact_id": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "row_cursor": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "artifact_id",
+        "columns"
+      ],
+      "additionalProperties": false
+    },
+    "Chart": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "How to draw it. x_column is the category or axis, y_columns the measures. bar/grouped_bar/pie/donut rank categories. line/step_line/area follow a sequence; stacked_bar and stacked_bar_100 show a mix over one; combo puts y_columns[0] as bars and y_columns[1] as a line on its own axis (a rate over volumes). waterfall bridges a total. scatter/bubble relate two measures; histogram shows a distribution; box shows quartiles; heatmap is a matrix -- x_column is the COLUMN axis, series_column the ROW axis, y_columns[0] the value in each cell.",
+          "enum": [
+            "area",
+            "bar",
+            "box",
+            "bubble",
+            "combo",
+            "donut",
+            "grouped_bar",
+            "heatmap",
+            "histogram",
+            "line",
+            "pie",
+            "scatter",
+            "stacked_bar",
+            "stacked_bar_100",
+            "step_line",
+            "waterfall"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "why_this_chart": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "One short sentence: the reader's question THIS form answers, and why this form answers it better than the table beside it. Optional, and the point is not the sentence -- it is that a form you cannot justify in one line is usually a form the answer does not need. It is published with the chart and appears in the governance record, so a reader can see the reasoning rather than infer it."
+        },
+        "artifact_id": {
+          "type": "string"
+        },
+        "x_column": {
+          "type": "string"
+        },
+        "y_columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "series_column": {
+          "type": "string",
+          "description": "The second categorical axis. Required for a heatmap, where it is the row axis; ignored by every other kind."
+        },
+        "unit": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "title",
+        "artifact_id",
+        "x_column",
+        "y_columns",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "Suggestion": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "required_periods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "product_help",
+            "theory",
+            "data_analysis"
+          ]
+        }
+      },
+      "required": [
+        "question",
+        "required_fields",
+        "required_periods",
+        "kind"
+      ],
+      "additionalProperties": false
+    },
+    "Coverage": {
+      "type": "object",
+      "properties": {
+        "subquestion": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "answered",
+            "partial",
+            "referred",
+            "needs_clarification",
+            "unsupported"
+          ]
+        },
+        "evidence_refs": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "minItems": 0,
+          "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        }
+      },
+      "required": [
+        "subquestion",
+        "status",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "Step": {
+      "type": "object",
+      "properties": {
+        "step_id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "sql",
+            "python"
+          ]
+        },
+        "code": {
+          "type": "string",
+          "description": "Exact Opus-authored source. Reject invalid/oversized input; never edit or truncate."
+        },
+        "parameters": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "input_artifact_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        },
+        "depends_on_step_ids": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0,
+          "description": "Absent, null and empty all mean the same thing. Send whichever is natural; the server stores one canonical form."
+        }
+      },
+      "required": [
+        "step_id",
+        "language",
+        "code",
+        "purpose"
+      ],
+      "additionalProperties": false
+    },
+    "CellSet": {
+      "type": "object",
+      "description": "Cells in one column of one executed result artifact. Say WHICH cells exactly one way: `rows: \"all\"` for every row of the result, or `row_ids` naming them individually. Sending both, or neither, is refused.",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "description": "The artifact these rows are in."
+        },
+        "column_id": {
+          "type": "string",
+          "description": "One output column of that artifact."
+        },
+        "rows": {
+          "type": "string",
+          "enum": [
+            "all"
+          ],
+          "description": "Every row of this result, in the order it was published. Use it for a figure that spans the whole result -- a total, or the denominator of a share -- instead of listing every row id. It is refused when the result was clipped at the preview cap, because a total over part of a result is not that result's total; name the rows you mean in that case. Omit this when sending 'row_ids'."
+        },
+        "row_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 500,
+          "items": {
+            "type": "string"
+          },
+          "description": "Row ids exactly as the result packet published them (\"r0\", \"r1\", ...), for a figure over SOME of the rows. A row id that is not in the artifact is refused; do not invent labels such as \"all sectors\" or \"total\" -- name the real rows and let the derivation add them up. Omit this when sending 'rows'."
+        }
+      },
+      "required": [
+        "artifact_id",
+        "column_id"
+      ],
+      "additionalProperties": false
+    },
+    "Derivation": {
+      "type": "object",
+      "description": "How a calculated value was produced, over cells that exist. The server recomputes it and refuses the answer if the arithmetic does not hold, so this is evidence, not commentary. count: how many referenced cells hold a value; difference: sum(first) - sum(second); identity: the single referenced cell, unchanged; max: the largest of the referenced cells; min: the smallest of the referenced cells; percentage: 100 * sum(first) / sum(second); percentage_change: 100 * (sum(first) - sum(second)) / sum(second), where the first operand is the later period; rank: the 1-based position of the first operand's single cell within the second operand's cells, largest first; ratio: sum(first) / sum(second); share_of_total: sum(first) / sum(second), where the first operand's rows must be a subset of the second's; sum: the sum of the referenced cells; weighted_average: sum(value * weight) / sum(weight), over the same rows in the same order.",
+      "properties": {
+        "operation": {
+          "type": "string",
+          "enum": [
+            "count",
+            "difference",
+            "identity",
+            "max",
+            "min",
+            "percentage",
+            "percentage_change",
+            "rank",
+            "ratio",
+            "share_of_total",
+            "sum",
+            "weighted_average"
+          ],
+          "description": "One operation from this closed set."
+        },
+        "operands": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/CellSet"
+          },
+          "description": "One operand for identity, sum, min, max and count; two for difference, ratio, percentage, percentage_change, share_of_total, weighted_average and rank. For percentage_change the first operand is the later period. For share_of_total the first operand's rows must be inside the second's. Each operand names its cells with 'rows: \"all\"' or with 'row_ids'."
+        }
+      },
+      "required": [
+        "operation",
+        "operands"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "card_version": "2026-09-10.1",
+  "provider": "anthropic",
+  "source": "PLACEHOLDER \u2014 replace with the current published schedule for your account before any paid run. These numbers are NOT verified pricing.",
+  "verified_at": "",
+  "note": "Every model this runtime may use must have its own entry, with all four billing classes. A missing or unverified entry fails closed: no paid request runs and no 'cost enforced' badge is shown.",
+  "models": {
+    "REPLACE-WITH-YOUR-MODEL-ID": {
+      "provider": "anthropic",
+      "sdk_version": "",
+      "context_tokens": 200000,
+      "max_output_tokens": 8192,
+      "supports_tools": true,
+      "supports_token_counting": true,
+      "source": "PLACEHOLDER",
+      "verified_at": "",
+      "price": {
+        "input_usd_per_mtok": 0.0,
+        "output_usd_per_mtok": 0.0,
+        "cache_write_usd_per_mtok": 0.0,
+        "cache_read_usd_per_mtok": 0.0
+      }
+    }
+  },
+  "capability_note": "This file is about MONEY. What a model accepts -- forced tool use, named-tool forcing, effort control -- is a fact about the provider's API and lives in backend/cockpit_v4/model_capabilities.py, keyed by model id. Nothing here controls it."
+}

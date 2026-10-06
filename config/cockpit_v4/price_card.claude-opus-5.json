@@ -1,0 +1,26 @@
+{
+  "card_version": "2026-09-21.1",
+  "provider": "anthropic",
+  "source": "Anthropic published schedule, platform.claude.com/docs/en/about-claude/pricing (Model pricing table), cross-checked against platform.claude.com/docs/en/about-claude/models/overview for the API id, context window and maximum output tokens.",
+  "verified_at": "2026-09-21",
+  "note": "Verified for the Round H live UAT. Figures read verbatim from the Model pricing table row 'Claude Opus 5': base input $5/MTok, 5m cache writes $6.25/MTok, 1h cache writes $10/MTok, cache hits and refreshes $0.50/MTok, output $25/MTok. Standard first-party API pricing only: this runtime sends no 'speed' parameter (so Fast mode's $10/$50 does not apply), no 'inference_geo' (so the US-only 1.1x multiplier does not apply), and does not use the Batch API.",
+  "models": {
+    "claude-opus-5": {
+      "provider": "anthropic",
+      "sdk_version": "",
+      "context_tokens": 1000000,
+      "max_output_tokens": 128000,
+      "supports_tools": true,
+      "supports_token_counting": true,
+      "source": "Anthropic published schedule, platform.claude.com/docs/en/about-claude/pricing, 'Model pricing' table, row 'Claude Opus 5'.",
+      "verified_at": "2026-09-21",
+      "cache_write_basis": "5-minute. PROVEN, not assumed: backend/cockpit_v4 contains no occurrence of cache_control; the assembled V4 request carries only {type,text} system blocks; backend/llm/anthropic_provider.py calls caching.usage() (which READS response usage) and never caching.compose() (the only function that sets cache_control). So this runtime requests no prompt caching and cache_creation_input_tokens is always 0, making cache_write_tokens always 0 in the ledger. The 5-minute price is recorded as the applicable basis should caching ever be enabled, because the codebase's own EPHEMERAL constant is {\"type\": \"ephemeral\"} with no ttl, which is the 5-minute default. See ROUND_H_LIVE_UAT.md for the full proof.",
+      "price": {
+        "input_usd_per_mtok": 5.0,
+        "output_usd_per_mtok": 25.0,
+        "cache_write_usd_per_mtok": 6.25,
+        "cache_read_usd_per_mtok": 0.5
+      }
+    }
+  }
+}

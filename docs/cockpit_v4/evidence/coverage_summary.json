@@ -1,0 +1,63 @@
+{
+  "dataset_release_id": "v4-saudi-20q-v1",
+  "computed_from": "the full authorized release, not the sample rows",
+  "computed_at": "2026-09-12T06:45:29+00:00",
+  "row_counts": {
+    "cockpit_reporting_calendar": 20,
+    "cockpit_facility_quarter": 3163,
+    "cockpit_ifrs9_detail": 10440,
+    "cockpit_borrower_financial_quarter": 1936,
+    "cockpit_rating_ratio_quarter": 1936,
+    "cockpit_qualitative_quarter": 38720,
+    "cockpit_collateral_quarter": 6220,
+    "cockpit_collateral_allocation": 9180,
+    "cockpit_covenant_quarter": 5838,
+    "cockpit_macro_quarter_window": 12000,
+    "cockpit_macro_pivot": 60
+  },
+  "populated_quarters": [
+    "2021Q3",
+    "2021Q4",
+    "2022Q1",
+    "2022Q2",
+    "2022Q3",
+    "2022Q4",
+    "2023Q1",
+    "2023Q2",
+    "2023Q3",
+    "2023Q4",
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+  ],
+  "missing_quarters": [],
+  "fields_with_full_coverage": 737,
+  "fields_with_gaps_by_relation": {
+    "cockpit_borrower_financial_quarter": 135,
+    "cockpit_collateral_allocation": 4,
+    "cockpit_collateral_quarter": 19,
+    "cockpit_covenant_quarter": 9,
+    "cockpit_facility_quarter": 28,
+    "cockpit_ifrs9_detail": 4,
+    "cockpit_qualitative_quarter": 27,
+    "cockpit_rating_ratio_quarter": 47,
+    "cockpit_reporting_calendar": 4
+  },
+  "fields_absent_from_some_quarter_by_relation": {
+    "cockpit_borrower_financial_quarter": 8,
+    "cockpit_collateral_allocation": 4,
+    "cockpit_covenant_quarter": 8,
+    "cockpit_facility_quarter": 4,
+    "cockpit_ifrs9_detail": 4,
+    "cockpit_qualitative_quarter": 4,
+    "cockpit_rating_ratio_quarter": 47
+  },
+  "outline_note": "Counts only. The field-by-field missing rates are not in this packet and no rate here may be quoted to the user. Coverage qualifies an analysis; it does not decide who owns the question, so do not refuse a request as unanswerable on the strength of these counts."
+}

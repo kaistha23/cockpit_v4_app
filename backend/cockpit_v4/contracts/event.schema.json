@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:creditprobe:cockpit-v4:event:1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "run.accepted",
+        "run.started",
+        "context.ready",
+        "model.requested",
+        "model.response_received",
+        "model.parsed",
+        "intent.validated",
+        "tool.requested",
+        "tool.validated",
+        "tool.started",
+        "tool.completed",
+        "tool.failed",
+        "retry.requested",
+        "answer.validated",
+        "answer.ready",
+        "run.failed",
+        "run.cancelled",
+        "run.expired",
+        "run.interrupted",
+        "memory.started",
+        "memory.completed",
+        "memory.failed"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "context",
+        "model",
+        "intent",
+        "catalog",
+        "execution_validation",
+        "sql",
+        "python",
+        "artifact_read",
+        "answer_validation",
+        "answer_delivery",
+        "supervision",
+        "memory"
+      ]
+    },
+    "operation": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "running",
+        "succeeded",
+        "failed",
+        "skipped",
+        "cancelled",
+        "expired",
+        "interrupted"
+      ]
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "elapsed_ms": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "submission": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "public_message": {
+      "type": "string"
+    },
+    "detail_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "error_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "span_id": {
+      "type": "string"
+    },
+    "parent_span_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "run_id",
+    "seq",
+    "event_type",
+    "stage",
+    "operation",
+    "status",
+    "occurred_at",
+    "elapsed_ms",
+    "attempt",
+    "submission",
+    "round",
+    "public_message",
+    "detail_ref",
+    "error_id",
+    "trace_id",
+    "span_id",
+    "parent_span_id"
+  ],
+  "additionalProperties": false
+}

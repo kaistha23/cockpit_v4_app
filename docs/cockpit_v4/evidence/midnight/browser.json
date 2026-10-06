@@ -1,0 +1,490 @@
+{
+  "label": "REAL BROWSER · REAL UI · REAL BACKEND · MOCK ANALYST",
+  "note": "The analyst model is a stub. This proves the wiring, the run lifecycle and the rendering. It is NOT a live Opus validation.",
+  "ui": "http://127.0.0.1:5471",
+  "api": "http://127.0.0.1:8471",
+  "theme": "midnight",
+  "total": 76,
+  "passed": 76,
+  "failed": 0,
+  "forbidden_endpoints_checked": [
+    "/api/v1/investigations",
+    "/api/v1/agentic/officer",
+    "/api/v1/ask/mode",
+    "/api/v1/ask/briefing",
+    "/api/v1/ask/suggestions",
+    "/api/v1/ask/cockpit-v2/diagnostics",
+    "/api/v1/cockpit/diagnostics"
+  ],
+  "measurements": [
+    {
+      "what": "thread opens after asking",
+      "ms": 304,
+      "budget_ms": 5000
+    },
+    {
+      "what": "first process event on screen",
+      "ms": 309,
+      "budget_ms": 10000
+    },
+    {
+      "what": "chart and table rendered",
+      "ms": 11,
+      "budget_ms": 5000
+    },
+    {
+      "what": "transcript restored after reload",
+      "ms": 431,
+      "budget_ms": 10000
+    },
+    {
+      "what": "follow-up appears in the transcript",
+      "ms": 122,
+      "budget_ms": 5000
+    }
+  ],
+  "responsive": [
+    {
+      "viewport": "mac-16-inch",
+      "width": 1728,
+      "height": 1117,
+      "contentWidth": 1429,
+      "mainWidth": 1501,
+      "innerWidth": 1728,
+      "navCollapsed": false,
+      "wideRequested": true,
+      "columnFill": 0.952,
+      "windowFill": 0.869
+    },
+    {
+      "viewport": "desktop-1440",
+      "width": 1440,
+      "height": 900,
+      "contentWidth": 1141,
+      "mainWidth": 1213,
+      "innerWidth": 1440,
+      "navCollapsed": false,
+      "wideRequested": true,
+      "columnFill": 0.941,
+      "windowFill": 0.842
+    },
+    {
+      "viewport": "laptop-1280",
+      "width": 1280,
+      "height": 800,
+      "contentWidth": 981,
+      "mainWidth": 1053,
+      "innerWidth": 1280,
+      "navCollapsed": false,
+      "wideRequested": true,
+      "columnFill": 0.932,
+      "windowFill": 0.823
+    },
+    {
+      "viewport": "tablet-834",
+      "width": 834,
+      "height": 1112,
+      "contentWidth": 559,
+      "mainWidth": 607,
+      "innerWidth": 834,
+      "navCollapsed": false,
+      "wideRequested": true,
+      "columnFill": 0.921,
+      "windowFill": 0.728
+    },
+    {
+      "viewport": "phone-390",
+      "width": 390,
+      "height": 844,
+      "contentWidth": 283,
+      "mainWidth": 315,
+      "innerWidth": 390,
+      "navCollapsed": true,
+      "wideRequested": true,
+      "columnFill": 0.898,
+      "windowFill": 0.808
+    }
+  ],
+  "results": [
+    {
+      "name": "asking 'Who are you?' posts to the V4 run API and never to the legacy flow",
+      "ok": true,
+      "ms": 2473
+    },
+    {
+      "name": "the process panel appears and consumes the V4 event stream",
+      "ok": true,
+      "ms": 2261
+    },
+    {
+      "name": "progress events are rendered before the answer arrives",
+      "ok": true,
+      "ms": 2297
+    },
+    {
+      "name": "the final answer renders with its disposition",
+      "ok": true,
+      "ms": 2258
+    },
+    {
+      "name": "an evidence-bound analysis renders artifact links",
+      "ok": true,
+      "ms": 3808
+    },
+    {
+      "name": "a terminal failure renders explicitly with a support reference",
+      "ok": true,
+      "ms": 2274
+    },
+    {
+      "name": "stop cancels the run through the V4 cancel endpoint",
+      "ok": true,
+      "ms": 1914
+    },
+    {
+      "name": "a browser refresh replays the same run instead of re-asking",
+      "ok": true,
+      "ms": 1362
+    },
+    {
+      "name": "optional landing widgets show a neutral state and request nothing",
+      "ok": true,
+      "ms": 681
+    },
+    {
+      "name": "no request from the page goes to the legacy backend port",
+      "ok": true,
+      "ms": 4256
+    },
+    {
+      "name": "the process panel shows real stages, not 'not started' at 0s",
+      "ok": true,
+      "ms": 2896
+    },
+    {
+      "name": "the answer renders as Markdown, with no raw syntax left over",
+      "ok": true,
+      "ms": 2348
+    },
+    {
+      "name": "suggested-question chips stay interactive UI, not Markdown",
+      "ok": true,
+      "ms": 2394
+    },
+    {
+      "name": "a cut-off action shows the retry and then the real stages",
+      "ok": true,
+      "ms": 6036
+    },
+    {
+      "name": "a result survives an answer that could not be written",
+      "ok": true,
+      "ms": 5765
+    },
+    {
+      "name": "a failed attempt stays visible after a later attempt succeeds",
+      "ok": true,
+      "ms": 4630
+    },
+    {
+      "name": "asking from home opens a conversation at its own URL",
+      "ok": true,
+      "ms": 965
+    },
+    {
+      "name": "the follow-up composer is waiting under the answer",
+      "ok": true,
+      "ms": 2297
+    },
+    {
+      "name": "a follow-up appends and does not replace what came before",
+      "ok": true,
+      "ms": 3508
+    },
+    {
+      "name": "a refresh restores the transcript without asking again",
+      "ok": true,
+      "ms": 2607
+    },
+    {
+      "name": "the thread header names the conversation and renames it",
+      "ok": true,
+      "ms": 2800
+    },
+    {
+      "name": "the way back to Cockpit is at the top left",
+      "ok": true,
+      "ms": 2706
+    },
+    {
+      "name": "browser back also returns to Cockpit",
+      "ok": true,
+      "ms": 2346
+    },
+    {
+      "name": "the conversation is named by the question, not 'New conversation'",
+      "ok": true,
+      "ms": 3292
+    },
+    {
+      "name": "a seeded thread opens on three to five questions, before anybody types (§31)",
+      "ok": true,
+      "ms": 1066
+    },
+    {
+      "name": "the Ask next strip never overlaps what is behind it (§34)",
+      "ok": true,
+      "ms": 3333
+    },
+    {
+      "name": "follow-up chips sit directly above the composer and stay in the thread",
+      "ok": true,
+      "ms": 3420
+    },
+    {
+      "name": "a published figure is written once, the way a credit paper writes it",
+      "ok": true,
+      "ms": 4803
+    },
+    {
+      "name": "the conversation is quick to open, restore and ask again in",
+      "ok": true,
+      "ms": 3953
+    },
+    {
+      "name": "the conversation can be shared, and says how it was delivered",
+      "ok": true,
+      "ms": 3514
+    },
+    {
+      "name": "a conversation opens an investigation, and Projects are not faked",
+      "ok": true,
+      "ms": 2378
+    },
+    {
+      "name": "the conversation links to the trace of its latest answer",
+      "ok": true,
+      "ms": 2661
+    },
+    {
+      "name": "Investigate Further opens the conversation, not just the context",
+      "ok": true,
+      "ms": 1051
+    },
+    {
+      "name": "an analytical answer shows every chart it sent, and its table",
+      "ok": true,
+      "ms": 3401
+    },
+    {
+      "name": "the active stage counts seconds while it is working",
+      "ok": true,
+      "ms": 2894
+    },
+    {
+      "name": "segments requiring attention loads from the pinned release",
+      "ok": true,
+      "ms": 707
+    },
+    {
+      "name": "latest-quarter ECL highlights load below it",
+      "ok": true,
+      "ms": 710
+    },
+    {
+      "name": "clicking a segment card opens the right-side drawer",
+      "ok": true,
+      "ms": 781
+    },
+    {
+      "name": "the drawer offers borrower drill-down and no invented subsegment",
+      "ok": true,
+      "ms": 758
+    },
+    {
+      "name": "possible drivers are stated as association, never as cause",
+      "ok": true,
+      "ms": 795
+    },
+    {
+      "name": "Investigate Further opens a seeded V4 thread",
+      "ok": true,
+      "ms": 1603
+    },
+    {
+      "name": "a follow-up uses the seeded context without restating it",
+      "ok": true,
+      "ms": 3923
+    },
+    {
+      "name": "the seeded context load appears in the process panel",
+      "ok": true,
+      "ms": 1687
+    },
+    {
+      "name": "an ECL highlight opens the same drawer and investigates",
+      "ok": true,
+      "ms": 1105
+    },
+    {
+      "name": "a refresh keeps the open investigation",
+      "ok": true,
+      "ms": 1592
+    },
+    {
+      "name": "an attention-feed failure does not break Ask",
+      "ok": true,
+      "ms": 2334
+    },
+    {
+      "name": "the landing page greets, then asks what is on your mind",
+      "ok": true,
+      "ms": 701
+    },
+    {
+      "name": "the Ask box is the primary element and spans the workspace",
+      "ok": true,
+      "ms": 720
+    },
+    {
+      "name": "prompt chips render, ask when clicked, and can be dismissed",
+      "ok": true,
+      "ms": 1292
+    },
+    {
+      "name": "the Trace line is there and explains itself",
+      "ok": true,
+      "ms": 815
+    },
+    {
+      "name": "Segments requiring attention shows its period and only segments",
+      "ok": true,
+      "ms": 841
+    },
+    {
+      "name": "the two dashboards are distinct and share no card",
+      "ok": true,
+      "ms": 732
+    },
+    {
+      "name": "switching the book asks the server again, it is not a filter",
+      "ok": true,
+      "ms": 824
+    },
+    {
+      "name": "each book shows its own release, currency and ECL position",
+      "ok": true,
+      "ms": 800
+    },
+    {
+      "name": "switching back shows the first book's numbers, not a cached other",
+      "ok": true,
+      "ms": 909
+    },
+    {
+      "name": "Home states each book's own frequency, from the release",
+      "ok": true,
+      "ms": 830
+    },
+    {
+      "name": "prompt chips are asked in the selected book's own period",
+      "ok": true,
+      "ms": 814
+    },
+    {
+      "name": "Home and the dashboard under it agree on the calendar",
+      "ok": true,
+      "ms": 855
+    },
+    {
+      "name": "five switch cycles leave no calendar behind",
+      "ok": true,
+      "ms": 1663
+    },
+    {
+      "name": "the drawer's seed note names the card's own period",
+      "ok": true,
+      "ms": 1003
+    },
+    {
+      "name": "a question asked in a book opens a thread badged with that book",
+      "ok": true,
+      "ms": 7287
+    },
+    {
+      "name": "both dashboards open the same right-hand drawer",
+      "ok": true,
+      "ms": 985
+    },
+    {
+      "name": "Continue where you left off uses real V4 threads",
+      "ok": true,
+      "ms": 2540
+    },
+    {
+      "name": "an Arabic answer renders right-to-left without breaking the page",
+      "ok": true,
+      "ms": 3249
+    },
+    {
+      "name": "the landing page mounts the V4 Cockpit and nothing legacy",
+      "ok": true,
+      "ms": 723
+    },
+    {
+      "name": "no page shows a currency the selected release does not use",
+      "ok": true,
+      "ms": 672
+    },
+    {
+      "name": "attention cards and ECL highlights use the release's currency",
+      "ok": true,
+      "ms": 717
+    },
+    {
+      "name": "borrower names in the drawer belong to the selected release",
+      "ok": true,
+      "ms": 742
+    },
+    {
+      "name": "an answer, its table and its chart use one currency",
+      "ok": true,
+      "ms": 3333
+    },
+    {
+      "name": "the landing page fills a mac-16-inch window",
+      "ok": true,
+      "ms": 714
+    },
+    {
+      "name": "the landing page fills a desktop-1440 window",
+      "ok": true,
+      "ms": 635
+    },
+    {
+      "name": "the landing page fills a laptop-1280 window",
+      "ok": true,
+      "ms": 672
+    },
+    {
+      "name": "the landing page fills a tablet-834 window",
+      "ok": true,
+      "ms": 661
+    },
+    {
+      "name": "the landing page fills a phone-390 window",
+      "ok": true,
+      "ms": 611
+    },
+    {
+      "name": "the navigation rail collapses itself on a phone",
+      "ok": true,
+      "ms": 630
+    },
+    {
+      "name": "the greeting never addresses a deployment profile as a person",
+      "ok": true,
+      "ms": 622
+    }
+  ]
+}

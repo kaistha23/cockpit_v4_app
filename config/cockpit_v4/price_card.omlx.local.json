@@ -1,0 +1,21 @@
+{
+  "source": "Local oMLX /v1/models qualification spike, 2026-10-01",
+  "verified_at": "2026-10-01",
+  "models": {
+    "Qwen3.6-35B-A3B-Claude-4.7-Opus-Reasoning-Distilled-text-oQ4e-mtp": {
+      "provider": "omlx",
+      "context_tokens": 262144,
+      "max_output_tokens": 8192,
+      "supports_tools": true,
+      "supports_token_counting": false,
+      "source": "Local oMLX /v1/models reports max_model_len=262144; output allowance is a conservative Cockpit limit.",
+      "verified_at": "2026-10-01",
+      "price": {
+        "input_usd_per_mtok": 0.0,
+        "output_usd_per_mtok": 0.0,
+        "cache_write_usd_per_mtok": 0.0,
+        "cache_read_usd_per_mtok": 0.0
+      }
+    }
+  }
+}

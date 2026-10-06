@@ -1,0 +1,390 @@
+{
+  "pack_version": "2026.09-v1",
+  "institution": "CreditProbe demonstration bank (fictional, Saudi Arabia)",
+  "not_client_data": true,
+  "note": "A synthetic credit policy written to match the demonstration books. It is modelled on Saudi retail and corporate practice and on SAMA's published rules, and it is NOT any institution's actual policy. Clause numbers, thresholds, owners and review dates are authored for this product.",
+  "currency": "SAR",
+  "amount_scale": "million",
+  "books": {
+    "retail": {
+      "book_id": "retail",
+      "title": "Retail Credit Policy",
+      "approved_by": "Retail Credit Committee",
+      "approved_on": "2026-01-15",
+      "next_review": "2027-01-15",
+      "scope": "All consumer lending: mortgage, personal finance, auto finance, credit cards and buy now pay later.",
+      "sections": [
+        {
+          "section": "RP-1",
+          "title": "Affordability and debt burden",
+          "clauses": [
+            {
+              "clause": "RP-1.1",
+              "title": "Debt burden ratio caps",
+              "rule": "Total monthly credit obligations may not exceed the debt burden ratio (DBR) cap for the customer's employment type, measured on verified income.",
+              "thresholds": {
+                "Salaried-Government": "65% of net monthly salary",
+                "Salaried-Private": "55% of net monthly salary",
+                "Self-employed": "45% of assessed net monthly income",
+                "Non-salaried": "35% of assessed net monthly income"
+              },
+              "applies_to": ["employment_type"],
+              "owner": "Head of Retail Credit Policy",
+              "last_reviewed": "2026-01-15",
+              "levers": ["tighten a DBR cap", "require salary transfer", "require a guarantor"]
+            },
+            {
+              "clause": "RP-1.2",
+              "title": "Salary transfer",
+              "rule": "Unsecured lending above SAR 0.15 million to a salaried customer requires salary transfer to the bank. Without transfer, the exposure limit is halved and the DBR cap falls by 10 percentage points.",
+              "applies_to": ["employment_type", "product"],
+              "owner": "Head of Retail Credit Policy",
+              "last_reviewed": "2026-01-15",
+              "levers": ["make salary transfer mandatory for a segment", "change the without-transfer haircut"]
+            },
+            {
+              "clause": "RP-1.3",
+              "title": "Non-salaried income assessment",
+              "rule": "Non-salaried applicants require twelve months of bank statements, and assessed income is the lower of the declared figure and the trailing twelve-month average of credited inflows discounted by 20%.",
+              "applies_to": ["employment_type"],
+              "owner": "Head of Retail Underwriting",
+              "last_reviewed": "2026-01-15",
+              "levers": ["lengthen the statement window", "raise the discount", "exclude a channel"]
+            }
+          ]
+        },
+        {
+          "section": "RP-2",
+          "title": "Product limits, tenor and score cut-offs",
+          "clauses": [
+            {
+              "clause": "RP-2.1",
+              "title": "Credit card limits by sub-product",
+              "rule": "Approved card limits may not exceed the sub-product ceiling, and may not exceed four times verified net monthly income.",
+              "thresholds": {
+                "Classic": "SAR 0.05 million",
+                "Gold": "SAR 0.12 million",
+                "Signature": "SAR 0.40 million"
+              },
+              "applies_to": ["product", "sub_product"],
+              "owner": "Head of Cards",
+              "last_reviewed": "2026-01-15",
+              "levers": ["reduce a sub-product ceiling", "reduce the income multiple", "suspend limit increases"]
+            },
+            {
+              "clause": "RP-2.2",
+              "title": "Behavioural score cut-offs at origination",
+              "rule": "Minimum application score by product: Mortgage 620, Auto Finance 600, Personal Finance 620, Credit Card 640, Buy Now Pay Later 660. Non-salaried applicants carry a +40 point uplift on the applicable cut-off.",
+              "applies_to": ["product", "employment_type", "score_band"],
+              "owner": "Head of Retail Risk Models",
+              "last_reviewed": "2026-01-15",
+              "levers": ["raise a cut-off", "raise the non-salaried uplift", "withdraw a product from a segment"]
+            },
+            {
+              "clause": "RP-2.3",
+              "title": "Maximum tenor",
+              "rule": "Mortgage 300 months; Auto Finance 60 months; Personal Finance 60 months; Buy Now Pay Later 6 months. Tenor may not extend beyond the customer's 65th birthday for salaried applicants or 60th for non-salaried.",
+              "applies_to": ["product", "sub_product"],
+              "owner": "Head of Retail Credit Policy",
+              "last_reviewed": "2026-01-15",
+              "levers": ["shorten a maximum tenor"]
+            },
+            {
+              "clause": "RP-2.4",
+              "title": "Loan to value on secured retail lending",
+              "rule": "Mortgage LTV may not exceed 85% for a first home and 70% otherwise. Auto Finance LTV may not exceed 80% for a new vehicle and 65% for a used one. An account whose LTV rises above its cap by more than 5 percentage points is reported to the Retail Credit Committee.",
+              "applies_to": ["product", "sub_product", "ltv_pct"],
+              "owner": "Head of Secured Lending",
+              "last_reviewed": "2026-01-15",
+              "levers": ["reduce an LTV cap", "require revaluation", "require additional security"]
+            },
+            {
+              "clause": "RP-2.5",
+              "title": "Override authority",
+              "rule": "A policy override requires the approval of one authority level above the normal approver, must state the compensating factor, and may not breach RP-1.1 or RP-2.4. Overrides may not exceed 5% of monthly originations by count for any product.",
+              "applies_to": ["product"],
+              "owner": "Chief Credit Officer",
+              "last_reviewed": "2026-01-15",
+              "levers": ["reduce the override quota", "withdraw override authority for a product"]
+            }
+          ]
+        },
+        {
+          "section": "RP-3",
+          "title": "New products and channels",
+          "clauses": [
+            {
+              "clause": "RP-3.1",
+              "title": "Pilot phase for a new product",
+              "rule": "A product with no through-cycle performance history is written under a pilot mandate for its first four quarters: a portfolio ceiling of 3% of retail exposure, monthly vintage reporting to the Retail Credit Committee, and cut-offs set one band tighter than the nearest comparable product.",
+              "applies_to": ["product"],
+              "owner": "Chief Credit Officer",
+              "last_reviewed": "2026-01-15",
+              "levers": ["lower the pilot ceiling", "extend the pilot", "suspend origination"]
+            },
+            {
+              "clause": "RP-3.2",
+              "title": "Partner and digital origination",
+              "rule": "Accounts written through a partner channel are subject to the same cut-offs as branch origination and to a monthly first-payment-default review. A partner whose three-month first-payment-default rate exceeds 2.5% is suspended pending review.",
+              "applies_to": ["origination_channel"],
+              "owner": "Head of Partnerships",
+              "last_reviewed": "2026-01-15",
+              "levers": ["suspend a partner", "lower the partner FPD threshold", "require branch verification"]
+            },
+            {
+              "clause": "RP-3.3",
+              "title": "Vintage monitoring",
+              "rule": "Every origination vintage is tracked to 12 months on book. A vintage whose 30+ delinquency at 6-9 months on book exceeds the trailing four-vintage average by more than 50% triggers a cut-off review within one month.",
+              "applies_to": ["vintage_year", "origination_month", "months_on_book"],
+              "owner": "Head of Retail Risk Models",
+              "last_reviewed": "2026-01-15",
+              "levers": ["review the cut-offs in force at that vintage", "re-underwrite the cohort"]
+            }
+          ]
+        },
+        {
+          "section": "RP-4",
+          "title": "Collections and forbearance",
+          "clauses": [
+            {
+              "clause": "RP-4.1",
+              "title": "Collections actions by arrears band",
+              "rule": "Contact intensity follows the arrears band, measured on days past due.",
+              "thresholds": {
+                "1-9": "automated reminder (SMS and app notification) on day 3 and day 7",
+                "10-19": "outbound call from the contact centre within 48 hours",
+                "20-29": "field visit or a supervised restructure offer; the account is flagged for the pre-delinquency review",
+                "30-59": "formal demand notice; limit frozen; no further drawdown",
+                "60-89": "transfer to specialist collections; settlement authority delegated",
+                "90-179": "legal referral and provisioning at lifetime ECL",
+                "180+": "write-off assessment under RP-4.4"
+              },
+              "applies_to": ["delinquency_bucket_fine", "dpd_days"],
+              "owner": "Head of Retail Collections",
+              "last_reviewed": "2026-01-15",
+              "levers": ["move an action earlier in the arrears curve", "add a field visit at 10-19", "increase contact-centre capacity"]
+            },
+            {
+              "clause": "RP-4.2",
+              "title": "Restructure eligibility",
+              "rule": "An account may be restructured once in any twelve-month period, only where the cause of arrears is documented and temporary, and only where the restructured obligation satisfies RP-1.1. A restructured account is held in Stage 2 for a minimum of twelve months.",
+              "applies_to": ["dpd_days", "stage"],
+              "owner": "Head of Retail Collections",
+              "last_reviewed": "2026-01-15",
+              "levers": ["widen or narrow restructure eligibility", "change the Stage 2 cure period"]
+            },
+            {
+              "clause": "RP-4.3",
+              "title": "Seasonal payment deferral",
+              "rule": "A deferral of up to one instalment may be granted in Ramadan and the following month on request, once per customer per year, for accounts current at the point of request. A deferral granted under this clause does not count as forbearance and does not trigger SICR.",
+              "applies_to": ["reporting_month"],
+              "owner": "Head of Retail Collections",
+              "last_reviewed": "2026-01-15",
+              "levers": ["withdraw the seasonal deferral", "restrict it by product"]
+            },
+            {
+              "clause": "RP-4.4",
+              "title": "Write-off",
+              "rule": "An unsecured retail exposure is written off at 210 days past due. A secured exposure is written off on completion of recovery action or at 360 days past due, whichever is earlier. Write-off does not extinguish the claim.",
+              "applies_to": ["dpd_days", "secured_flag"],
+              "owner": "Chief Credit Officer",
+              "last_reviewed": "2026-01-15",
+              "levers": ["change the write-off point"]
+            }
+          ]
+        },
+        {
+          "section": "RP-5",
+          "title": "Staging and provisioning",
+          "clauses": [
+            {
+              "clause": "RP-5.1",
+              "title": "Significant increase in credit risk",
+              "rule": "An account moves to Stage 2 on any of: 30 days past due; a behavioural score below 520; a fall of more than 105 points from the score at origination; or a restructure under RP-4.2.",
+              "applies_to": ["stage", "sicr_flag", "dpd_days", "behaviour_score"],
+              "owner": "Head of IFRS 9",
+              "last_reviewed": "2026-01-15",
+              "levers": ["tighten a SICR trigger", "add a trigger"]
+            },
+            {
+              "clause": "RP-5.2",
+              "title": "Default",
+              "rule": "Default is recognised at 90 days past due or on an unlikeliness-to-pay assessment, whichever is earlier. A defaulted account returns to Stage 2 only after twelve consecutive months of performance.",
+              "applies_to": ["stage", "default_flag", "dpd_days"],
+              "owner": "Head of IFRS 9",
+              "last_reviewed": "2026-01-15",
+              "levers": ["lengthen the cure period"]
+            }
+          ]
+        }
+      ]
+    },
+    "corporate": {
+      "book_id": "corporate",
+      "title": "Corporate Credit Policy",
+      "approved_by": "Board Credit Committee",
+      "approved_on": "2026-01-22",
+      "next_review": "2027-01-22",
+      "scope": "All corporate and commercial lending: term loans, working capital, revolving credit, trade finance, project finance, overdrafts, asset finance and supply chain finance.",
+      "sections": [
+        {
+          "section": "CP-1",
+          "title": "Concentration limits",
+          "clauses": [
+            {
+              "clause": "CP-1.1",
+              "title": "Single obligor limit",
+              "rule": "Total exposure to a single obligor may not exceed SAR 25,000 million. Exposure is measured as EAD, funded and unfunded together.",
+              "thresholds": {"single_obligor_ead_sar_mn": 25000},
+              "applies_to": ["borrower_id", "borrower_name", "ead_sar_mn"],
+              "owner": "Board Credit Committee",
+              "last_reviewed": "2026-01-22",
+              "levers": ["reduce the limit", "require a syndication", "cap undrawn commitments"]
+            },
+            {
+              "clause": "CP-1.2",
+              "title": "Connected group limit",
+              "rule": "Total exposure to a group of connected obligors may not exceed SAR 50,000 million. Connection is by ownership or by control, not by sector. Group exposure is reported to the Board Credit Committee every quarter and on any breach.",
+              "thresholds": {"connected_group_ead_sar_mn": 50000},
+              "applies_to": ["group_name", "group_id", "ead_sar_mn"],
+              "owner": "Board Credit Committee",
+              "last_reviewed": "2026-01-22",
+              "levers": ["reduce the group limit", "freeze new facilities to the group", "require a reduction plan"]
+            },
+            {
+              "clause": "CP-1.3",
+              "title": "Sector concentration",
+              "rule": "Exposure to any one sector may not exceed 18% of the corporate book, and to any one sub-sector 7%. A sector above its limit is closed to new names until it is within it.",
+              "thresholds": {"sector_share_pct": 18, "sub_sector_share_pct": 7},
+              "applies_to": ["sector", "sub_sector", "ead_sar_mn"],
+              "owner": "Chief Credit Officer",
+              "last_reviewed": "2026-01-22",
+              "levers": ["reduce a sector cap", "close a sector to new names"]
+            }
+          ]
+        },
+        {
+          "section": "CP-2",
+          "title": "Financial covenants",
+          "clauses": [
+            {
+              "clause": "CP-2.1",
+              "title": "Standard covenant package",
+              "rule": "Every term facility carries a debt service coverage covenant at a minimum of 1.20x, a leverage covenant at a maximum of 4.0x net debt to EBITDA, and an interest cover covenant at a minimum of 2.50x, tested quarterly on management accounts and annually on audited accounts.",
+              "thresholds": {"dscr_min_x": 1.20, "leverage_max_x": 4.0, "interest_cover_min_x": 2.50},
+              "applies_to": ["dscr_x", "leverage_x", "interest_cover_x", "covenant_type"],
+              "owner": "Head of Corporate Credit",
+              "last_reviewed": "2026-01-22",
+              "levers": ["raise the DSCR floor for a sub-sector", "shorten the test frequency", "add a cash sweep"]
+            },
+            {
+              "clause": "CP-2.2",
+              "title": "Breach and waiver",
+              "rule": "A covenant breach is reported within five business days. A waiver requires the approval of the sanctioning authority, may not be granted twice consecutively for the same covenant, and must be accompanied by a remediation plan. Two consecutive breaches move the obligor to the watchlist under CP-3.1.",
+              "applies_to": ["breach_flag", "test_status", "consecutive_breaches", "waiver_flag"],
+              "owner": "Head of Corporate Credit",
+              "last_reviewed": "2026-01-22",
+              "levers": ["withdraw waiver authority", "require repricing on waiver"]
+            },
+            {
+              "clause": "CP-2.3",
+              "title": "Debt service below policy",
+              "rule": "An obligor whose DSCR falls below 1.20x is placed on the watchlist irrespective of its internal rating. An obligor below 1.00x is reviewed for unlikeliness to pay within one quarter.",
+              "thresholds": {"watch_dscr_x": 1.20, "utp_review_dscr_x": 1.00},
+              "applies_to": ["dscr_x", "watchlist_flag", "quarters_on_watchlist"],
+              "owner": "Head of Credit Risk",
+              "last_reviewed": "2026-01-22",
+              "levers": ["raise the watch trigger", "shorten the UTP review window"]
+            }
+          ]
+        },
+        {
+          "section": "CP-3",
+          "title": "Rating, watchlist and early warning",
+          "clauses": [
+            {
+              "clause": "CP-3.1",
+              "title": "Watchlist",
+              "rule": "An obligor is placed on the watchlist on any of: a fall of two or more notches from the rating at origination; an internal grade at or below CCC; a DSCR below 1.20x; or two consecutive covenant breaches. Watchlist names are reviewed monthly.",
+              "applies_to": ["rating_current", "rating_notches_from_origination", "dscr_x", "watchlist_flag"],
+              "owner": "Head of Credit Risk",
+              "last_reviewed": "2026-01-22",
+              "levers": ["add an early-warning trigger", "shorten the review cycle for a sub-sector"]
+            },
+            {
+              "clause": "CP-3.2",
+              "title": "Rating review frequency",
+              "rule": "Internal ratings are reviewed annually, and within one quarter of a covenant breach, a two-notch fall in debt service coverage, or a material adverse event. A sub-sector whose average DSCR falls by more than 0.25x in two quarters is reviewed as a portfolio.",
+              "thresholds": {"sub_sector_dscr_fall_x": 0.25},
+              "applies_to": ["sub_sector", "dscr_x", "rating_current"],
+              "owner": "Head of Credit Risk",
+              "last_reviewed": "2026-01-22",
+              "levers": ["order an out-of-cycle sub-sector rating review", "suspend new lending to a sub-sector"]
+            },
+            {
+              "clause": "CP-3.3",
+              "title": "Significant increase in credit risk",
+              "rule": "A facility moves to Stage 2 on any of: 30 days past due; an internal grade at or below CCC; or a fall of two or more notches from the rating at origination. Default is recognised at 90 days past due or at an internal grade at or below CC.",
+              "applies_to": ["stage", "sicr_flag", "dpd_days", "rating_current"],
+              "owner": "Head of IFRS 9",
+              "last_reviewed": "2026-01-22",
+              "levers": ["tighten the notch trigger"]
+            }
+          ]
+        },
+        {
+          "section": "CP-4",
+          "title": "Security and collateral",
+          "clauses": [
+            {
+              "clause": "CP-4.1",
+              "title": "Collateral haircuts",
+              "rule": "Recognised collateral value is market value less the haircut for its type: cash deposit 0%, real estate 30%, plant and equipment 45%, receivables 50%, corporate guarantee 60%. Receivables are recognised only where assigned and notified.",
+              "thresholds": {"Cash Deposit": 0, "Real Estate": 30, "Plant and Equipment": 45, "Receivables": 50, "Corporate Guarantee": 60},
+              "applies_to": ["collateral_type", "collateral_value_sar_mn", "ltv_pct"],
+              "owner": "Head of Credit Administration",
+              "last_reviewed": "2026-01-22",
+              "levers": ["raise a haircut", "derecognise a collateral type"]
+            },
+            {
+              "clause": "CP-4.2",
+              "title": "Revaluation and LTV",
+              "rule": "Real estate security is revalued every 24 months, and every 12 months where the facility is on the watchlist. A facility whose LTV after haircut exceeds 100% must be topped up or amortised within two quarters.",
+              "thresholds": {"ltv_action_pct": 100, "revaluation_months": 24},
+              "applies_to": ["ltv_pct", "valuation_age_months", "collateral_type"],
+              "owner": "Head of Credit Administration",
+              "last_reviewed": "2026-01-22",
+              "levers": ["shorten the revaluation cycle", "lower the LTV action threshold"]
+            }
+          ]
+        },
+        {
+          "section": "CP-5",
+          "title": "New products",
+          "clauses": [
+            {
+              "clause": "CP-5.1",
+              "title": "Product approval and pilot limits",
+              "rule": "A new corporate product requires Board Credit Committee approval and is written under a pilot mandate for its first four quarters: a portfolio ceiling of 4% of corporate exposure, quarterly performance reporting by origination vintage, and no override authority below the Chief Credit Officer.",
+              "thresholds": {"pilot_share_pct": 4, "pilot_quarters": 4},
+              "applies_to": ["product_type"],
+              "owner": "Board Credit Committee",
+              "last_reviewed": "2026-01-22",
+              "levers": ["lower the pilot ceiling", "suspend origination", "extend the pilot"]
+            },
+            {
+              "clause": "CP-5.2",
+              "title": "Supply chain and receivables finance",
+              "rule": "Supply chain finance is underwritten against the anchor obligor, not the supplier, and is subject to the anchor's single obligor limit under CP-1.1. Programme limits are reviewed quarterly, and dilution above 5% of assigned receivables suspends new drawdowns.",
+              "thresholds": {"dilution_suspend_pct": 5},
+              "applies_to": ["product_type", "facility_class"],
+              "owner": "Head of Transaction Banking",
+              "last_reviewed": "2026-01-22",
+              "levers": ["reduce a programme limit", "tighten the dilution trigger", "reprice the programme"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
